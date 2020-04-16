@@ -73,7 +73,7 @@
 		"text": ["代码可以直接点击复制哟。"]
 	}, {
 		"selector": ".highlight .table-container, .gist",
-		"text": ["GitHub！我是新手！", "PHP 是最好的语言！"]
+		"text": ["C++ 是最好的语言！", "GitHub！我是新手！"]
 	}, {
 		"selector": ".container a[href^='http'], .nav-link .nav-text",
 		"text": ["要去看看 <span>{text}</span> 么？", "去 <span>{text}</span> 逛逛吧。", "到 <span>{text}</span> 看看吧。"]
