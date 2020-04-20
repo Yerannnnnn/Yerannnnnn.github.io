@@ -228,7 +228,7 @@ function loadWidget(config) {
             loadlive2d("live2d", `${cdnPath}model/${target}/index.json`);
             showMessage("我的新衣服好看嘛？", 4000, 10);
         } else {
-            // 可选 "rand"(随机), "switch"(顺序)
+            // 可选 "rand_textures"(随机), "switch"(顺序)
             fetch(`${apiPath}rand_textures/?id=${modelId}-${modelTexturesId}`)
                 .then(response => response.json())
                 .then(result => {
