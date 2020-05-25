@@ -3,8 +3,8 @@
     "version": "1.0",
     "model": "model.moc",
     "textures": [
-        "textures/texture_00.png",
-        "textures/texture_01.png"
+        "textures.1024/texture_00.png",
+        "textures.1024/texture_01.png"
     ],
     "layout": {
         "center_x": 0.0,
