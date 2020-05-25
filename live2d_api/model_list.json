@@ -1,5 +1,6 @@
 {
   "models": [
+        "mengxiang/sagiri",
         "Potion-Maker/Pio",
         "Potion-Maker/Tia",
         [
@@ -18,15 +19,14 @@
          "HyperdimensionNeptunia/histoire"
         ],
         "mengxiang/chino",
-        "mengxiang/sagiri",
         "mengxiang/bronya"
     ],
     "messages": [
+        "和泉 紗霧(いずみ さぎり)",
         "来自 Potion Maker 的 Pio 酱 ~",
         "来自 Potion Maker 的 Tia 酱 ~",
         "Nep! Nep! 超次元游戏：海王星 系列",
         "香風 智乃（かふう ちの）",
-        "和泉 紗霧(いずみ さぎり)",
         "布洛妮娅·扎伊切克 (Bronya Zaychik)"
     ]
 }
