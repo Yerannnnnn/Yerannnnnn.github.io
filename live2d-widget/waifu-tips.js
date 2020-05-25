@@ -164,8 +164,10 @@ function loadWidget(config) {
             modelTexturesId = localStorage.getItem("modelTexturesId");
         if (modelId === null) {
             // 首次访问加载 指定模型 的 指定材质
-            modelId = 1; // 模型 ID
-            modelTexturesId = 20; // 材质 ID 46(jk) 72(粉白蝴蝶裙)
+            // modelId = 1; // 模型 ID
+            // modelTexturesId = 20; // 材质 ID 46(jk) 72(粉白蝴蝶裙)
+            modelId = 1;
+            modelTexturesId = 1;
         }
         loadModel(modelId, modelTexturesId);
         fetch(waifuPath)
