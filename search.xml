@@ -126,7 +126,7 @@
   </entry>
   <entry>
     <title>【折腾笔记】个人网站</title>
-    <url>/2020/05/25/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/</url>
+    <url>/2020/05/24/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/</url>
     <content><![CDATA[<p>终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。</p>
 <p>从14年开始搞个人网站，那时候用虚拟主机，便宜耐用，但配置差，网速慢，备份不方便，自由度极低，而且那时候网站程序是用的 WordPress ，Emm 可能是因为当时太菜了，觉得不好用，网站搬家也很费力，备份也不太方便，虽然有一次趁着打折续了五年的，但后来也弃了虚拟主机。</p>
 <p>后来开始买国外或香港VPS，免备案，预装Ubuntu，一键xx面板，一键LNMP，面板后台操作一番，WordPress 网站就建起来了，体验还不错。不过感觉xx面板有点不安全，而且依赖性太强，既然是瞎折腾，隔着一层面板折腾来折腾去也的确没什么意思。</p>
@@ -205,6 +205,9 @@
 <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># pass PHP scripts to FastCGI server</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">    <span class="attribute">include</span> snippets/fastcgi-php.conf;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># With php-fpm (or other unix sockets):</span></span><br><span class="line">    <span class="attribute">fastcgi_pass</span> unix:/var/run/php/php7.2-fpm.sock;</span><br><span class="line">    <span class="comment"># With php-cgi (or other tcp sockets):</span></span><br><span class="line">    <span class="comment"># fastcgi_pass 127.0.0.1:9000;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="增加模型"><a href="#增加模型" class="headerlink" title="增加模型"></a>增加模型</h2><p>读了读大佬的API的代码，逻辑也不是很复杂，而且提供了增加模型的支持，在<a href="https://mx.paul.ren/page/1/" target="_blank" rel="noopener">梦象</a>获取模型后，放到<code>/model/*/</code>里，把<code>model.json</code>重命名为<code>index.json</code>即可，然后修改<code>model_list.json</code>，测试了一下没有对<code>live2d</code>模型动作的依赖。如果有模型大小不合适的，在<code>index.json</code>中修改<code>layout</code>项。</p>
+<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>服务器本地加载Live2d有些慢，毕竟小水管服务器，还是CDN加速比较稳定而且负载小一些，有时间可以搞一下。</p>
+<p>Live2d的模型在<a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">Live2d-model</a>找到了有大佬在收集。</p>
+<p>emm，后来也发现了好多大佬的博客做的非常漂亮，暂时不再深入下去，（前端深坑，好可怕……</p>
 ]]></content>
       <categories>
         <category>折腾笔记</category>
