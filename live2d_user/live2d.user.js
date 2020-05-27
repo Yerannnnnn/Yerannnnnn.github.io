@@ -22,7 +22,6 @@
 // @connect      cdn.jsdelivr.net
 // @connect      *
 // ==/UserScript==
-
 (function ($) {
   'use strict'
 
