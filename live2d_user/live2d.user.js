@@ -116,35 +116,35 @@
   // setting_des.aboutPageUrl = '关于页地址, \'{URL 网址}\''
   // setting_des.screenshotCaptureName = '看板娘截图文件名，例如 \'live2d.png\''
 
-  function userConf () {
-    const conf = GM_getValue('live2d_settings') || live2d_conf
-    let html = '<form id="l2d-conf"><table class="hclonely"><thead><tr><td>名称</td><td>值</td><td>描述</td></tr></thead><tbody>'
-    for (const e in setting_des) {
-      html += `<tr><th>${e}</th><th>${typeof conf[e] === 'boolean' || typeof conf[e] === 'undefined' ? `<input name="${e}" type="checkbox" ${conf[e] ? ' checked="checked" : ''}>` : `<input name="${e}" type="text" value="${conf[e]}">`}</th><th>${setting_des[e]}</th></tr>`
-    }
-    html += '</tbody></table></form>'
-    swal({
-      closeOnClickOutside: false,
-      title: 'live2d看板娘设置',
-      content: $(html)[0],
-      buttons: {
-        confirm: '保存',
-        cancel: '关闭'
-      }
-    }).then((value) => {
-      if (value) {
-        const l2d_conf = {}
-        $('#l2d-conf').serializeArray().map((e, i) => {
-          l2d_conf[e.name] = e.value === 'on' ? true : e.value
-        })
-        GM_setValue('modelId', l2d_conf.modelId)
-        GM_setValue('modelTexturesId', l2d_conf.modelTexturesId)
-        GM_setValue('live2d_settings', l2d_conf)
-        swal('保存成功，刷新页面后生效！', '', 'success')
-      }
-    })
-  }
-  GM_registerMenuCommand('设置', userConf)
+  // function userConf () {
+  //   const conf = GM_getValue('live2d_settings') || live2d_conf
+  //   let html = '<form id="l2d-conf"><table class="hclonely"><thead><tr><td>名称</td><td>值</td><td>描述</td></tr></thead><tbody>'
+  //   for (const e in setting_des) {
+  //     html += `<tr><th>${e}</th><th>${typeof conf[e] === 'boolean' || typeof conf[e] === 'undefined' ? `<input name="${e}" type="checkbox" ${conf[e] ? ' checked="checked" : ''}>` : `<input name="${e}" type="text" value="${conf[e]}">`}</th><th>${setting_des[e]}</th></tr>`
+  //   }
+  //   html += '</tbody></table></form>'
+  //   swal({
+  //     closeOnClickOutside: false,
+  //     title: 'live2d看板娘设置',
+  //     content: $(html)[0],
+  //     buttons: {
+  //       confirm: '保存',
+  //       cancel: '关闭'
+  //     }
+  //   }).then((value) => {
+  //     if (value) {
+  //       const l2d_conf = {}
+  //       $('#l2d-conf').serializeArray().map((e, i) => {
+  //         l2d_conf[e.name] = e.value === 'on' ? true : e.value
+  //       })
+  //       GM_setValue('modelId', l2d_conf.modelId)
+  //       GM_setValue('modelTexturesId', l2d_conf.modelTexturesId)
+  //       GM_setValue('live2d_settings', l2d_conf)
+  //       swal('保存成功，刷新页面后生效！', '', 'success')
+  //     }
+  //   })
+  // }
+  // GM_registerMenuCommand('设置', userConf)
 
   const waifuJSON = {
     waifu: {
