@@ -7,9 +7,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+
 <div id="app">
-    <canvas id="live2d" width="280" height="250" class="live2d"></canvas></div>
-<script type="text/javascript" src="device.min.js"></script>
+    <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+</div>
+    <script type="text/javascript" src="./lib/device.min.js"></script>
+    <script type="module" src="main.js"></script>
+    <script type="text/javascript">
+        loadlive2d("live2dcanvas", "../../../live2d_api/model/mengxiang/snow_miku/index.json", 0.5);
+    </script>
 </body>
 </html>
-<!-- loadlive2d("live2dcanvas", "../assets/name/name.model.json", 0.5); -->
