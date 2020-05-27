@@ -2,8 +2,8 @@
 // const live2d_path = "https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/";
 // const live2d_path = "http://localhost:4000/live2d-widget/"
 
-const live2d_path = "https://cdn.jsdelivr.net/gh/Yerannnnnn/blogCDN@master/live2d-widget/"
-const cdn_path    = "https://cdn.jsdelivr.net/gh/Yerannnnnn/blogCDN@master/live2d_api/"
+const live2d_path = "https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d-widget/"
+const cdn_path    = "https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_api/"
 const api_path    = "https://yuanjiuzheng.com/live2d_api/"
 
 // 封装异步加载资源的方法

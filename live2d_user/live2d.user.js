@@ -29,7 +29,7 @@
   if ($('.waifu').length > 0) return 0
 
   const live2d_conf = {
-    modelAPI: 'https://yuanjiuzheng.com/live2d_api/', // 可根据https://github.com/fghrsh/live2d_api自建api
+    modelAPI: 'https://yuanjiuzheng.com/live2d_api/',
     staticAPI: 'https://cdn.jsdelivr.net',
     tipsMessage: 'waifu-tips.json',
     hitokotoAPI: 'rand',
