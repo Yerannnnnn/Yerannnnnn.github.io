@@ -1,6 +1,6 @@
 import "./lib/live2d.min.js";
 
-import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramework".js;
+import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramework.js";
 
 import LAppLive2DManager from "./LAppLive2DManager.js"
 
