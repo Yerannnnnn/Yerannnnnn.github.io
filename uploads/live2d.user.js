@@ -22,19 +22,18 @@
 // @connect      cdn.jsdelivr.net
 // @connect      *
 // ==/UserScript==
-
 (function ($) {
   'use strict'
 
   if ($('.waifu').length > 0) return 0
 
   const live2d_conf = {
-    modelAPI: 'https://live2d.hclonely.com/',
+    modelAPI: 'https://yuanjiuzheng.com/live2d_api/',
     staticAPI: 'https://cdn.jsdelivr.net',
     tipsMessage: 'waifu-tips.json',
     hitokotoAPI: 'rand',
-    modelId: 2,
-    modelTexturesId: 28,
+    modelId: 1,
+    modelTexturesId: 1,
     showToolMenu: true,
     canCloseLive2d: true,
     canSwitchModel: true,
@@ -77,74 +76,74 @@
   }
 
   const setting_des = Array() // eslint-disable-line no-array-constructor
-  setting_des.modelAPI = '自建 API 修改这里'
-  setting_des.staticAPI = '模型 API 修改这里（不要带最后的"/"）,如果你使用的默认api, 请自行替换成"https://cdn.jsdelivr.net"'
-  setting_des.tipsMessage = '同目录下可省略路径'
-  setting_des.hitokotoAPI = '一言 API，可选 \'lwl12.com\', \'hitokoto.cn\', \'fghrsh.net\', \'jinrishici.com\'(古诗词), \'rand\'(随机)'
-  setting_des.modelId = '默认模型 ID，可在 F12 控制台找到'
-  setting_des.modelTexturesId = '默认材质 ID，可在 F12 控制台找到'
-  setting_des.showToolMenu = '显示 工具栏          ，可选 true(真), false(假)'
-  setting_des.canCloseLive2d = '显示 关闭看板娘  按钮，可选 true(真), false(假)'
-  setting_des.canSwitchModel = '显示 模型切换    按钮，可选 true(真), false(假)'
-  setting_des.canSwitchTextures = '显示 材质切换    按钮，可选 true(真), false(假)'
-  setting_des.canSwitchHitokoto = '显示 一言切换    按钮，可选 true(真), false(假)'
-  setting_des.canTakeScreenshot = '显示 看板娘截图  按钮，可选 true(真), false(假)'
-  setting_des.canTurnToHomePage = '显示 返回首页    按钮，可选 true(真), false(假)'
-  setting_des.canTurnToAboutPage = '显示 跳转关于页  按钮，可选 true(真), false(假)'
-  setting_des.modelStorage = '记录 ID (刷新后恢复)，可选 true(真), false(假)'
-  setting_des.modelRandMode = '模型切换，可选 \'rand\'(随机), \'switch\'(顺序)'
-  setting_des.modelTexturesRandMode = '材质切换，可选 \'rand\'(随机), \'switch\'(顺序)'
-  setting_des.showHitokoto = '显示一言'
-  setting_des.showF12Status = '显示加载状态'
-  setting_des.showF12Message = '显示看板娘消息'
-  setting_des.showF12OpenMsg = '显示控制台打开提示'
-  setting_des.showCopyMessage = '显示 复制内容 提示'
-  setting_des.showWelcomeMessage = '显示进入面页欢迎词'
-  setting_des.waifuSize = '看板娘大小，例如 \'280x250\', \'600x535\''
-  setting_des.waifuTipsSize = '提示框大小，例如 \'250x70\', \'570x150\''
-  setting_des.waifuFontSize = '提示框字体，例如 \'12px\', \'30px\''
-  setting_des.waifuToolFont = '工具栏字体，例如 \'14px\', \'36px\''
-  setting_des.waifuToolLine = '工具栏行高，例如 \'20px\', \'36px\''
-  setting_des.waifuToolTop = '工具栏顶部边距，例如 \'0px\', \'-60px\''
-  setting_des.waifuMinWidth = '面页小于 指定宽度 隐藏看板娘，例如 \'disable\'(禁用), \'768px\''
-  setting_des.waifuEdgeSide = '看板娘贴边方向，例如 \'left:0\'(靠左 0px), \'right:30\'(靠右 30px)'
-  setting_des.waifuDraggable = '拖拽样式，例如 \'disable\'(禁用), \'axis-x\'(只能水平拖拽), \'unlimited\'(自由拖拽)'
-  setting_des.waifuDraggableRevert = '松开鼠标还原拖拽位置，可选 true(真), false(假)'
-  setting_des.waifuDraggableSave = '是否保存拖拽后的位置，刷新后依然生效，需要将上面的选项和下面的选项都设置为false，可选 true(真), false(假)'
-  setting_des.waifuDraggableClear = '清空上次保存的位置，可选 true(真), false(假)'
-  setting_des.homePageUrl = '主页地址，可选 \'auto\'(自动), \'{URL 网址}\''
-  setting_des.aboutPageUrl = '关于页地址, \'{URL 网址}\''
-  setting_des.screenshotCaptureName = '看板娘截图文件名，例如 \'live2d.png\''
+  // setting_des.modelAPI = '自建 API 修改这里'
+  // setting_des.staticAPI = '模型 API 修改这里（不要带最后的"/"）,如果你使用的默认api, 请自行替换成"https://cdn.jsdelivr.net"'
+  // setting_des.tipsMessage = '同目录下可省略路径'
+  // setting_des.hitokotoAPI = '一言 API，可选 \'lwl12.com\', \'hitokoto.cn\', \'fghrsh.net\', \'jinrishici.com\'(古诗词), \'rand\'(随机)'
+  // setting_des.modelId = '默认模型 ID，可在 F12 控制台找到'
+  // setting_des.modelTexturesId = '默认材质 ID，可在 F12 控制台找到'
+  // setting_des.showToolMenu = '显示 工具栏          ，可选 true(真), false(假)'
+  // setting_des.canCloseLive2d = '显示 关闭看板娘  按钮，可选 true(真), false(假)'
+  // setting_des.canSwitchModel = '显示 模型切换    按钮，可选 true(真), false(假)'
+  // setting_des.canSwitchTextures = '显示 材质切换    按钮，可选 true(真), false(假)'
+  // setting_des.canSwitchHitokoto = '显示 一言切换    按钮，可选 true(真), false(假)'
+  // setting_des.canTakeScreenshot = '显示 看板娘截图  按钮，可选 true(真), false(假)'
+  // setting_des.canTurnToHomePage = '显示 返回首页    按钮，可选 true(真), false(假)'
+  // setting_des.canTurnToAboutPage = '显示 跳转关于页  按钮，可选 true(真), false(假)'
+  // setting_des.modelStorage = '记录 ID (刷新后恢复)，可选 true(真), false(假)'
+  // setting_des.modelRandMode = '模型切换，可选 \'rand\'(随机), \'switch\'(顺序)'
+  // setting_des.modelTexturesRandMode = '材质切换，可选 \'rand\'(随机), \'switch\'(顺序)'
+  // setting_des.showHitokoto = '显示一言'
+  // setting_des.showF12Status = '显示加载状态'
+  // setting_des.showF12Message = '显示看板娘消息'
+  // setting_des.showF12OpenMsg = '显示控制台打开提示'
+  // setting_des.showCopyMessage = '显示 复制内容 提示'
+  // setting_des.showWelcomeMessage = '显示进入面页欢迎词'
+  // setting_des.waifuSize = '看板娘大小，例如 \'280x250\', \'600x535\''
+  // setting_des.waifuTipsSize = '提示框大小，例如 \'250x70\', \'570x150\''
+  // setting_des.waifuFontSize = '提示框字体，例如 \'12px\', \'30px\''
+  // setting_des.waifuToolFont = '工具栏字体，例如 \'14px\', \'36px\''
+  // setting_des.waifuToolLine = '工具栏行高，例如 \'20px\', \'36px\''
+  // setting_des.waifuToolTop = '工具栏顶部边距，例如 \'0px\', \'-60px\''
+  // setting_des.waifuMinWidth = '面页小于 指定宽度 隐藏看板娘，例如 \'disable\'(禁用), \'768px\''
+  // setting_des.waifuEdgeSide = '看板娘贴边方向，例如 \'left:0\'(靠左 0px), \'right:30\'(靠右 30px)'
+  // setting_des.waifuDraggable = '拖拽样式，例如 \'disable\'(禁用), \'axis-x\'(只能水平拖拽), \'unlimited\'(自由拖拽)'
+  // setting_des.waifuDraggableRevert = '松开鼠标还原拖拽位置，可选 true(真), false(假)'
+  // setting_des.waifuDraggableSave = '是否保存拖拽后的位置，刷新后依然生效，需要将上面的选项和下面的选项都设置为false，可选 true(真), false(假)'
+  // setting_des.waifuDraggableClear = '清空上次保存的位置，可选 true(真), false(假)'
+  // setting_des.homePageUrl = '主页地址，可选 \'auto\'(自动), \'{URL 网址}\''
+  // setting_des.aboutPageUrl = '关于页地址, \'{URL 网址}\''
+  // setting_des.screenshotCaptureName = '看板娘截图文件名，例如 \'live2d.png\''
 
-  function userConf () {
-    const conf = GM_getValue('live2d_settings') || live2d_conf
-    let html = '<form id="l2d-conf"><table class="hclonely"><thead><tr><td>名称</td><td>值</td><td>描述</td></tr></thead><tbody>'
-    for (const e in setting_des) {
-      html += `<tr><th>${e}</th><th>${typeof conf[e] === 'boolean' || typeof conf[e] === 'undefined' ? `<input name="${e}" type="checkbox" ${conf[e] ? ' checked="checked" : ''}>` : `<input name="${e}" type="text" value="${conf[e]}">`}</th><th>${setting_des[e]}</th></tr>`
-    }
-    html += '</tbody></table></form>'
-    swal({
-      closeOnClickOutside: false,
-      title: 'live2d看板娘设置',
-      content: $(html)[0],
-      buttons: {
-        confirm: '保存',
-        cancel: '关闭'
-      }
-    }).then((value) => {
-      if (value) {
-        const l2d_conf = {}
-        $('#l2d-conf').serializeArray().map((e, i) => {
-          l2d_conf[e.name] = e.value === 'on' ? true : e.value
-        })
-        GM_setValue('modelId', l2d_conf.modelId)
-        GM_setValue('modelTexturesId', l2d_conf.modelTexturesId)
-        GM_setValue('live2d_settings', l2d_conf)
-        swal('保存成功，刷新页面后生效！', '', 'success')
-      }
-    })
-  }
-  GM_registerMenuCommand('设置', userConf)
+  // function userConf () {
+  //   const conf = GM_getValue('live2d_settings') || live2d_conf
+  //   let html = '<form id="l2d-conf"><table class="hclonely"><thead><tr><td>名称</td><td>值</td><td>描述</td></tr></thead><tbody>'
+  //   for (const e in setting_des) {
+  //     html += `<tr><th>${e}</th><th>${typeof conf[e] === 'boolean' || typeof conf[e] === 'undefined' ? `<input name="${e}" type="checkbox" ${conf[e] ? ' checked="checked" : ''}>` : `<input name="${e}" type="text" value="${conf[e]}">`}</th><th>${setting_des[e]}</th></tr>`
+  //   }
+  //   html += '</tbody></table></form>'
+  //   swal({
+  //     closeOnClickOutside: false,
+  //     title: 'live2d看板娘设置',
+  //     content: $(html)[0],
+  //     buttons: {
+  //       confirm: '保存',
+  //       cancel: '关闭'
+  //     }
+  //   }).then((value) => {
+  //     if (value) {
+  //       const l2d_conf = {}
+  //       $('#l2d-conf').serializeArray().map((e, i) => {
+  //         l2d_conf[e.name] = e.value === 'on' ? true : e.value
+  //       })
+  //       GM_setValue('modelId', l2d_conf.modelId)
+  //       GM_setValue('modelTexturesId', l2d_conf.modelTexturesId)
+  //       GM_setValue('live2d_settings', l2d_conf)
+  //       swal('保存成功，刷新页面后生效！', '', 'success')
+  //     }
+  //   })
+  // }
+  // GM_registerMenuCommand('设置', userConf)
 
   const waifuJSON = {
     waifu: {
