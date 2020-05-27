@@ -1,11 +1,39 @@
+
 /**
  * EYHN 基于 live2d 官方 Live2DFramework.js 修改
- * 
+ *
  * Copyright © 2016 - 2017 EYHN
  */
+
 //============================================================
 //============================================================
-//  class L2DBaseModel         
+//  class Live2DFramework
+//============================================================
+//============================================================
+function Live2DFramework() {
+}
+
+//============================================================
+Live2DFramework.platformManager = null;
+
+//============================================================
+//    static Live2DFramework.getPlatformManager()
+//============================================================
+Live2DFramework.getPlatformManager = function () {
+    return Live2DFramework.platformManager;
+}
+
+//============================================================
+//    static Live2DFramework.setPlatformManager()
+//============================================================
+Live2DFramework.setPlatformManager = function (platformManager /*IPlatformManager*/) {
+    Live2DFramework.platformManager = platformManager;
+}
+
+
+//============================================================
+//============================================================
+//  class L2DBaseModel
 //============================================================
 //============================================================
 function L2DBaseModel() {
@@ -271,9 +299,9 @@ L2DBaseModel.prototype.loadPhysics = function (path/*String*/) {
 //    L2DBaseModel # hitTestSimple()
 //============================================================
 L2DBaseModel.prototype.hitTestSimple = function (drawID, testX, testY) {
-	
+
 	if(this.live2DModel === null) return !1;
-	
+
     var drawIndex = this.live2DModel.getDrawDataIndex(drawID);
 
     if (drawIndex < 0) return false;
@@ -303,9 +331,9 @@ L2DBaseModel.prototype.hitTestSimple = function (drawID, testX, testY) {
 //    L2DBaseModel # hitTestSimpleCustom()
 //============================================================
 L2DBaseModel.prototype.hitTestSimpleCustom = function (x, y, testX, testY) {
-	
+
 	if(this.live2DModel === null) return !1;
-	
+
     if(testX >= x[0] && testX <= y[0])
         if(testY <= x[1] && testY >= y[1])
             return true;
@@ -418,7 +446,7 @@ L2DExpressionMotion.prototype.updateParamExe = function (model /*ALive2DModel*/,
 
 //============================================================
 //============================================================
-//  class L2DExpressionParam   
+//  class L2DExpressionParam
 //============================================================
 //============================================================
 function L2DExpressionParam() {
@@ -437,13 +465,13 @@ function L2DExpressionParam() {
 
 //============================================================
 //============================================================
-//  class L2DEyeBlink          
+//  class L2DEyeBlink
 //============================================================
 //============================================================
 function L2DEyeBlink() {
-    this.nextBlinkTime = null /* TODO NOT INIT */; // 
-    this.stateStartTime = null /* TODO NOT INIT */; // 
-    this.blinkIntervalMsec = null /* TODO NOT INIT */; // 
+    this.nextBlinkTime = null /* TODO NOT INIT */; //
+    this.stateStartTime = null /* TODO NOT INIT */; //
+    this.blinkIntervalMsec = null /* TODO NOT INIT */; //
     this.eyeState = EYE_STATE.STATE_FIRST;
     this.blinkIntervalMsec = 4000;
     this.closingMotionMsec = 100;
@@ -550,11 +578,11 @@ EYE_STATE.STATE_OPENING = "STATE_OPENING"
 
 //============================================================
 //============================================================
-//  class L2DMatrix44          
+//  class L2DMatrix44
 //============================================================
 //============================================================
 function L2DMatrix44() {
-    this.tr = new Float32Array(16); // 
+    this.tr = new Float32Array(16); //
     this.identity();
 }
 
@@ -905,7 +933,7 @@ L2DMotionManager.prototype.startMotionPrio = function (motion/*AMotion*/, priori
 
 //============================================================
 //============================================================
-//  class L2DPhysics           
+//  class L2DPhysics
 //============================================================
 //============================================================
 function L2DPhysics() {
@@ -998,7 +1026,7 @@ L2DPhysics.prototype.updateParam = function (model/*ALive2DModel*/) {
 
 //============================================================
 //============================================================
-//  class L2DPose              
+//  class L2DPose
 //============================================================
 //============================================================
 function L2DPose() {
@@ -1158,7 +1186,7 @@ L2DPose.prototype.copyOpacityOtherParts = function (model/*ALive2DModel*/, parts
 
 //============================================================
 //============================================================
-//  class L2DPartsParam        
+//  class L2DPartsParam
 //============================================================
 //============================================================
 function L2DPartsParam(id/*String*/) {
@@ -1186,7 +1214,7 @@ L2DPartsParam.prototype.initIndex = function (model/*ALive2DModel*/) {
 
 //============================================================
 //============================================================
-//  class L2DTargetPoint       
+//  class L2DTargetPoint
 //============================================================
 //============================================================
 function L2DTargetPoint() {
@@ -1472,30 +1500,7 @@ L2DViewMatrix.prototype.getMaxTop = function () {
  *  (c) Live2D Inc. All rights reserved.
  */
 
-//============================================================
-//============================================================
-//  class Live2DFramework      
-//============================================================
-//============================================================
-function Live2DFramework() {
-}
 
-//============================================================
-Live2DFramework.platformManager = null;
-
-//============================================================
-//    static Live2DFramework.getPlatformManager()
-//============================================================
-Live2DFramework.getPlatformManager = function () {
-    return Live2DFramework.platformManager;
-}
-
-//============================================================
-//    static Live2DFramework.setPlatformManager()
-//============================================================
-Live2DFramework.setPlatformManager = function (platformManager /*IPlatformManager*/) {
-    Live2DFramework.platformManager = platformManager;
-}
 
 module.exports = {
     L2DTargetPoint: L2DTargetPoint,
