@@ -120,7 +120,7 @@
     const conf = GM_getValue('live2d_settings') || live2d_conf
     let html = '<form id="l2d-conf"><table class="hclonely"><thead><tr><td>名称</td><td>值</td><td>描述</td></tr></thead><tbody>'
     for (const e in setting_des) {
-      html += `<tr><th>${e}</th><th>${typeof conf[e] === 'boolean' || typeof conf[e] === 'undefined' ? `<input name="${e}" type="checkbox" ${conf[e] ? ' checked="checked" : ''}>` : `<input name="${e}" type="text" value="${conf[e]}">`}</th><th>${setting_des[e]}</th></tr>`
+      html += `<tr><th>${e}</th><th>${(typeof conf[e] === 'boolean' || typeof conf[e] === 'undefined') ? (`<input name="${e}" type="checkbox" ${(conf[e]) ? (' checked="checked" ') : ('')}>`) : (`<input name="${e}" type="text" value="${conf[e]}">`)}</th><th>${setting_des[e]}</th></tr>`
     }
     html += '</tbody></table></form>'
     swal({
