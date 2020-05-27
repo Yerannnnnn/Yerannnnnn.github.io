@@ -17,6 +17,11 @@ function loadExternalResource(url, type) {
 			tag = document.createElement("script");
 			tag.src = url;
 		}
+        else if (type === "jsmodule") {
+            tag = document.createElement("script");
+            tag.type = "module";
+            tag.src = url;
+        }
 		if (tag) {
 			tag.onload = () => resolve(url);
 			tag.onerror = () => reject(url);
