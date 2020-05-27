@@ -22,13 +22,15 @@
     var CONFIG = {"hostname":"yuanjiuzheng.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":false,"lazyload":true,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="一直折腾一直爽">
+  <meta name="description" content="live2d.user.js功能给网页添加一个Live2D看板娘。 模型预览https:&#x2F;&#x2F;live2d.hclonely.com&#x2F;#preview 详细设置设置参数Tips： 已自带默认参数，如无特殊要求可跳过  后端接口  live2d_settings[&#39;modelAPI&#39;]：看板娘 API 地址，默认值 &#39;https:&#x2F;&#x2F;live2d.hclonely.com&#x2F;&amp;#">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Yeran">
-<meta property="og:url" content="https://yuanjiuzheng.com/categories/%E5%BB%BA%E7%AB%99%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:url" content="https://yuanjiuzheng.com/live2d_user/README.html">
 <meta property="og:site_name" content="Yeran">
-<meta property="og:description" content="一直折腾一直爽">
+<meta property="og:description" content="live2d.user.js功能给网页添加一个Live2D看板娘。 模型预览https:&#x2F;&#x2F;live2d.hclonely.com&#x2F;#preview 详细设置设置参数Tips： 已自带默认参数，如无特殊要求可跳过  后端接口  live2d_settings[&#39;modelAPI&#39;]：看板娘 API 地址，默认值 &#39;https:&#x2F;&#x2F;live2d.hclonely.com&#x2F;&amp;#">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-27T12:35:02.194Z">
+<meta property="article:modified_time" content="2020-05-27T12:35:02.194Z">
 <meta property="article:author" content="Nemo.yeran">
 <meta property="article:tag" content="Nemo">
 <meta property="article:tag" content="Yerannnnnn">
@@ -37,7 +39,7 @@
 <meta property="article:tag" content="Nemo.yeran">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://yuanjiuzheng.com/categories/%E5%BB%BA%E7%AB%99%E6%B5%8B%E8%AF%95/">
+<link rel="canonical" href="https://yuanjiuzheng.com/live2d_user/README">
 
 
 <script id="page-configurations">
@@ -60,7 +62,8 @@
 
 
 
-  <title>分类: 建站测试 | Yeran</title>
+  <title> | Yeran
+</title>
   
 
 
@@ -205,98 +208,150 @@
       <div class="main-inner">
         <div class="content-wrap">
           
+  
+  
 
-          <div class="content category">
+          <div class="content page posts-expand">
             
 
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
   
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">建站测试
-          <small>分类</small>
-        </h2>
-      </div>
+
+</div>
+
+</header>
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+      
+      
+      <div class="post-body">
+          <h1 id="live2d-user-js"><a href="#live2d-user-js" class="headerlink" title="live2d.user.js"></a>live2d.user.js</h1><h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>给网页添加一个Live2D看板娘。</p>
+<h2 id="模型预览"><a href="#模型预览" class="headerlink" title="模型预览"></a>模型预览</h2><p><a href="https://live2d.hclonely.com/#preview" target="_blank" rel="noopener">https://live2d.hclonely.com/#preview</a></p>
+<h2 id="详细设置"><a href="#详细设置" class="headerlink" title="详细设置"></a>详细设置</h2><h3 id="设置参数"><a href="#设置参数" class="headerlink" title="设置参数"></a>设置参数</h3><p><em>Tips： 已自带默认参数，如无特殊要求可跳过</em></p>
+<ul>
+<li><p>后端接口</p>
+<ul>
+<li><code>live2d_settings[&#39;modelAPI&#39;]</code>：看板娘 API 地址，默认值 <code>&#39;https://live2d.hclonely.com/&#39;</code>, 可根据<a href="https://github.com/fghrsh/live2d_api" target="_blank" rel="noopener">live2d_api</a>自建api</li>
+<li><code>&#39;live2d_settings[&#39;staticAPI&#39;]</code>：看板娘模型 API 地址，默认值 <code>&#39;https://cdn.jsdelivr.net&#39;</code></li>
+<li><code>live2d_settings[&#39;tipsMessage&#39;]</code>：提示语读取路径，暂不可改</li>
+<li><code>live2d_settings[&#39;hitokotoAPI&#39;]</code>：一言 API 接口，可选 <code>&#39;lwl12.com&#39;</code>，<code>&#39;hitokoto.cn&#39;</code>，<code>&#39;fghrsh.net&#39;</code>，<code>&#39;jinrishici.com&#39;</code> (古诗词)，<code>&#39;rand&#39;</code> (随机)</li>
+</ul>
+</li>
+<li><p>默认模型</p>
+<ul>
+<li><code>live2d_settings[&#39;modelId&#39;]</code>：默认模型(分组) ID，可 <code>[F12]</code> 呼出 <code>控制台(Console)</code> 找到</li>
+<li><code>live2d_settings[&#39;modelTexturesId&#39;]</code>：默认材质(模型) ID，可 <code>[F12]</code> 呼出 <code>控制台(Console)</code> 找到</li>
+</ul>
+</li>
+<li><p>工具栏设置</p>
+<ul>
+<li><code>live2d_settings[&#39;showToolMenu&#39;]</code>：显示工具栏， <code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;canCloseLive2d&#39;]</code>：关闭看板娘 按钮，<code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;canSwitchModel&#39;]</code>：切换模型 按钮， <code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;canSwitchTextures&#39;]</code>：切换材质 按钮， <code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;canSwitchHitokoto&#39;]</code>：切换一言 按钮， <code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;canTakeScreenshot&#39;]</code>：看板娘截图 按钮，<code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;canTurnToHomePage&#39;]</code>：返回首页 按钮， <code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;canTurnToAboutPage&#39;]</code>：跳转关于页 按钮，<code>true</code> | <code>false</code></li>
+</ul>
+</li>
+<li><p>模型切换模式</p>
+<ul>
+<li><code>live2d_settings[&#39;modelStorage&#39;]</code>：记录 ID ，<code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;modelRandMode&#39;]</code>：模型切换，可选 <code>&#39;rand&#39;</code> (随机) | <code>&#39;switch&#39;</code> (顺序)</li>
+<li><code>live2d_settings[&#39;modelTexturesRandMode&#39;]</code>：材质切换，可选 <code>&#39;rand&#39;</code> | <code>&#39;switch&#39;</code></li>
+</ul>
+</li>
+<li><p>提示消息选项</p>
+<ul>
+<li><code>live2d_settings[&#39;showHitokoto&#39;]</code>：空闲时一言，<code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;showF12Status&#39;]</code>：控制台显示加载状态，<code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;showF12Message&#39;]</code>：提示消息输出到控制台，<code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;showF12OpenMsg&#39;]</code>：控制台被打开触发提醒，<code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;showCopyMessage&#39;]</code>：内容被复制触发提醒，<code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;showWelcomeMessage&#39;]</code>：进入面页时显示欢迎语，<code>true</code> | <code>false</code></li>
+</ul>
+</li>
+<li><p>看板娘样式设置</p>
+<ul>
+<li><code>live2d_settings[&#39;waifuSize&#39;]</code>：看板娘大小，例如 <code>&#39;280x250&#39;</code>，<code>&#39;600x535&#39;</code></li>
+<li><code>live2d_settings[&#39;waifuTipsSize&#39;]</code>：提示框大小，例如 <code>&#39;250x70&#39;</code>，<code>&#39;570x150&#39;</code></li>
+<li><code>live2d_settings[&#39;waifuFontSize&#39;]</code>：提示框字体，例如 <code>&#39;12px&#39;</code>，<code>&#39;30px&#39;</code></li>
+<li><code>live2d_settings[&#39;waifuToolFont&#39;]</code>：工具栏字体，例如 <code>&#39;14px&#39;</code>，<code>&#39;36px&#39;</code></li>
+<li><code>live2d_settings[&#39;waifuToolLine&#39;]</code>：工具栏行高，例如 <code>&#39;20px&#39;</code>，<code>&#39;36px&#39;</code></li>
+<li><code>live2d_settings[&#39;waifuToolTop&#39;]</code>：工具栏顶部边距，例如 <code>&#39;0px&#39;</code>，<code>&#39;-60px&#39;</code></li>
+<li><code>live2d_settings[&#39;waifuMinWidth&#39;]</code>：面页小于 指定宽度 隐藏看板娘，例如 <code>&#39;disable&#39;</code> (停用)，<code>&#39;768px&#39;</code></li>
+<li><code>live2d_settings[&#39;waifuEdgeSide&#39;]</code>：看板娘贴边方向，例如 <code>&#39;left:0&#39;</code> (靠左 0px)，<code>&#39;right:30&#39;</code> (靠右 30px)</li>
+<li><code>live2d_settings[&#39;waifuDraggable&#39;]</code>：拖拽样式，可选 <code>&#39;disable&#39;</code> (禁用)，<code>&#39;axis-x&#39;</code> (只能水平拖拽)，<code>&#39;unlimited&#39;</code> (自由拖拽)</li>
+<li><code>live2d_settings[&#39;waifuDraggableRevert&#39;]</code>：松开鼠标还原拖拽位置，<code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;waifuDraggableSave&#39;]</code>：是否保存拖拽后的位置，刷新后依然生效，需要将上面的选项和下面的选项都设置为<code>false</code>，<code>true</code> | <code>false</code></li>
+<li><code>live2d_settings[&#39;waifuDraggableClear&#39;]</code>：清空上次保存的位置，<code>true</code> | <code>false</code></li>
+</ul>
+</li>
+<li><p>其他杂项设置</p>
+<ul>
+<li><code>live2d_settings[&#39;l2dVersion&#39;]</code>：当前版本 (无需修改)</li>
+<li><code>live2d_settings[&#39;l2dVerDate&#39;]</code>：更新日期 (无需修改)</li>
+<li><code>live2d_settings[&#39;homePageUrl&#39;]</code>：首页地址，可选 <code>&#39;auto&#39;</code> (自动)，<code>&#39;{URL 网址}&#39;</code></li>
+<li><code>live2d_settings[&#39;aboutPageUrl&#39;]</code>：关于页地址，<code>&#39;{URL 网址}&#39;</code></li>
+<li><code>live2d_settings[&#39;screenshotCaptureName&#39;]</code>：看板娘截图文件名，例如 <code>&#39;live2d.png&#39;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="定制提示语"><a href="#定制提示语" class="headerlink" title="定制提示语"></a>定制提示语</h3><p><em>Tips： <code>waifu-tips.json</code> 已自带默认提示语，如无特殊要求可跳过</em></p>
+<ul>
+<li><code>&quot;waifu&quot;</code> 系统提示</li>
+<li><code>&quot;console_open_msg&quot;</code> 控制台被打开提醒（支持多句随机）</li>
+<li><code>&quot;copy_message&quot;</code> 内容被复制触发提醒（支持多句随机）</li>
+<li><code>&quot;screenshot_message&quot;</code> 看板娘截图提示语（支持多句随机）</li>
+<li><code>&quot;hidden_message&quot;</code> 看板娘隐藏提示语（支持多句随机）</li>
+<li><code>&quot;load_rand_textures&quot;</code> 随机材质提示语（暂不支持多句）</li>
+<li><code>&quot;hour_tips&quot;</code> 时间段欢迎语（支持多句随机）</li>
+<li><code>&quot;referrer_message&quot;</code> 请求来源欢迎语（不支持多句）</li>
+<li><code>&quot;referrer_hostname&quot;</code> 请求来源自定义名称（根据 host，支持多句随机）</li>
+<li><code>&quot;model_message&quot;</code> 模型切换欢迎语（根据模型 ID，支持多句随机）</li>
+<li><code>&quot;hitokoto_api_message&quot;</code>，一言 API 输出模板（不支持多句随机）</li>
+<li><code>&quot;mouseover&quot;</code> 鼠标触发提示（根据 CSS 选择器，支持多句随机）</li>
+<li><code>&quot;click&quot;</code> 鼠标点击触发提示（根据 CSS 选择器，支持多句随机）</li>
+<li><code>&quot;seasons&quot;</code> 节日提示（日期段，支持多句随机）</li>
+</ul>
+<h3 id="模式设置"><a href="#模式设置" class="headerlink" title="模式设置"></a>模式设置</h3><p><code>模式切换</code>：英文输入法下依次按下”↑↑↓↓←→←→BABA”(引号不用按，注意是方向键不是WASD)后可进入互动模式，互动模式下依次按下”ESC”(引号不用按，注意不是”Esc”键而是”E””S””C”这三个字母键)后可退出互动模式。<br><code>状态切换</code>：英文输入法下依次按下”hide”后可隐藏看板娘，隐藏状态下依次按下”show”可再次显示看板娘。</p>
+<p><em>ps:模式切换后会保存（刷新网页后还是刷新前的状态），状态切换后不会保存（刷新网页后恢复默认状态：显示状态）。</em></p>
+<p><code>普通模式</code>：默认为普通模式，此模式下为了浏览网页体验看板娘不可操作（看板娘显示在最前但鼠标可以操作后面的元素）。<br><code>互动模式</code>：此模式下看板娘显示在最前并且鼠标优先操作看板娘。</p>
+<h2 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h2><blockquote>
+<p>基于<a href="https://github.com/fghrsh/live2d_demo" target="_blank" rel="noopener">live2d_demo源码</a></p>
+</blockquote>
+<blockquote>
+<p>模型来源:<a href="https://github.com/xiazeyu/live2d-widget-models" target="_blank" rel="noopener">live2d-widget-models</a>, <a href="https://mx.paul.ren/page/1/" target="_blank" rel="noopener">梦象</a>, <a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">Live2d-model</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/HCLonely/live2d.user.js/blob/master/LICENSE" target="_blank" rel="noopener">MIT License</a></p>
+</blockquote>
+
+      </div>
+      
+      
+      
     </div>
+    
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-11T21:04:43+08:00"
-              content="2020-04-11">
-          04-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/11/test/" itemprop="url">
-            <span itemprop="name">文章格式测试</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-11T09:21:05+08:00"
-              content="2020-04-11">
-          04-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/11/tags/" itemprop="url">
-            <span itemprop="name">tags页面测试</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-10T21:04:43+08:00"
-              content="2020-04-10">
-          04-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/10/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-    </div>
-  </div>
-  
-  
-  
-
-  
-
+    
+    
+    
 
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -343,6 +398,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#live2d-user-js"><span class="nav-number">1.</span> <span class="nav-text">live2d.user.js</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#功能"><span class="nav-number">1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型预览"><span class="nav-number">1.2.</span> <span class="nav-text">模型预览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#详细设置"><span class="nav-number">1.3.</span> <span class="nav-text">详细设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置参数"><span class="nav-number">1.3.1.</span> <span class="nav-text">设置参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定制提示语"><span class="nav-number">1.3.2.</span> <span class="nav-text">定制提示语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式设置"><span class="nav-number">1.3.3.</span> <span class="nav-text">模式设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版权声明"><span class="nav-number">1.4.</span> <span class="nav-text">版权声明</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -602,6 +658,25 @@ document.addEventListener('pjax:success', () => {
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '7d2212db40a031c7d1c3',
+      clientSecret: '4ce5b6f1533be56c9c5cc67d4f81e18b8a517551',
+      repo        : 'Yerannnnnn.github.io',
+      owner       : 'Yerannnnnn',
+      admin       : ['Yerannnnnn'],
+      id          : '0b1858ca4f57fa44e677406065d863d2',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 
 
