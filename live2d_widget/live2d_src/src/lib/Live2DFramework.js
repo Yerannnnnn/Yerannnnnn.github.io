@@ -296,7 +296,18 @@ L2DBaseModel.prototype.hitTestSimple = function (drawID, testX, testY) {
     var tx = this.modelMatrix.invertTransformX(testX);
     var ty = this.modelMatrix.invertTransformY(testY);
 
-    return (left <= tx && <="right" top ty } =="==========================================================" l2dbasemodel # hittestsimplecustom() l2dbasemodel.prototype.hittestsimplecustom="function" (x, y, testx, testy) { if(this.live2dmodel="==" null) return !1; if(testx>= x[0] && testX <= y[0]) if(testy <="x[1]" && testy>= y[1])
+    return (left <= tx && tx <= right && top <= ty && ty <= bottom);
+}
+
+//============================================================
+//    L2DBaseModel # hitTestSimpleCustom()
+//============================================================
+L2DBaseModel.prototype.hitTestSimpleCustom = function (x, y, testX, testY) {
+	
+	if(this.live2DModel === null) return !1;
+	
+    if(testX >= x[0] && testX <= y[0])
+        if(testY <= x[1] && testY >= y[1])
             return true;
     return false;
 }
@@ -1233,7 +1244,14 @@ L2DTargetPoint.prototype.update = function () {
     var dx = (this.faceTargetX - this.faceX);
     var dy = (this.faceTargetY - this.faceY);
     // if(dx == 0 && dy == 0) return;
-    if (Math.abs(dx) <= this.epsilon && math.abs(dy) <="this.EPSILON)" return; var d="Math.sqrt(dx" * dx + dy dy); vx="MAX_V" d; vy="MAX_V" ax="vx" - this.facevx; ay="vy" this.facevy; a="Math.sqrt(ax" ay); if (a -max_a ||> MAX_A) {
+    if (Math.abs(dx) <= this.EPSILON && Math.abs(dy) <= this.EPSILON) return;
+    var d = Math.sqrt(dx * dx + dy * dy);
+    var vx = MAX_V * dx / d;
+    var vy = MAX_V * dy / d;
+    var ax = vx - this.faceVX;
+    var ay = vy - this.faceVY;
+    var a = Math.sqrt(ax * ax + ay * ay);
+    if (a < -MAX_A || a > MAX_A) {
         ax *= MAX_A / a;
         ay *= MAX_A / a;
         a = MAX_A;
@@ -1494,4 +1512,4 @@ module.exports = {
     L2DExpressionParam: L2DExpressionParam,
     L2DExpressionMotion: L2DExpressionMotion,
     L2DBaseModel: L2DBaseModel
-}</=></L2DPartsParam></L2DPartsParam></L2DPartsParam[]></PhysicsHair></L2DExpressionParam></L2DExpressionParam></=></=>
+}
