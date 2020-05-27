@@ -1,14 +1,14 @@
-import "./lib/live2d.min";
+import "./lib/live2d.min.js";
 
-import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramework";
+import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramework".js;
 
-import LAppLive2DManager from "./LAppLive2DManager"
+import LAppLive2DManager from "./LAppLive2DManager.js"
 
-import LAppDefine from "./LAppDefine"
+import LAppDefine from "./LAppDefine.js"
 
-import MatrixStack from "./lib/MatrixStack"
+import MatrixStack from "./lib/MatrixStack.js"
 
-import {setContext} from "./webglcontext"
+import {setContext} from "./webglcontext.js"
 
 // window.onerror = function (msg, url, line, col, error) {
 //   let errmsg = "file:" + url + "<br>line:" + line + " " + msg;
@@ -142,21 +142,21 @@ function draw()
 {
     MatrixStack.reset();
     MatrixStack.loadIdentity();
-    dragMgr.update(); 
+    dragMgr.update();
     live2DMgr.setDrag(dragMgr.getX(), dragMgr.getY());
-    
+
     gl.clear(gl.COLOR_BUFFER_BIT);
-    
+
     MatrixStack.multMatrix(projMatrix.getArray());
     MatrixStack.multMatrix(viewMatrix.getArray());
     MatrixStack.push();
-    
+
     for (let i = 0; i < live2DMgr.numModels(); i++)
     {
         let model = live2DMgr.getModel(i);
 
         if(model == null) return;
-        
+
         if (model.initialized && !model.updating)
         {
             model.update();
@@ -177,7 +177,7 @@ function modelScaling(scale)
 {
     let isMaxScale = viewMatrix.isMaxScale();
     let isMinScale = viewMatrix.isMinScale();
-    
+
     viewMatrix.adjustScale(0, 0, scale);
 
     if (!isMaxScale)
@@ -187,7 +187,7 @@ function modelScaling(scale)
             live2DMgr.maxScaleEvent();
         }
     }
-    
+
     if (!isMinScale)
     {
         if (viewMatrix.isMinScale())
@@ -296,9 +296,9 @@ function transformRect(center, transform, rect)
 function modelTurnHead(event)
 {
     drag = true;
-    
+
     let rect = canvas.getBoundingClientRect();
-    
+
     let sx = transformScreenX(event.clientX - rect.left);
     let sy = transformScreenY(event.clientY - rect.top);
     let target = transformRect({
@@ -317,17 +317,17 @@ function modelTurnHead(event)
     lastMouseX = sx;
     lastMouseY = sy;
 
-    dragMgr.setPoint(vx, vy); 
-    
+    dragMgr.setPoint(vx, vy);
+
     //live2DMgr.tapEvent(vx, vy);
 }
 
 function modelTapEvent(event)
 {
     drag = true;
-    
+
     let rect = canvas.getBoundingClientRect();
-    
+
     let sx = transformScreenX(event.clientX - rect.left);
     let sy = transformScreenY(event.clientY - rect.top);
     let target = transformRect({
@@ -346,15 +346,15 @@ function modelTapEvent(event)
     lastMouseX = sx;
     lastMouseY = sy;
 
-    //dragMgr.setPoint(vx, vy); 
-    
+    //dragMgr.setPoint(vx, vy);
+
     live2DMgr.tapEvent(vx, vy);
 }
 
 function followPointer(event)
-{    
+{
     let rect = canvas.getBoundingClientRect();
-    
+
     let sx = transformScreenX(event.clientX - rect.left);
     let sy = transformScreenY(event.clientY - rect.top);
     let target = transformRect({
@@ -374,12 +374,12 @@ function followPointer(event)
     {
         lastMouseX = sx;
         lastMouseY = sy;
-        dragMgr.setPoint(vx, vy); 
+        dragMgr.setPoint(vx, vy);
     }
 }
 
 function lookFront()
-{   
+{
     if (drag)
     {
         drag = false;
@@ -391,7 +391,7 @@ function sleepy()
 {
     if (LAppDefine.DEBUG_LOG)
         console.log("Set Session Storage.");
-    
+
     sessionStorage.setItem('Sleepy', '1');
 }
 
@@ -399,13 +399,13 @@ function mouseEvent(e)
 {
     //e.preventDefault();
     if (e.type == "mousewheel") {
-        // if (e.clientX < 0 || canvas.clientWidth < e.clientX || 
+        // if (e.clientX < 0 || canvas.clientWidth < e.clientX ||
         // e.clientY < 0 || canvas.clientHeight < e.clientY)
         // {
         //     return;
         // }
-        // if (e.wheelDelta > 0) modelScaling(1.1); 
-        // else modelScaling(0.9); 
+        // if (e.wheelDelta > 0) modelScaling(1.1);
+        // else modelScaling(0.9);
     } else if (e.type == "mousedown") {
         //if("button" in e && e.button != 0) return;
         // modelTurnHead(e);
@@ -446,15 +446,15 @@ function touchEvent(e)
 
 function transformViewX(deviceX)
 {
-    var screenX = deviceToScreen.transformX(deviceX); 
-    return viewMatrix.invertTransformX(screenX); 
+    var screenX = deviceToScreen.transformX(deviceX);
+    return viewMatrix.invertTransformX(screenX);
 }
 
 
 function transformViewY(deviceY)
 {
-    var screenY = deviceToScreen.transformY(deviceY); 
-    return viewMatrix.invertTransformY(screenY); 
+    var screenY = deviceToScreen.transformY(deviceY);
+    return viewMatrix.invertTransformY(screenY);
 }
 
 

@@ -1,7 +1,7 @@
 import { Live2DFramework } from "./lib/Live2DFramework.js"
-import PlatformManager from "./PlatformManager"
-import LAppModel from "./LAppModel"
-import LAppDefine from "./LAppDefine"
+import PlatformManager from "./PlatformManager.js"
+import LAppModel from "./LAppModel.js"
+import LAppDefine from "./LAppDefine.js"
 
 export default function LAppLive2DManager() {
   // console.log("--> LAppLive2DManager()");
