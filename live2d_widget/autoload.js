@@ -1,5 +1,5 @@
-// const live2d_path = "https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d-widget/"
-const live2d_path = "https://yuanjiuzheng.com/live2d-widget/"
+// const live2d_path = "https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_widget/"
+const live2d_path = "https://yuanjiuzheng.com/live2d_widget/"
 const cdn_path    = "https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_api/"
 const api_path    = "https://yuanjiuzheng.com/live2d_api/"
 
