@@ -120,7 +120,7 @@
     const conf = GM_getValue('live2d_settings') || live2d_conf
     let html = '<form id="l2d-conf"><table class="hclonely"><thead><tr><td>名称</td><td>值</td><td>描述</td></tr></thead><tbody>'
     for (const e in setting_des) {
-      html += `<tr><th>${e}</th><th>${typeof conf[e] === 'boolean' || typeof conf[e] === 'undefined' ? `<input name="${e}" type="checkbox"${conf[e] ? ' checked="checked"' : ''} />` : `<input name="${e}" type="text" value="${conf[e]}" />`}</th><th>${setting_des[e]}</th></tr>`
+      html += `<tr><th>${e}</th><th>${typeof conf[e] === 'boolean' || typeof conf[e] === 'undefined' ? `<input name="${e}" type="checkbox" ${conf[e] ? ' checked="checked" : ''}>` : `<input name="${e}" type="text" value="${conf[e]}">`}</th><th>${setting_des[e]}</th></tr>`
     }
     html += '</tbody></table></form>'
     swal({
@@ -352,417 +352,8 @@
       })
     }
 
-    window.waifuResize = function () { $(window).width() <= Number(live2d_settings.waifuMinWidth.replace('px', '')) ? $('.waifu').hide() : $('.waifu').show() }
-    if (live2d_settings.waifuMinWidth != 'disable') { waifuResize(); $(window).resize(function () { waifuResize() }) }
-
-    try {
-      if (live2d_settings.waifuDraggable == 'axis-x') $('.waifu').draggable({ axis: 'x', revert: live2d_settings.waifuDraggableRevert, stop: function (event, ui) { if (!live2d_settings.waifuDraggableRevert && live2d_settings.waifuDraggableSave) GM_setValue('waifuPosition', ui.position) } })
-      else if (live2d_settings.waifuDraggable == 'unlimited') $('.waifu').draggable({ revert: live2d_settings.waifuDraggableRevert, stop: function (event, ui) { if (!live2d_settings.waifuDraggableRevert && live2d_settings.waifuDraggableSave) { GM_setValue('waifuPosition', ui.position) } } })
-      else $('.waifu').css('transition', 'all .3s ease-in-out')
-    } catch (err) { console.log('[Error] JQuery UI is not defined.') }
-
-    live2d_settings.homePageUrl = live2d_settings.homePageUrl == 'auto' ? window.location.protocol + '//' + window.location.hostname + '/' : live2d_settings.homePageUrl
-    if (window.location.protocol == 'file:' && live2d_settings.modelAPI.substr(0, 2) == '//') live2d_settings.modelAPI = 'http:' + live2d_settings.modelAPI
-
-    $('.waifu-tool .fui-home').click(function () {
-      window.location = window.location.origin
-    })
-
-    $('.waifu-tool .fui-info-circle').click(function () {
-      window.open(live2d_settings.aboutPageUrl)
-    })
-
-    if (typeof (waifuPath) === 'object') loadTipsMessage(waifuPath); else {
-      GM_xmlhttpRequest({
-        method: 'GET',
-        url: waifuPath == '' ? live2d_settings.tipsMessage : (waifuPath.substr(waifuPath.length - 15) == 'waifu-tips.json' ? waifuPath : waifuPath + 'waifu-tips.json'),
-        responseType: 'json',
-        anonymous: true,
-        onload: function (result) { loadTipsMessage(result.response) }
-      })
-    }
-
-    if (!live2d_settings.showToolMenu) $('.waifu-tool').hide()
-    if (!live2d_settings.canCloseLive2d) $('.waifu-tool .fui-cross').hide()
-    if (!live2d_settings.canSwitchModel) $('.waifu-tool .fui-eye').hide()
-    if (!live2d_settings.canSwitchTextures) $('.waifu-tool .fui-user').hide()
-    if (!live2d_settings.canSwitchHitokoto) $('.waifu-tool .fui-chat').hide()
-    if (!live2d_settings.canTakeScreenshot) $('.waifu-tool .fui-photo').hide()
-    if (!live2d_settings.canTurnToHomePage) $('.waifu-tool .fui-home').hide()
-    if (!live2d_settings.canTurnToAboutPage) $('.waifu-tool .fui-info-circle').hide()
-
-    if (waifuPath === undefined) waifuPath = ''
-    var modelId = GM_getValue('modelId')
-    var modelTexturesId = GM_getValue('modelTexturesId')
-
-    if (!live2d_settings.modelStorage || modelId == null) {
-      var modelId = live2d_settings.modelId
-      var modelTexturesId = live2d_settings.modelTexturesId
-    } loadModel(modelId, modelTexturesId)
-  }
-
-  function loadModel (modelId, modelTexturesId = 0) {
-    if (live2d_settings.modelStorage) {
-      GM_setValue('modelId', modelId)
-      GM_setValue('modelTexturesId', modelTexturesId)
-    } else {
-      GM_setValue('modelId', modelId)
-      GM_setValue('modelTexturesId', modelTexturesId)
-    } loadlive2d('live2d', live2d_settings.modelAPI + 'get/?id=' + modelId + '-' + modelTexturesId, (live2d_settings.showF12Status ? console.log('[Status]', 'live2d', '模型', modelId + '-' + modelTexturesId, '加载完成') : null))
-  }
-
-  function loadTipsMessage (result) {
-    window.waifu_tips = result
-
-    $.each(result.mouseover, function (index, tips) {
-      $(document).on('mouseover', tips.selector, function () {
-        if (!($(this)[0].tagName == 'A' && ($(this).text().trim() == ''))) {
-          var text = getRandText(tips.text)
-          text = text.render({ text: $(this).text() })
-          showMessage(text, 3000, true)
-        }
-      })
-    })
-    $.each(result.click, function (index, tips) {
-      $(document).on('click', tips.selector, function () {
-        var text = getRandText(tips.text)
-        text = text.render({ text: $(this).text() })
-        showMessage(text, 3000, true)
-      })
-    })
-    $.each(result.seasons, function (index, tips) {
-      var now = new Date()
-      var after = tips.date.split('-')[0]
-      var before = tips.date.split('-')[1] || after
-
-      if ((after.split('/')[0] <= now.getMonth() + 1 && now.getMonth() + 1 <= before.split('/')[0]) &&
-        (after.split('/')[1] <= now.getDate() && now.getDate() <= before.split('/')[1])) {
-        var text = getRandText(tips.text)
-        text = text.render({ year: now.getFullYear() })
-        showMessage(text, 6000, true)
-      }
-    })
-
-    if (live2d_settings.showF12OpenMsg) {
-      Object.defineProperty(x, 'id', {
-        get: function () {
-          showMessage(getRandText(result.waifu.console_open_msg), 5000, true)
-        }
-      })
-      re.toString = function () {
-        showMessage(getRandText(result.waifu.console_open_msg), 5000, true)
-        return ''
-      }
-    }
-
-    if (live2d_settings.showCopyMessage) {
-      $(document).on('copy', function () {
-        showMessage(getRandText(result.waifu.copy_message), 5000, true)
-      })
-    }
-
-    $('.waifu-tool .fui-photo').click(function () {
-      showMessage(getRandText(result.waifu.screenshot_message), 5000, true)
-      window.Live2D.captureName = live2d_settings.screenshotCaptureName
-      window.Live2D.captureFrame = true
-    })
-
-    $('.waifu-tool .fui-cross').click(function () {
-      GM_setValue('waifu-dsiplay', 'none')
-      showMessage(getRandText(result.waifu.hidden_message), 1300, true)
-      window.setTimeout(function () { $('.waifu').hide() }, 1300)
-    })
-
-    window.showWelcomeMessage = function (result) {
-      var text
-      if (window.location.href == live2d_settings.homePageUrl) {
-        var now = (new Date()).getHours()
-        if (now > 23 || now <= 5) text = getRandText(result.waifu.hour_tips['t23-5'])
-        else if (now > 5 && now <= 7) text = getRandText(result.waifu.hour_tips['t5-7'])
-        else if (now > 7 && now <= 11) text = getRandText(result.waifu.hour_tips['t7-11'])
-        else if (now > 11 && now <= 14) text = getRandText(result.waifu.hour_tips['t11-14'])
-        else if (now > 14 && now <= 17) text = getRandText(result.waifu.hour_tips['t14-17'])
-        else if (now > 17 && now <= 19) text = getRandText(result.waifu.hour_tips['t17-19'])
-        else if (now > 19 && now <= 21) text = getRandText(result.waifu.hour_tips['t19-21'])
-        else if (now > 21 && now <= 23) text = getRandText(result.waifu.hour_tips['t21-23'])
-        else text = getRandText(result.waifu.hour_tips.default)
-      } else {
-        var referrer_message = result.waifu.referrer_message
-        if (document.referrer !== '') {
-          var referrer = document.createElement('a')
-          referrer.href = document.referrer
-          var domain = referrer.hostname.split('.')[1]
-          if (window.location.hostname == referrer.hostname) { text = referrer_message.localhost[0] + document.title.split(referrer_message.localhost[2])[0] + referrer_message.localhost[1] } else if (domain == 'baidu') { text = referrer_message.baidu[0] + referrer.search.split('&wd=')[1].split('&')[0] + referrer_message.baidu[1] } else if (domain == 'so') { text = referrer_message.so[0] + referrer.search.split('&q=')[1].split('&')[0] + referrer_message.so[1] } else if (domain == 'google') { text = referrer_message.google[0] + document.title.split(referrer_message.google[2])[0] + referrer_message.google[1] } else {
-            $.each(result.waifu.referrer_hostname, function (i, val) { if (i == referrer.hostname) referrer.hostname = getRandText(val) })
-            text = referrer_message.default[0] + referrer.hostname + referrer_message.default[1]
-          }
-        } else text = referrer_message.none[0] + document.title.split(referrer_message.none[2])[0] + referrer_message.none[1]
-      }
-      showMessage(text, 6000, true)
-    }; if (live2d_settings.showWelcomeMessage) showWelcomeMessage(result)
-
-    var waifu_tips = result.waifu
-
-    function loadOtherModel () {
-      var modelId = modelStorageGetItem('modelId')
-      var modelRandMode = live2d_settings.modelRandMode
-
-      GM_xmlhttpRequest({
-        method: 'GET',
-        url: live2d_settings.modelAPI + modelRandMode + '/?id=' + modelId,
-        responseType: 'json',
-        anonymous: true,
-        onload: function (data) {
-          const result = data.response
-          loadModel(result.model.id)
-          var message = result.model.message
-          $.each(waifu_tips.model_message, function (i, val) { if (i == result.model.id) message = getRandText(val) })
-          showMessage(message, 3000, true)
-        }
-      })
-    }
-
-    function loadRandTextures () {
-      var modelId = modelStorageGetItem('modelId')
-      var modelTexturesId = modelStorageGetItem('modelTexturesId')
-      var modelTexturesRandMode = live2d_settings.modelTexturesRandMode
-
-      GM_xmlhttpRequest({
-        method: 'GET',
-        url: live2d_settings.modelAPI + modelTexturesRandMode + '_textures/?id=' + modelId + '-' + modelTexturesId,
-        responseType: 'json',
-        anonymous: true,
-        onload: function (data) {
-          const result = data.response
-          if (result.textures.id == 1 && (modelTexturesId == 1 || modelTexturesId == 0)) { showMessage(waifu_tips.load_rand_textures[0], 3000, true) } else showMessage(waifu_tips.load_rand_textures[1], 3000, true)
-          loadModel(modelId, result.textures.id)
-        }
-      })
-    }
-
-    function modelStorageGetItem (key) { return live2d_settings.modelStorage ? GM_getValue(key) : GM_getValue(key) }
-
-    /* 检测用户活动状态，并在空闲时显示一言 */
-    if (live2d_settings.showHitokoto) {
-      window.getActed = true; window.hitokotoTimer = 30000; window.hitokotoInterval = true
-      $(document).mousemove(function (e) { getActed = true }).keydown(function () { getActed = true })
-      setInterval(function () { if (!getActed) ifActed(); else elseActed() }, 1000)
-    }
-
-    function ifActed () {
-      if (!hitokotoInterval) {
-        hitokotoInterval = true
-        hitokotoTimer = window.setInterval(showHitokotoActed, 30000)
-      }
-    }
-
-    function elseActed () {
-      getActed = hitokotoInterval = false
-      window.clearInterval(hitokotoTimer)
-    }
-
-    function showHitokotoActed () {
-      if ($(document)[0].visibilityState == 'visible') showHitokoto()
-    }
-
-    function showHitokoto (e = false) {
-      const api = e || live2d_settings.hitokotoAPI
-      switch (api) {
-        case 'lwl12.com':
-          GM_xmlhttpRequest({
-            method: 'GET',
-            url: 'https://api.lwl12.com/hitokoto/v1?encode=realjson',
-            responseType: 'json',
-            anonymous: true,
-            onload: function (data) {
-              const result = data.response
-              if (!empty(result.source)) {
-                var text = waifu_tips.hitokoto_api_message['lwl12.com'][0]
-                if (!empty(result.author)) text += waifu_tips.hitokoto_api_message['lwl12.com'][1]
-                text = text.render({ source: result.source, creator: result.author })
-                window.setTimeout(function () { showMessage(text + waifu_tips.hitokoto_api_message['lwl12.com'][2], 3000, true) }, 5000)
-              }
-              showMessage(result.text, 5000, true)
-            }
-          })
-          break
-        case 'fghrsh.net':
-          GM_xmlhttpRequest({
-            method: 'GET',
-            url: 'https://api.fghrsh.net/hitokoto/rand/?encode=jsc&uid=3335',
-            anonymous: true,
-            onload: function (data) {
-              const result = eval(data.responseText)
-              if (!empty(result.source)) {
-                var text = waifu_tips.hitokoto_api_message['fghrsh.net'][0]
-                text = text.render({ source: result.source, date: result.date })
-                window.setTimeout(function () { showMessage(text, 3000, true) }, 5000)
-                showMessage(result.hitokoto, 5000, true)
-              }
-            }
-          })
-          break
-        case 'jinrishici.com':
-          GM_xmlhttpRequest({
-            method: 'GET',
-            url: 'https://v2.jinrishici.com/one.json',
-            responseType: 'json',
-            anonymous: true,
-            onload: function (data) {
-              const result = data.response
-              if (!empty(result.data.origin.title)) {
-                var text = waifu_tips.hitokoto_api_message['jinrishici.com'][0]
-                text = text.render({ title: result.data.origin.title, dynasty: result.data.origin.dynasty, author: result.data.origin.author })
-                window.setTimeout(function () { showMessage(text, 3000, true) }, 5000)
-              }
-              showMessage(result.data.content, 5000, true)
-            }
-          })
-          break
-        case 'hitokoto.cn':
-          GM_xmlhttpRequest({
-            method: 'GET',
-            url: 'https://v1.hitokoto.cn',
-            responseType: 'json',
-            anonymous: true,
-            onload: function (data) {
-              const result = data.response
-              if (!empty(result.from)) {
-                var text = waifu_tips.hitokoto_api_message['hitokoto.cn'][0]
-                text = text.render({ source: result.from, creator: result.creator })
-                window.setTimeout(function () { showMessage(text, 3000, true) }, 5000)
-              }
-              showMessage(result.hitokoto, 5000, true)
-            }
-          })
-          break
-        default:
-          const hitokotoApiArr = ['lwl12.com', 'fghrsh.net', 'jinrishici.com', 'hitokoto.cn']
-          showHitokoto(hitokotoApiArr[Math.floor((Math.random() * 4))])
-      }
-    }
-
-    var hidden, visibilityChange
-    if (typeof document.hidden !== 'undefined') {
-      hidden = 'hidden'
-      visibilityChange = 'visibilitychange'
-    } else if (typeof document.msHidden !== 'undefined') {
-      hidden = 'msHidden'
-      visibilityChange = 'msvisibilitychange'
-    } else if (typeof document.webkitHidden !== 'undefined') {
-      hidden = 'webkitHidden'
-      visibilityChange = 'webkitvisibilitychange'
-    }
-    function handleVisibilityChange () {
-      if (!document[hidden]) showMessage('主人，欢迎回来！', 4000, true)
-    }
-    if (!(typeof document.addEventListener === 'undefined' || typeof document[hidden] === 'undefined')) {
-      document.addEventListener(visibilityChange, handleVisibilityChange, false)
-    }
-
-    var videoStatus = false
-    $('video').on('timeupdate', function (e) {
-      if (this.paused) {
-        showMessage('你怎么暂停了呀', 4000, true)
-      } else if (videoStatus == false) {
-        showMessage('你在看什么啊，让我康康', 4000, true)
-      }
-      videoStatus = !this.paused
-      if (Math.abs(this.currentTime - this.duration / 2) < 1) {
-        showMessage('进度条已过半，且看且珍惜', 4000, true)
-      }
-    })
-
-    var audioStatus = false
-    $('audio').on('timeupdate', function (e) {
-      if (this.paused) {
-        showMessage('怎么不听了呀', 4000, true)
-      } else if (audioStatus == false) {
-        showMessage('你在听什么呀，这么好听', 4000, true)
-      }
-      audioStatus = !this.paused
-    })
-
-    $('.waifu-tool .fui-eye').click(function () { loadOtherModel() })
-    $('.waifu-tool .fui-user').click(function () { loadRandTextures() })
-    $('.waifu-tool .fui-chat').click(function () { showHitokoto() })
-  }
-
-  /** ********************************************live2d.js**************************************************************/
-  !(function (t) {
-    function i (r) {
-      if (e[r]) return e[r].exports
-      var o = e[r] = {
-        i: r,
-        l: !1,
-        exports: {}
-      }
-      return t[r].call(o.exports, o, o.exports, i), o.l = !0, o.exports
-    }
-    var e = {}
-    i.m = t, i.c = e, i.d = function (t, e, r) {
-      i.o(t, e) || Object.defineProperty(t, e, {
-        configurable: !1,
-        enumerable: !0,
-        get: r
-      })
-    }, i.n = function (t) {
-      var e = t && t.__esModule
-        ? function () {
-          return t
-            .default
-        } : function () {
-          return t
-        }
-      return i.d(e, 'a', e), e
-    }, i.o = function (t, i) {
-      return Object.prototype.hasOwnProperty.call(t, i)
-    }, i.p = '', i(i.s = 4)
-  }([function (t, i, e) {
-    'use strict'
-
-    function r () {
-      this.live2DModel = null, this.modelMatrix = null, this.eyeBlink = null, this.physics = null, this.pose = null, this.debugMode = !1, this.initialized = !1, this.updating = !1, this.alpha = 1, this.accAlpha = 0, this.lipSync = !1, this.lipSyncValue = 0, this.accelX = 0, this.accelY = 0, this.accelZ = 0, this.dragX = 0, this.dragY = 0, this.startTimeMSec = null, this.mainMotionManager = new h(), this.expressionManager = new h(), this.motions = {}, this.expressions = {}, this.isTexLoaded = !1
-    }
-    function o () {
-      AMotion.prototype.constructor.call(this), this.paramList = new Array()
-    }
-    function n () {
-      this.id = '', this.type = -1, this.value = null
-    }
-    function s () {
-      this.nextBlinkTime = null, this.stateStartTime = null, this.blinkIntervalMsec = null, this.eyeState = g.STATE_FIRST, this.blinkIntervalMsec = 4e3, this.closingMotionMsec = 100, this.closedMotionMsec = 50, this.openingMotionMsec = 150, this.closeIfZero = !0, this.eyeID_L = 'PARAM_EYE_L_OPEN', this.eyeID_R = 'PARAM_EYE_R_OPEN'
-    }
-    function _ () {
-      this.tr = new Float32Array(16), this.identity()
-    }
-    function a (t, i) {
-      _.prototype.constructor.call(this), this.width = t, this.height = i
-    }
-    function h () {
-      MotionQueueManager.prototype.constructor.call(this), this.currentPriority = null, this.reservePriority = null, this.super = MotionQueueManager.prototype
-    }
-    function l () {
-      this.physicsList = new Array(), this.startTimeMSec = UtSystem.getUserTimeMSec()
-    }
-    function $ () {
-      this.lastTime = 0, this.lastModel = null, this.partsGroups = new Array()
-    }
-    function u (t) {
-      this.paramIndex = -1, this.partsIndex = -1, this.link = null, this.id = t
-    }
-    function p () {
-      this.EPSILON = 0.01, this.faceTargetX = 0, this.faceTargetY = 0, this.faceX = 0, this.faceY = 0, this.faceVX = 0, this.faceVY = 0, this.lastTimeSec = 0
-    }
-    function f () {
-      _.prototype.constructor.call(this), this.screenLeft = null, this.screenRight = null, this.screenTop = null, this.screenBottom = null, this.maxLeft = null, this.maxRight = null, this.maxTop = null, this.maxBottom = null, this.max = Number.MAX_VALUE, this.min = 0
-    }
-    function c () { }
-    var d = 0
-    r.prototype.getModelMatrix = function () {
-      return this.modelMatrix
-    }, r.prototype.setAlpha = function (t) {
-      t > 0.999 && (t = 1), t < 0.001 && (t = 0), this.alpha = t
+    window.waifuResize = function () { $(window).width() <= 1 number(live2d_settings.waifuminwidth.replace('px', '')) ? $('.waifu').hide() : $('.waifu').show() } if (live2d_settings.waifuminwidth !="disable" ) { waifuresize(); $(window).resize(function () waifuresize() }) try (live2d_settings.waifudraggable="=" 'axis-x') $('.waifu').draggable({ axis: 'x', revert: live2d_settings.waifudraggablerevert, stop: function (event, ui) (!live2d_settings.waifudraggablerevert && live2d_settings.waifudraggablesave) gm_setvalue('waifuposition', ui.position) else 'unlimited') $('.waifu').css('transition', 'all .3s ease-in-out') catch (err) console.log('[error] jquery ui is not defined.') live2d_settings.homepageurl="live2d_settings.homePageUrl" =="auto" window.location.protocol + ' window.location.hostname (window.location.protocol="=" 'file:' live2d_settings.modelapi.substr(0, 2)="=" ') live2d_settings.modelapi="http:" $('.waifu-tool .fui-home').click(function window.location="window.location.origin" .fui-info-circle').click(function window.open(live2d_settings.aboutpageurl) (typeof (waifupath)="==" 'object') loadtipsmessage(waifupath); gm_xmlhttprequest({ method: 'get', url: waifupath="=" '' live2d_settings.tipsmessage (waifupath.substr(waifupath.length - 15)="=" 'waifu-tips.json' 'waifu-tips.json'), responsetype: 'json', anonymous: true, onload: (result) loadtipsmessage(result.response) (!live2d_settings.showtoolmenu) $('.waifu-tool').hide() (!live2d_settings.cancloselive2d) .fui-cross').hide() (!live2d_settings.canswitchmodel) .fui-eye').hide() (!live2d_settings.canswitchtextures) .fui-user').hide() (!live2d_settings.canswitchhitokoto) .fui-chat').hide() (!live2d_settings.cantakescreenshot) .fui-photo').hide() (!live2d_settings.canturntohomepage) .fui-home').hide() (!live2d_settings.canturntoaboutpage) .fui-info-circle').hide() (waifupath="==" undefined) var modelid="GM_getValue('modelId')" modeltexturesid="GM_getValue('modelTexturesId')" (!live2d_settings.modelstorage || null) loadmodel(modelid, modeltexturesid) loadmodel (modelid, (live2d_settings.modelstorage) gm_setvalue('modelid', modelid) gm_setvalue('modeltexturesid', loadlive2d('live2d', 'get ?id=" + modelId + " -' modeltexturesid, (live2d_settings.showf12status console.log('[status]', 'live2d', '模型', '-' '加载完成') null)) loadtipsmessage window.waifu_tips="result" $.each(result.mouseover, (index, tips) $(document).on('mouseover', tips.selector, (!($(this)[0].tagname="=" 'a' ($(this).text().trim()="=" ''))) text="getRandText(tips.text)" text: $(this).text() showmessage(text, 3000, true) $.each(result.click, $(document).on('click', $.each(result.seasons, now="new" date() after="tips.date.split('-')[0]" before="tips.date.split('-')[1]" ((after.split(' ')[0] <="now.getMonth()" now.getmonth() (after.split(' ')[1] now.getdate() year: now.getfullyear() 6000, (live2d_settings.showf12openmsg) object.defineproperty(x, 'id', get: showmessage(getrandtext(result.waifu.console_open_msg), 5000, re.tostring="function" return (live2d_settings.showcopymessage) $(document).on('copy', showmessage(getrandtext(result.waifu.copy_message), .fui-photo').click(function showmessage(getrandtext(result.waifu.screenshot_message), window.live2d.capturename="live2d_settings.screenshotCaptureName" window.live2d.captureframe="true" .fui-cross').click(function gm_setvalue('waifu-dsiplay', 'none') showmessage(getrandtext(result.waifu.hidden_message), 1300, window.settimeout(function }, 1300) window.showwelcomemessage="function" (window.location.href="=" live2d_settings.homepageurl) date()).gethours() (now> 23 || now <= 5) text="getRandText(result.waifu.hour_tips['t23-5'])" else if (now> 5 && now <= 7) text="getRandText(result.waifu.hour_tips['t5-7'])" else if (now> 7 && now <= 11) text="getRandText(result.waifu.hour_tips['t7-11'])" else if (now> 11 && now <= 14) text="getRandText(result.waifu.hour_tips['t11-14'])" else if (now> 14 && now <= 17) text="getRandText(result.waifu.hour_tips['t14-17'])" else if (now> 17 && now <= 19) text="getRandText(result.waifu.hour_tips['t17-19'])" else if (now> 19 && now <= 21) text="getRandText(result.waifu.hour_tips['t19-21'])" else if (now> 21 && now <= 1 23) text="getRandText(result.waifu.hour_tips['t21-23'])" else } { var referrer_message="result.waifu.referrer_message" if (document.referrer !="=" '') referrer="document.createElement('a')" referrer.href="document.referrer" domain="referrer.hostname.split('.')[1]" (window.location.hostname="=" referrer.hostname) + document.title.split(referrer_message.localhost[2])[0] referrer_message.localhost[1] (domain="=" 'baidu') referrer.search.split('&wd=")[1].split(" &')[0] referrer_message.baidu[1] 'so') referrer.search.split('&q=")[1].split(" referrer_message.so[1] 'google') document.title.split(referrer_message.google[2])[0] referrer_message.google[1] $.each(result.waifu.referrer_hostname, function (i, val) (i="=" referrer.hostname="getRandText(val)" }) referrer_message.default[1] document.title.split(referrer_message.none[2])[0] referrer_message.none[1] showmessage(text, 6000, true) }; (live2d_settings.showwelcomemessage) showwelcomemessage(result) waifu_tips="result.waifu" loadothermodel () modelid="modelStorageGetItem('modelId')" modelrandmode="live2d_settings.modelRandMode" gm_xmlhttprequest({ method: 'get', url: live2d_settings.modelapi ' ?id=" + modelId,
+        responseType: " json', anonymous: true, onload: (data) const result="data.response" loadmodel(result.model.id) message="result.model.message" $.each(waifu_tips.model_message, result.model.id) showmessage(message, 3000, loadrandtextures modeltexturesid="modelStorageGetItem('modelTexturesId')" modeltexturesrandmode="live2d_settings.modelTexturesRandMode" '_textures -' modeltexturesid, responsetype: 'json', (result.textures.id="=" && (modeltexturesid="=" || 0)) showmessage(waifu_tips.load_rand_textures[0], showmessage(waifu_tips.load_rand_textures[1], loadmodel(modelid, result.textures.id) modelstoragegetitem (key) return live2d_settings.modelstorage ? gm_getvalue(key) : * 检测用户活动状态，并在空闲时显示一言 (live2d_settings.showhitokoto) window.getacted="true;" window.hitokototimer="30000;" window.hitokotointerval="true" $(document).mousemove(function (e) getacted="true" }).keydown(function setinterval(function (!getacted) ifacted(); elseacted() }, 1000) ifacted (!hitokotointerval) hitokotointerval="true" hitokototimer="window.setInterval(showHitokotoActed," 30000) elseacted = false window.clearinterval(hitokototimer) showhitokotoacted ($(document)[0].visibilitystate="=" 'visible') showhitokoto() showhitokoto (e="false)" api="e" live2d_settings.hitokotoapi switch (api) case 'lwl12.com': 'https: api.lwl12.com hitokoto v1?encode="realjson'," (!empty(result.source)) (!empty(result.author)) source: result.source, creator: result.author window.settimeout(function showmessage(text waifu_tips.hitokoto_api_message['lwl12.com'][2], 5000) showmessage(result.text, 5000, break 'fghrsh.net': api.fghrsh.net rand ?encode="jsc&uid=3335'," date: result.date showmessage(result.hitokoto, 'jinrishici.com': v2.jinrishici.com one.json', (!empty(result.data.origin.title)) title: result.data.origin.title, dynasty: result.data.origin.dynasty, author: result.data.origin.author showmessage(result.data.content, 'hitokoto.cn': v1.hitokoto.cn', (!empty(result.from)) result.from, result.creator default: hitokotoapiarr="['lwl12.com'," 'fghrsh.net', 'jinrishici.com', 'hitokoto.cn'] showhitokoto(hitokotoapiarr[math.floor((math.random() 4))]) hidden, visibilitychange (typeof document.hidden 'undefined') hidden="hidden" document.mshidden document.webkithidden handlevisibilitychange (!document[hidden]) showmessage('主人，欢迎回来！', 4000, (!(typeof document.addeventlistener="==" 'undefined' typeof document[hidden]="==" 'undefined')) document.addeventlistener(visibilitychange, handlevisibilitychange, false) videostatus="false" $('video').on('timeupdate', (this.paused) showmessage('你怎么暂停了呀', (videostatus="=" showmessage('你在看什么啊，让我康康', (math.abs(this.currenttime - this.duration 2) < 1) showmessage('进度条已过半，且看且珍惜', audiostatus="false" $('audio').on('timeupdate', showmessage('怎么不听了呀', (audiostatus="=" showmessage('你在听什么呀，这么好听', $('.waifu-tool .fui-eye').click(function loadothermodel() .fui-user').click(function loadrandtextures() .fui-chat').click(function ** ********************************************live2d.js************************************************************** !(function (t) i (r) (e[r]) e[r].exports o="e[r]" i: r, l: !1, exports: {} t[r].call(o.exports, o, o.exports, i), o.l="!0," o.exports e="{}" i.m="t," i.c="e," i.d="function" (t, e, r) i.o(t, e) object.defineproperty(t, configurable: enumerable: !0, get: r i.n="function" t.__esmodule t .default i.d(e, 'a', e), i.o="function" i) object.prototype.hasownproperty.call(t, i.p , i(i.s="4)" }([function i, 'use strict' this.live2dmodel="null," this.modelmatrix="null," this.eyeblink="null," this.physics="null," this.pose="null," this.debugmode="!1," this.initialized="!1," this.updating="!1," this.alpha="1," this.accalpha="0," this.lipsync="!1," this.lipsyncvalue="0," this.accelx="0," this.accely="0," this.accelz="0," this.dragx="0," this.dragy="0," this.starttimemsec="null," this.mainmotionmanager="new" h(), this.expressionmanager="new" this.motions="{}," this.expressions="{}," this.istexloaded="!1" amotion.prototype.constructor.call(this), this.paramlist="new" array() n this.id this.type="-1," this.value="null" s this.nextblinktime="null," this.statestarttime="null," this.blinkintervalmsec="null," this.eyestate="g.STATE_FIRST," this.closingmotionmsec="100," this.closedmotionmsec="50," this.openingmotionmsec="150," this.closeifzero="!0," this.eyeid_l="PARAM_EYE_L_OPEN" this.eyeid_r="PARAM_EYE_R_OPEN" _ this.tr="new" float32array(16), this.identity() a _.prototype.constructor.call(this), this.width="t," this.height="i" h motionqueuemanager.prototype.constructor.call(this), this.currentpriority="null," this.reservepriority="null," this.super="MotionQueueManager.prototype" l this.physicslist="new" array(), $ this.lasttime="0," this.lastmodel="null," this.partsgroups="new" u this.paramindex="-1," this.partsindex="-1," this.link="null," p this.epsilon="0.01," this.facetargetx="0," this.facetargety="0," this.facex="0," this.facey="0," this.facevx="0," this.facevy="0," this.lasttimesec="0" f this.screenleft="null," this.screenright="null," this.screentop="null," this.screenbottom="null," this.maxleft="null," this.maxright="null," this.maxtop="null," this.maxbottom="null," this.max="Number.MAX_VALUE," this.min="0" c d="0" r.prototype.getmodelmatrix="function" r.prototype.setalpha="function"> 0.999 && (t = 1), t < 0.001 && (t = 0), this.alpha = t
     }, r.prototype.getAlpha = function () {
       return this.alpha
     }, r.prototype.isInitialized = function () {
@@ -851,9 +442,7 @@
       }
       var u = this.modelMatrix.invertTransformX(i)
       var p = this.modelMatrix.invertTransformY(e)
-      return n <= u && u <= s && _ <= p && p <= a
-    }, r.prototype.hitTestSimpleCustom = function (t, i, e, r) {
-      return this.live2DModel !== null && (e >= t[0] && e <= i[0] && r <= t[1] && r >= i[1])
+      return n <= u && <="s" _ p }, r.prototype.hittestsimplecustom="function" (t, i, e, r) { return this.live2dmodel !="=" null (e>= t[0] && e <= i[0] && r <="t[1]">= i[1])
     }, o.prototype = new AMotion(), o.EXPRESSION_DEFAULT = 'DEFAULT', o.TYPE_SET = 0, o.TYPE_ADD = 1, o.TYPE_MULT = 2, o.loadJson = function (t) {
       var i = new o()
       var e = c.getPlatformManager()
@@ -1122,14 +711,7 @@
       var o = e * t / r
       var n = this.faceTargetX - this.faceX
       var s = this.faceTargetY - this.faceY
-      if (!(Math.abs(n) <= this.EPSILON && Math.abs(s) <= this.EPSILON)) {
-        var _ = Math.sqrt(n * n + s * s)
-        var a = t * n / _
-        var h = t * s / _
-        var l = a - this.faceVX
-        var $ = h - this.faceVY
-        var u = Math.sqrt(l * l + $ * $);
-        (u < -o || u > o) && (l *= o / u, $ *= o / u, u = o), this.faceVX += l, this.faceVY += $
+      if (!(Math.abs(n) <= this.epsilon && math.abs(s) <="this.EPSILON))" { var _="Math.sqrt(n" * n + s s) a="t" h="t" l="a" - this.facevx $="h" this.facevy u="Math.sqrt(l" $); (u -o ||> o) && (l *= o / u, $ *= o / u, u = o), this.faceVX += l, this.faceVY += $
         var f = 0.5 * (Math.sqrt(o * o + 16 * o * _ - 8 * o * _) - o)
         var c = Math.sqrt(this.faceVX * this.faceVX + this.faceVY * this.faceVY)
         c > f && (this.faceVX *= f / c, this.faceVY *= f / c), this.faceX += this.faceVX, this.faceY += this.faceVY
@@ -1976,40 +1558,7 @@
                 var a = this.clipContextList[o++]
                 a.layoutChannelNo = n, a.layoutBounds.x = 0.5 * l, a.layoutBounds.y = 0, a.layoutBounds.width = 0.5, a.layoutBounds.height = 1
               }
-            } else if (s <= 4) {
-              for (var h = 0; h < s; h++) {
-                var l = h % 2
-                var $ = h / 2
-                l = ~~l, $ = ~~$
-                var a = this.clipContextList[o++]
-                a.layoutChannelNo = n, a.layoutBounds.x = 0.5 * l, a.layoutBounds.y = 0.5 * $, a.layoutBounds.width = 0.5, a.layoutBounds.height = 0.5
-              }
-            } else if (s <= 9) {
-              for (var h = 0; h < s; h++) {
-                var l = h % 3
-                var $ = h / 3
-                l = ~~l, $ = ~~$
-                var a = this.clipContextList[o++]
-                a.layoutChannelNo = n, a.layoutBounds.x = l / 3, a.layoutBounds.y = $ / 3, a.layoutBounds.width = 1 / 3, a.layoutBounds.height = 1 / 3
-              }
-            } else _._$li('_$6 _$0P mask count : %d', s)
-          }
-        }, r.prototype.addClippedDrawData = function (t, i) {
-          var e = new o(t, i)
-          this.clippedDrawContextList.push(e)
-        }, s._$JT = function (t, i, e) {
-          var r = t / i
-          var o = e / i
-          var n = o
-          var s = 1 - (1 - o) * (1 - o)
-          var _ = 1 - (1 - n) * (1 - n)
-          var a = 1 / 3 * (1 - o) * s + (n * (2 / 3) + 1 / 3 * (1 - n)) * (1 - s)
-          var h = (n + 2 / 3 * (1 - n)) * _ + (o * (1 / 3) + 2 / 3 * (1 - o)) * (1 - _)
-          var l = 1 - 3 * h + 3 * a - 0
-          var $ = 3 * h - 6 * a + 0
-          var u = 3 * a - 0
-          if (r <= 0) return 0
-          if (r >= 1) return 1
+            } else if (s <= 0 1 2 3 6 4) { for (var h="0;" < s; h++) var l="h" % $="h" a="this.clipContextList[o++]" a.layoutchannelno="n," a.layoutbounds.x="0.5" * l, a.layoutbounds.y="0.5" $, a.layoutbounds.width="0.5," a.layoutbounds.height="0.5" } else if (s 3, _._$li('_$6 _$0p mask count : %d', s) }, r.prototype.addclippeddrawdata="function" (t, i) e="new" o(t, this.clippeddrawcontextlist.push(e) s._$jt="function" i, e) r="t" i o="e" n="o" s="1" - (1 o) _="1" n) + (n (2 3) n)) (o o)) _) u="3" (r return>= 1) return 1
           var p = r
           var f = p * p
           return l * (p * f) + $ * f + u * p + 0
@@ -2035,10 +1584,7 @@
             if (i._$z2 < 0) {
               i._$z2 = e, i._$bs = e
               var r = this.getDurationMSec()
-              i._$Do < 0 && (i._$Do = r <= 0 ? -1 : i._$z2 + r)
-            }
-            var o = this._$V0
-            o = o * (this._$dP == 0 ? 1 : ht._$r2((e - i._$bs) / this._$dP)) * (this._$eo == 0 || i._$Do < 0 ? 1 : ht._$r2((i._$Do - e) / this._$eo)), o >= 0 && o <= 1 || console.log('### assert!! ### '), this.updateParamExe(t, e, o, i), i._$Do > 0 && i._$Do < e && (i._$9L = !0)
+              i._$Do < 0 && (i._$Do = r <= 0 1 ? -1 : i._$z2 + r) } var o="this._$V0" * (this._$dp="=" ht._$r2((e - i._$bs) this._$dp)) (this._$eo="=" || i._$do < ht._$r2((i._$do e) this._$eo)),>= 0 && o <= 1 || console.log('### assert!! ### '), this.updateparamexe(t, e, o, i), i._$do> 0 && i._$Do < e && (i._$9L = !0)
           }
         }, s.prototype.updateParamExe = function (t, i, e, r) { }, _._$8s = 0, _._$fT = new Object(), _.start = function (t) {
           var i = _._$fT[t]
@@ -2215,199 +1761,7 @@
         }, S.prototype._$jL = function (t) {
           this.x = t.x, this.y = t.y, this.width = t.width, this.height = t.height
         }, S.prototype.contains = function (t, i) {
-          return this.x <= this.x && this.y <= this.y && this.x <= this.x + this.width && this.y <= this.y + this.height
-        }, S.prototype.expand = function (t, i) {
-          this.x -= t, this.y -= i, this.width += 2 * t, this.height += 2 * i
-        }, v._$Z2 = function (t, i, e, r) {
-          var o = i._$Q2(t, e)
-          var n = t._$vs()
-          var s = t._$Tr()
-          if (i._$zr(n, s, o), o <= 0) return r[n[0]]
-          if (o == 1) {
-            var _ = r[n[0]]
-            var a = r[n[1]]
-            var h = s[0]
-            return _ + (a - _) * h | 0
-          }
-          if (o == 2) {
-            var _ = r[n[0]]
-            var a = r[n[1]]
-            var l = r[n[2]]
-            var $ = r[n[3]]
-            var h = s[0]
-            var u = s[1]
-            var p = _ + (a - _) * h | 0
-            var f = l + ($ - l) * h | 0
-            return p + (f - p) * u | 0
-          }
-          if (o == 3) {
-            var c = r[n[0]]
-            var d = r[n[1]]
-            var g = r[n[2]]
-            var y = r[n[3]]
-            var m = r[n[4]]
-            var T = r[n[5]]
-            var P = r[n[6]]
-            var S = r[n[7]]
-            var h = s[0]
-            var u = s[1]
-            var v = s[2]
-            var _ = c + (d - c) * h | 0
-            var a = g + (y - g) * h | 0
-            var l = m + (T - m) * h | 0
-            var $ = P + (S - P) * h | 0
-            var p = _ + (a - _) * u | 0
-            var f = l + ($ - l) * u | 0
-            return p + (f - p) * v | 0
-          }
-          if (o == 4) {
-            var L = r[n[0]]
-            var M = r[n[1]]
-            var E = r[n[2]]
-            var A = r[n[3]]
-            var I = r[n[4]]
-            var w = r[n[5]]
-            var x = r[n[6]]
-            var O = r[n[7]]
-            var D = r[n[8]]
-            var R = r[n[9]]
-            var b = r[n[10]]
-            var F = r[n[11]]
-            var C = r[n[12]]
-            var N = r[n[13]]
-            var B = r[n[14]]
-            var U = r[n[15]]
-            var h = s[0]
-            var u = s[1]
-            var v = s[2]
-            var G = s[3]
-            var c = L + (M - L) * h | 0
-            var d = E + (A - E) * h | 0
-            var g = I + (w - I) * h | 0
-            var y = x + (O - x) * h | 0
-            var m = D + (R - D) * h | 0
-            var T = b + (F - b) * h | 0
-            var P = C + (N - C) * h | 0
-            var S = B + (U - B) * h | 0
-            var _ = c + (d - c) * u | 0
-            var a = g + (y - g) * u | 0
-            var l = m + (T - m) * u | 0
-            var $ = P + (S - P) * u | 0
-            var p = _ + (a - _) * v | 0
-            var f = l + ($ - l) * v | 0
-            return p + (f - p) * G | 0
-          }
-          for (var Y = 1 << o, k = new Float32Array(Y), V = 0; V < Y; V++) {
-            for (var X = V, z = 1, H = 0; H < o; H++) z *= X % 2 == 0 ? 1 - s[H] : s[H], X /= 2
-            k[V] = z
-          }
-          for (var W = new Float32Array(Y), j = 0; j < Y; j++) W[j] = r[n[j]]
-          for (var q = 0, j = 0; j < Y; j++) q += k[j] * W[j]
-          return q + 0.5 | 0
-        }, v._$br = function (t, i, e, r) {
-          var o = i._$Q2(t, e)
-          var n = t._$vs()
-          var s = t._$Tr()
-          if (i._$zr(n, s, o), o <= 0) return r[n[0]]
-          if (o == 1) {
-            var _ = r[n[0]]
-            var a = r[n[1]]
-            var h = s[0]
-            return _ + (a - _) * h
-          }
-          if (o == 2) {
-            var _ = r[n[0]]
-            var a = r[n[1]]
-            var l = r[n[2]]
-            var $ = r[n[3]]
-            var h = s[0]
-            var u = s[1]
-            return (1 - u) * (_ + (a - _) * h) + u * (l + ($ - l) * h)
-          }
-          if (o == 3) {
-            var p = r[n[0]]
-            var f = r[n[1]]
-            var c = r[n[2]]
-            var d = r[n[3]]
-            var g = r[n[4]]
-            var y = r[n[5]]
-            var m = r[n[6]]
-            var T = r[n[7]]
-            var h = s[0]
-            var u = s[1]
-            var P = s[2]
-            return (1 - P) * ((1 - u) * (p + (f - p) * h) + u * (c + (d - c) * h)) + P * ((1 - u) * (g + (y - g) * h) + u * (m + (T - m) * h))
-          }
-          if (o == 4) {
-            var S = r[n[0]]
-            var v = r[n[1]]
-            var L = r[n[2]]
-            var M = r[n[3]]
-            var E = r[n[4]]
-            var A = r[n[5]]
-            var I = r[n[6]]
-            var w = r[n[7]]
-            var x = r[n[8]]
-            var O = r[n[9]]
-            var D = r[n[10]]
-            var R = r[n[11]]
-            var b = r[n[12]]
-            var F = r[n[13]]
-            var C = r[n[14]]
-            var N = r[n[15]]
-            var h = s[0]
-            var u = s[1]
-            var P = s[2]
-            var B = s[3]
-            return (1 - B) * ((1 - P) * ((1 - u) * (S + (v - S) * h) + u * (L + (M - L) * h)) + P * ((1 - u) * (E + (A - E) * h) + u * (I + (w - I) * h))) + B * ((1 - P) * ((1 - u) * (x + (O - x) * h) + u * (D + (R - D) * h)) + P * ((1 - u) * (b + (F - b) * h) + u * (C + (N - C) * h)))
-          }
-          for (var U = 1 << o, G = new Float32Array(U), Y = 0; Y < U; Y++) {
-            for (var k = Y, V = 1, X = 0; X < o; X++) V *= k % 2 == 0 ? 1 - s[X] : s[X], k /= 2
-            G[Y] = V
-          }
-          for (var z = new Float32Array(U), H = 0; H < U; H++) z[H] = r[n[H]]
-          for (var W = 0, H = 0; H < U; H++) W += G[H] * z[H]
-          return W
-        }, v._$Vr = function (t, i, e, r, o, n, s, _) {
-          var a = i._$Q2(t, e)
-          var h = t._$vs()
-          var l = t._$Tr()
-          i._$zr(h, l, a)
-          var $ = 2 * r
-          var u = s
-          if (a <= 0) {
-            var p = h[0]
-            var f = o[p]
-            if (_ == 2 && s == 0) w._$jT(f, 0, n, 0, $)
-            else for (var c = 0; c < $;) n[u] = f[c++], n[u + 1] = f[c++], u += _
-          } else if (a == 1) for (var f = o[h[0]], d = o[h[1]], g = l[0], y = 1 - g, c = 0; c < $;) n[u] = f[c] * y + d[c] * g, ++c, n[u + 1] = f[c] * y + d[c] * g, ++c, u += _
-          else if (a == 2) for (var f = o[h[0]], d = o[h[1]], m = o[h[2]], T = o[h[3]], g = l[0], P = l[1], y = 1 - g, S = 1 - P, v = S * y, L = S * g, M = P * y, E = P * g, c = 0; c < $;) n[u] = v * f[c] + L * d[c] + M * m[c] + E * T[c], ++c, n[u + 1] = v * f[c] + L * d[c] + M * m[c] + E * T[c], ++c, u += _
-          else if (a == 3) for (var A = o[h[0]], I = o[h[1]], x = o[h[2]], O = o[h[3]], D = o[h[4]], R = o[h[5]], b = o[h[6]], F = o[h[7]], g = l[0], P = l[1], C = l[2], y = 1 - g, S = 1 - P, N = 1 - C, B = N * S * y, U = N * S * g, G = N * P * y, Y = N * P * g, k = C * S * y, V = C * S * g, X = C * P * y, z = C * P * g, c = 0; c < $;) n[u] = B * A[c] + U * I[c] + G * x[c] + Y * O[c] + k * D[c] + V * R[c] + X * b[c] + z * F[c], ++c, n[u + 1] = B * A[c] + U * I[c] + G * x[c] + Y * O[c] + k * D[c] + V * R[c] + X * b[c] + z * F[c], ++c, u += _
-          else if (a == 4) for (var H = o[h[0]], W = o[h[1]], j = o[h[2]], q = o[h[3]], J = o[h[4]], Q = o[h[5]], Z = o[h[6]], K = o[h[7]], tt = o[h[8]], it = o[h[9]], et = o[h[10]], rt = o[h[11]], ot = o[h[12]], nt = o[h[13]], st = o[h[14]], _t = o[h[15]], g = l[0], P = l[1], C = l[2], at = l[3], y = 1 - g, S = 1 - P, N = 1 - C, ht = 1 - at, lt = ht * N * S * y, $t = ht * N * S * g, ut = ht * N * P * y, pt = ht * N * P * g, ft = ht * C * S * y, ct = ht * C * S * g, dt = ht * C * P * y, gt = ht * C * P * g, yt = at * N * S * y, mt = at * N * S * g, Tt = at * N * P * y, Pt = at * N * P * g, St = at * C * S * y, vt = at * C * S * g, Lt = at * C * P * y, Mt = at * C * P * g, c = 0; c < $;) n[u] = lt * H[c] + $t * W[c] + ut * j[c] + pt * q[c] + ft * J[c] + ct * Q[c] + dt * Z[c] + gt * K[c] + yt * tt[c] + mt * it[c] + Tt * et[c] + Pt * rt[c] + St * ot[c] + vt * nt[c] + Lt * st[c] + Mt * _t[c], ++c, n[u + 1] = lt * H[c] + $t * W[c] + ut * j[c] + pt * q[c] + ft * J[c] + ct * Q[c] + dt * Z[c] + gt * K[c] + yt * tt[c] + mt * it[c] + Tt * et[c] + Pt * rt[c] + St * ot[c] + vt * nt[c] + Lt * st[c] + Mt * _t[c], ++c, u += _
-          else {
-            for (var Et = 1 << a, At = new Float32Array(Et), It = 0; It < Et; It++) {
-              for (var wt = It, xt = 1, Ot = 0; Ot < a; Ot++) xt *= wt % 2 == 0 ? 1 - l[Ot] : l[Ot], wt /= 2
-              At[It] = xt
-            }
-            for (var Dt = new Float32Array(Et), Rt = 0; Rt < Et; Rt++) Dt[Rt] = o[h[Rt]]
-            for (var c = 0; c < $;) {
-              for (var bt = 0, Ft = 0, Ct = c + 1, Rt = 0; Rt < Et; Rt++) bt += At[Rt] * Dt[Rt][c], Ft += At[Rt] * Dt[Rt][Ct]
-              c += 2, n[u] = bt, n[u + 1] = Ft, u += _
-            }
-          }
-        }, L.prototype._$HT = function (t, i) {
-          this.x = t, this.y = i
-        }, L.prototype._$HT = function (t) {
-          this.x = t.x, this.y = t.y
-        }, M._$ur = -2, M._$ES = 500, M._$wb = 2, M._$8S = 3, M._$52 = M._$ES, M._$R2 = M._$ES, M._$or = function () {
-          return M._$52
-        }, M._$Pr = function () {
-          return M._$R2
-        }, M.prototype.convertClipIDForV2_11 = function (t) {
-          var i = []
-          return t == null ? null : t.length == 0 ? null : /,/.test(t) ? i = t.id.split(',') : (i.push(t.id), i)
-        }, M.prototype._$F0 = function (t) {
-          this._$gP = t._$nP(), this._$dr = t._$nP(), this._$GS = t._$nP(), this._$qb = t._$6L(), this._$Lb = t._$cS(), this._$mS = t._$Tb(), t.getFormatVersion() >= G._$T7 ? (this.clipID = t._$nP(), this.clipIDList = this.convertClipIDForV2_11(this.clipID)) : this.clipIDList = [], this._$MS(this._$Lb)
+          return this.x <= 0 1 2="=" this.x && this.y <="this.y" + this.width this.height }, s.prototype.expand="function" (t, i) { -="t," * t, i v._$z2="function" i, e, r) var o="i._$Q2(t," e) n="t._$vs()" s="t._$Tr()" if (i._$zr(n, s, o), return r[n[0]] (o="=" 1) _="r[n[0]]" a="r[n[1]]" h="s[0]" (a _) | } 2) l="r[n[2]]" $="r[n[3]]" u="s[1]" p="_" f="l" ($ l) (f p) 3) c="r[n[0]]" d="r[n[1]]" g="r[n[2]]" y="r[n[3]]" m="r[n[4]]" t="r[n[5]]" v="s[2]" (d c) (y g) (t m) (s 4) e="r[n[2]]" w="r[n[5]]" x="r[n[6]]" r="r[n[9]]" b="r[n[10]]" (m (w x) (r d) b) (n (u for (var << o, k="new" float32array(y), y; v++) z="1," o; h++) % ? s[h] : s[h], = k[v]="z" j="0;" j++) w[j]="r[n[j]]" q="0," 0.5 v._$br="function" (1 u) (_ h) (l ((1 (p (c h)) (g (v s) (e (i h))) (x (b float32array(u), u; y++) x++) s[x] s[x], g[y]="V" z[h]="r[n[H]]" v._$vr="function" r, n, i._$zr(h, l, a) 0) w._$jt(f, 0, $) else $;) n[u]="f[c++]," n[u 1]="f[c++]," g, d[c] ++c, p, y, f[c] m[c] t[c], c, a[c] i[c] x[c] o[c] r[c] b[c] f[c], tt="o[h[8]]," it="o[h[9]]," et="o[h[10]]," rt="o[h[11]]," ot="o[h[12]]," nt="o[h[13]]," st="o[h[14]]," _t="o[h[15]]," at="l[3]," ht="1" at, lt="ht" $t="ht" ut="ht" pt="ht" ft="ht" ct="ht" dt="ht" gt="ht" yt="at" mt="at" vt="at" h[c] w[c] j[c] q[c] z[c] k[c] tt[c] it[c] et[c] rt[c] ot[c] nt[c] st[c] _t[c], a, float32array(et), et; it++) wt="It," xt="1," a; ot++) l[ot] l[ot], at[it]="xt" rt++) dt[rt]="o[h[Rt]]" bt="0," 1, dt[rt][c], dt[rt][ct] l.prototype._$ht="function" (t) m._$ur="-2," m._$es="500," m._$wb="2," m._$8s="3," m._$52="M._$ES," m._$r2="M._$ES," m._$or="function" () m._$pr="function" m.prototype.convertclipidforv2_11="function" null t.length="=" , .test(t) (i.push(t.id), m.prototype._$f0="function" this._$gp="t._$nP()," this._$dr="t._$nP()," this._$gs="t._$nP()," this._$qb="t._$6L()," this._$lb="t._$cS()," this._$ms="t._$Tb()," t.getformatversion()>= G._$T7 ? (this.clipID = t._$nP(), this.clipIDList = this.convertClipIDForV2_11(this.clipID)) : this.clipIDList = [], this._$MS(this._$Lb)
         }, M.prototype.getClipIDList = function () {
           return this.clipIDList
         }, M.prototype.init = function (t) { }, M.prototype._$Nr = function (t, i) {
@@ -2816,21 +2170,14 @@
             if (n != '\n' && n != '\r') {
               if (n != '#') {
                 if (n != '$') {
-                  if (n >= 'a' && n <= 'z' || n >= 'A' && n <= 'Z' || n == '_') {
-                    for (var s = o, _ = -1; o < r && ((n = 255 & t[o]) != '\r' && n != '\n'); ++o) {
-                      if (n == '=') {
+                  if (n >= 'a' && n <= 'z' || n>= 'A' && n <= 'z' || n="=" '_') { for (var s="o," _="-1;" o < r && ((n="255" & t[o]) !="\r" ); ++o) if (n="=" '=") {
                         _ = o
                         break
                       }
                     }
                     if (_ >= 0) {
                       var a = new B()
-                      O.startsWith(t, s, C._$cs) ? (a._$RP = B._$hs, a._$4P = new String(t, s, _ - s)) : O.startsWith(t, s, C._$ar) ? (a._$4P = new String(t, s + 7, _ - s - 7), O.startsWith(t, s + 7, 'ANCHOR_X') ? a._$RP = B._$xs : O.startsWith(t, s + 7, 'ANCHOR_Y') ? a._$RP = B._$us : O.startsWith(t, s + 7, 'SCALE_X') ? a._$RP = B._$qs : O.startsWith(t, s + 7, 'SCALE_Y') ? a._$RP = B._$Ys : O.startsWith(t, s + 7, 'X') ? a._$RP = B._$ws : O.startsWith(t, s + 7, 'Y') && (a._$RP = B._$Ns)) : (a._$RP = B._$Fr, a._$4P = new String(t, s, _ - s)), i.motions.push(a)
-                      var h = 0
-                      for (C._$D2.clear(), o = _ + 1; o < r && ((n = 255 & t[o]) != '\r' && n != '\n'); ++o) {
-                        if (n != ',' && n != ' ' && n != '\t') {
-                          var l = O._$LS(t, r, o, e)
-                          if (e[0] > 0) {
+                      O.startsWith(t, s, C._$cs) ? (a._$RP = B._$hs, a._$4P = new String(t, s, _ - s)) : O.startsWith(t, s, C._$ar) ? (a._$4P = new String(t, s + 7, _ - s - 7), O.startsWith(t, s + 7, " anchor_x') ? a._$rp="B._$xs" : o.startswith(t, + 7, 'anchor_y') 'scale_x') 'scale_y') 'x') 'y') (a._$rp="B._$Ns))" a._$4p="new" string(t, s, - s)), i.motions.push(a) var h="0" (c._$d2.clear(), 1; ) l="O._$LS(t," r, o, e) (e[0]> 0) {
                             C._$D2.push(l), h++
                             var $ = e[0]
                             if ($ < o) {
@@ -2883,10 +2230,7 @@
             if (h._$RP == B._$hs) {
               var u = h._$I0[s >= l ? l - 1 : s]
               t.setParamFloat($, u)
-            } else if (B._$ws <= h._$RP && h._$RP <= B._$Ys);
-            else {
-              var p = t.getParamFloat($)
-              var f = h._$I0[s >= l ? l - 1 : s]
+            } else if (B._$ws <= h._$rp && <="B._$Ys);" else { var p="t.getParamFloat($)" f="h._$I0[s">= l ? l - 1 : s]
               var c = h._$I0[s + 1 >= l ? l - 1 : s + 1]
               var d = f + (c - f) * _
               var g = p + (d - p) * e
@@ -2905,55 +2249,7 @@
         }, N.prototype.clear = function () {
           this.size = 0
         }, N.prototype.add = function (t) {
-          if (this._$P.length <= this.size) {
-            var i = new Float32Array(2 * this.size)
-            w._$jT(this._$P, 0, i, 0, this.size), this._$P = i
-          }
-          this._$P[this.size++] = t
-        }, N.prototype._$BL = function () {
-          var t = new Float32Array(this.size)
-          return w._$jT(this._$P, 0, t, 0, this.size), t
-        }, B._$Fr = 0, B._$hs = 1, B._$ws = 100, B._$Ns = 101, B._$xs = 102, B._$us = 103, B._$qs = 104, B._$Ys = 105, U._$Ms = 1, U._$Qs = 2, U._$i2 = 0, U._$No = 2, U._$do = U._$Ms, U._$Ls = !0, U._$1r = 5, U._$Qb = 65, U._$J = 1e-4, U._$FT = 0.001, U._$Ss = 3, G._$o7 = 6, G._$S7 = 7, G._$s7 = 8, G._$77 = 9, G.LIVE2D_FORMAT_VERSION_V2_10_SDK2 = 10, G.LIVE2D_FORMAT_VERSION_V2_11_SDK2_1 = 11, G._$T7 = G.LIVE2D_FORMAT_VERSION_V2_11_SDK2_1, G._$Is = -2004318072, G._$h0 = 0, G._$4L = 23, G._$7P = 33, G._$uT = function (t) {
-          console.log('_$bo :: _$6 _$mo _$E0 : %d\n', t)
-        }, G._$9o = function (t) {
-          if (t < 40) return G._$uT(t), null
-          if (t < 50) return G._$uT(t), null
-          if (t < 60) return G._$uT(t), null
-          if (t < 100) {
-            switch (t) {
-              case 65:
-                return new Z()
-              case 66:
-                return new D()
-              case 67:
-                return new x()
-              case 68:
-                return new z()
-              case 69:
-                return new P()
-              case 70:
-                return new $t()
-              default:
-                return G._$uT(t), null
-            }
-          } else if (t < 150) {
-            switch (t) {
-              case 131:
-                return new st()
-              case 133:
-                return new tt()
-              case 136:
-                return new p()
-              case 137:
-                return new ot()
-              case 142:
-                return new j()
-            }
-          }
-          return G._$uT(t), null
-        }, Y._$HP = 0, Y._$_0 = !0
-        Y._$V2 = -1, Y._$W0 = -1, Y._$jr = !1, Y._$ZS = !0, Y._$tr = -1e6, Y._$lr = 1e6, Y._$is = 32, Y._$e = !1, Y.prototype.getDrawDataIndex = function (t) {
-          for (var i = this._$aS.length - 1; i >= 0; --i) if (this._$aS[i] != null && this._$aS[i].getDrawDataID() == t) return i
+          if (this._$P.length <= this.size) { var i="new" float32array(2 * w._$jt(this._$p, 0, i, this.size), this._$p="i" } this._$p[this.size++]="t" }, n.prototype._$bl="function" () t="new" float32array(this.size) return t, b._$fr="0," b._$hs="1," b._$ws="100," b._$ns="101," b._$xs="102," b._$us="103," b._$qs="104," b._$ys="105," u._$ms="1," u._$qs="2," u._$i2="0," u._$no="2," u._$do="U._$Ms," u._$ls="!0," u._$1r="5," u._$qb="65," u._$j="1e-4," u._$ft="0.001," u._$ss="3," g._$o7="6," g._$s7="7," g._$77="9," g.live2d_format_version_v2_10_sdk2="10," g.live2d_format_version_v2_11_sdk2_1="11," g._$t7="G.LIVE2D_FORMAT_VERSION_V2_11_SDK2_1," g._$is="-2004318072," g._$h0="0," g._$4l="23," g._$7p="33," g._$ut="function" (t) console.log('_$bo :: _$6 _$mo _$e0 : %d\n', t) g._$9o="function" if (t < 40) g._$ut(t), null 50) 60) 100) switch case 65: new z() 66: d() 67: x() 68: 69: p() 70: $t() default: else 150) 131: st() 133: tt() 136: 137: ot() 142: j() y._$hp="0," y._$_0="!0" y._$v2="-1," y._$w0="-1," y._$jr="!1," y._$zs="!0," y._$tr="-1e6," y._$lr="1e6," y._$is="32," y._$e="!1," y.prototype.getdrawdataindex="function" for (var - 1;>= 0; --i) if (this._$aS[i] != null && this._$aS[i].getDrawDataID() == t) return i
           return -1
         }, Y.prototype.getDrawData = function (t) {
           if (t instanceof b) {
@@ -3069,13 +2365,7 @@
                   n._$VS = a.getPartsOpacity(), o.draw(t, this, n)
                 }
                 var h = this._$Er[r]
-                if (h <= r || h == Y._$W0) break
-                r = h
-              }
-            }
-          }
-        }, Y.prototype.getParamIndex = function (t) {
-          for (var i = this._$pb.length - 1; i >= 0; --i) if (this._$pb[i] == t) return i
+                if (h <= r || h="=" y._$w0) break } }, y.prototype.getparamindex="function" (t) { for (var i="this._$pb.length" - 1;>= 0; --i) if (this._$pb[i] == t) return i
           return this._$02(t, 0, Y._$tr, Y._$lr)
         }, Y.prototype._$BS = function (t) {
           return this.getBaseDataIndex(t)
@@ -3143,21 +2433,7 @@
                 var s = this._$8b[n]
                 s._$yo() && (s._$GT()._$B2(this, s, r), r += i)
                 var _ = this._$Er[n]
-                if (_ <= n || _ == Y._$W0) break
-                n = _
-              }
-            }
-          }
-        }, Y.prototype.setDrawParam = function (t) {
-          this.dp_webgl = t
-        }, Y.prototype.getDrawParam = function () {
-          return this.dp_webgl
-        }, k._$0T = function (t) {
-          return k._$0T(new _$5(t))
-        }, k._$0T = function (t) {
-          if (!t.exists()) throw new _$ls(t._$3b())
-          for (var i, e = t.length(), r = new Int8Array(e), o = new _$Xs(new _$kb(t), 8192), n = 0;
-            (i = o.read(r, n, e - n)) > 0;) n += i
+                if (_ <= n || _="=" y._$w0) break } }, y.prototype.setdrawparam="function" (t) { this.dp_webgl="t" y.prototype.getdrawparam="function" () return k._$0t="function" k._$0t(new _$5(t)) if (!t.exists()) throw new _$ls(t._$3b()) for (var i, e="t.length()," r="new" int8array(e), o="new" _$xs(new _$kb(t), 8192), (i="o.read(r," n, - n))> 0;) n += i
           return r
         }, k._$C = function (t) {
           var i = null
@@ -3258,124 +2534,7 @@
             i._$Ib(r[0]), this.interpolateOpacity(t, this._$GS, i, r)
             var n = t._$vs()
             var s = t._$Tr()
-            if (this._$GS._$zr(n, s, o), o <= 0) {
-              var _ = this._$Y0[n[0]]
-              e._$Yr.init(_)
-            } else if (o == 1) {
-              var _ = this._$Y0[n[0]]
-              var a = this._$Y0[n[1]]
-              var h = s[0]
-              e._$Yr._$fL = _._$fL + (a._$fL - _._$fL) * h, e._$Yr._$gL = _._$gL + (a._$gL - _._$gL) * h, e._$Yr._$B0 = _._$B0 + (a._$B0 - _._$B0) * h, e._$Yr._$z0 = _._$z0 + (a._$z0 - _._$z0) * h, e._$Yr._$qT = _._$qT + (a._$qT - _._$qT) * h
-            } else if (o == 2) {
-              var _ = this._$Y0[n[0]]
-              var a = this._$Y0[n[1]]
-              var l = this._$Y0[n[2]]
-              var $ = this._$Y0[n[3]]
-              var h = s[0]
-              var u = s[1]
-              var p = _._$fL + (a._$fL - _._$fL) * h
-              var f = l._$fL + ($._$fL - l._$fL) * h
-              e._$Yr._$fL = p + (f - p) * u, p = _._$gL + (a._$gL - _._$gL) * h, f = l._$gL + ($._$gL - l._$gL) * h, e._$Yr._$gL = p + (f - p) * u, p = _._$B0 + (a._$B0 - _._$B0) * h, f = l._$B0 + ($._$B0 - l._$B0) * h, e._$Yr._$B0 = p + (f - p) * u, p = _._$z0 + (a._$z0 - _._$z0) * h, f = l._$z0 + ($._$z0 - l._$z0) * h, e._$Yr._$z0 = p + (f - p) * u, p = _._$qT + (a._$qT - _._$qT) * h, f = l._$qT + ($._$qT - l._$qT) * h, e._$Yr._$qT = p + (f - p) * u
-            } else if (o == 3) {
-              var c = this._$Y0[n[0]]
-              var d = this._$Y0[n[1]]
-              var g = this._$Y0[n[2]]
-              var y = this._$Y0[n[3]]
-              var m = this._$Y0[n[4]]
-              var T = this._$Y0[n[5]]
-              var P = this._$Y0[n[6]]
-              var S = this._$Y0[n[7]]
-              var h = s[0]
-              var u = s[1]
-              var v = s[2]
-              var p = c._$fL + (d._$fL - c._$fL) * h
-              var f = g._$fL + (y._$fL - g._$fL) * h
-              var L = m._$fL + (T._$fL - m._$fL) * h
-              var M = P._$fL + (S._$fL - P._$fL) * h
-              e._$Yr._$fL = (1 - v) * (p + (f - p) * u) + v * (L + (M - L) * u), p = c._$gL + (d._$gL - c._$gL) * h, f = g._$gL + (y._$gL - g._$gL) * h, L = m._$gL + (T._$gL - m._$gL) * h, M = P._$gL + (S._$gL - P._$gL) * h, e._$Yr._$gL = (1 - v) * (p + (f - p) * u) + v * (L + (M - L) * u), p = c._$B0 + (d._$B0 - c._$B0) * h, f = g._$B0 + (y._$B0 - g._$B0) * h, L = m._$B0 + (T._$B0 - m._$B0) * h, M = P._$B0 + (S._$B0 - P._$B0) * h, e._$Yr._$B0 = (1 - v) * (p + (f - p) * u) + v * (L + (M - L) * u), p = c._$z0 + (d._$z0 - c._$z0) * h, f = g._$z0 + (y._$z0 - g._$z0) * h, L = m._$z0 + (T._$z0 - m._$z0) * h, M = P._$z0 + (S._$z0 - P._$z0) * h, e._$Yr._$z0 = (1 - v) * (p + (f - p) * u) + v * (L + (M - L) * u), p = c._$qT + (d._$qT - c._$qT) * h, f = g._$qT + (y._$qT - g._$qT) * h, L = m._$qT + (T._$qT - m._$qT) * h, M = P._$qT + (S._$qT - P._$qT) * h, e._$Yr._$qT = (1 - v) * (p + (f - p) * u) + v * (L + (M - L) * u)
-            } else if (o == 4) {
-              var E = this._$Y0[n[0]]
-              var A = this._$Y0[n[1]]
-              var I = this._$Y0[n[2]]
-              var w = this._$Y0[n[3]]
-              var x = this._$Y0[n[4]]
-              var O = this._$Y0[n[5]]
-              var D = this._$Y0[n[6]]
-              var R = this._$Y0[n[7]]
-              var b = this._$Y0[n[8]]
-              var F = this._$Y0[n[9]]
-              var C = this._$Y0[n[10]]
-              var N = this._$Y0[n[11]]
-              var B = this._$Y0[n[12]]
-              var U = this._$Y0[n[13]]
-              var G = this._$Y0[n[14]]
-              var Y = this._$Y0[n[15]]
-              var h = s[0]
-              var u = s[1]
-              var v = s[2]
-              var k = s[3]
-              var p = E._$fL + (A._$fL - E._$fL) * h
-              var f = I._$fL + (w._$fL - I._$fL) * h
-              var L = x._$fL + (O._$fL - x._$fL) * h
-              var M = D._$fL + (R._$fL - D._$fL) * h
-              var V = b._$fL + (F._$fL - b._$fL) * h
-              var X = C._$fL + (N._$fL - C._$fL) * h
-              var H = B._$fL + (U._$fL - B._$fL) * h
-              var W = G._$fL + (Y._$fL - G._$fL) * h
-              e._$Yr._$fL = (1 - k) * ((1 - v) * (p + (f - p) * u) + v * (L + (M - L) * u)) + k * ((1 - v) * (V + (X - V) * u) + v * (H + (W - H) * u)), p = E._$gL + (A._$gL - E._$gL) * h, f = I._$gL + (w._$gL - I._$gL) * h, L = x._$gL + (O._$gL - x._$gL) * h, M = D._$gL + (R._$gL - D._$gL) * h, V = b._$gL + (F._$gL - b._$gL) * h, X = C._$gL + (N._$gL - C._$gL) * h, H = B._$gL + (U._$gL - B._$gL) * h, W = G._$gL + (Y._$gL - G._$gL) * h, e._$Yr._$gL = (1 - k) * ((1 - v) * (p + (f - p) * u) + v * (L + (M - L) * u)) + k * ((1 - v) * (V + (X - V) * u) + v * (H + (W - H) * u)), p = E._$B0 + (A._$B0 - E._$B0) * h, f = I._$B0 + (w._$B0 - I._$B0) * h, L = x._$B0 + (O._$B0 - x._$B0) * h, M = D._$B0 + (R._$B0 - D._$B0) * h, V = b._$B0 + (F._$B0 - b._$B0) * h, X = C._$B0 + (N._$B0 - C._$B0) * h, H = B._$B0 + (U._$B0 - B._$B0) * h, W = G._$B0 + (Y._$B0 - G._$B0) * h, e._$Yr._$B0 = (1 - k) * ((1 - v) * (p + (f - p) * u) + v * (L + (M - L) * u)) + k * ((1 - v) * (V + (X - V) * u) + v * (H + (W - H) * u)), p = E._$z0 + (A._$z0 - E._$z0) * h, f = I._$z0 + (w._$z0 - I._$z0) * h, L = x._$z0 + (O._$z0 - x._$z0) * h, M = D._$z0 + (R._$z0 - D._$z0) * h, V = b._$z0 + (F._$z0 - b._$z0) * h, X = C._$z0 + (N._$z0 - C._$z0) * h, H = B._$z0 + (U._$z0 - B._$z0) * h, W = G._$z0 + (Y._$z0 - G._$z0) * h, e._$Yr._$z0 = (1 - k) * ((1 - v) * (p + (f - p) * u) + v * (L + (M - L) * u)) + k * ((1 - v) * (V + (X - V) * u) + v * (H + (W - H) * u)), p = E._$qT + (A._$qT - E._$qT) * h, f = I._$qT + (w._$qT - I._$qT) * h, L = x._$qT + (O._$qT - x._$qT) * h, M = D._$qT + (R._$qT - D._$qT) * h, V = b._$qT + (F._$qT - b._$qT) * h, X = C._$qT + (N._$qT - C._$qT) * h, H = B._$qT + (U._$qT - B._$qT) * h, W = G._$qT + (Y._$qT - G._$qT) * h, e._$Yr._$qT = (1 - k) * ((1 - v) * (p + (f - p) * u) + v * (L + (M - L) * u)) + k * ((1 - v) * (V + (X - V) * u) + v * (H + (W - H) * u))
-            } else {
-              for (var j = 0 | Math.pow(2, o), q = new Float32Array(j), J = 0; J < j; J++) {
-                for (var Q = J, Z = 1, K = 0; K < o; K++) Z *= Q % 2 == 0 ? 1 - s[K] : s[K], Q /= 2
-                q[J] = Z
-              }
-              for (var tt = new Array(), it = 0; it < j; it++) tt[it] = this._$Y0[n[it]]
-              for (var et = 0, rt = 0, ot = 0, nt = 0, st = 0, it = 0; it < j; it++) et += q[it] * tt[it]._$fL, rt += q[it] * tt[it]._$gL, ot += q[it] * tt[it]._$B0, nt += q[it] * tt[it]._$z0, st += q[it] * tt[it]._$qT
-              e._$Yr._$fL = et, e._$Yr._$gL = rt, e._$Yr._$B0 = ot, e._$Yr._$z0 = nt, e._$Yr._$qT = st
-            }
-            var _ = this._$Y0[n[0]]
-            e._$Yr.reflectX = _.reflectX, e._$Yr.reflectY = _.reflectY
-          }
-        }, z.prototype._$2b = function (t, i) {
-          this != i._$GT() && console.log('### assert!! ### ')
-          var e = i
-          if (e._$hS(!0), this._$32()) {
-            var r = this.getTargetBaseDataID()
-            if (e._$8r == I._$ur && (e._$8r = t.getBaseDataIndex(r)), e._$8r < 0) at._$so && _._$li('_$L _$0P _$G :: %s', r), e._$hS(!1)
-            else {
-              var o = t.getBaseData(e._$8r)
-              if (o != null) {
-                var n = t._$q2(e._$8r)
-                var s = z._$Xo
-                s[0] = e._$Yr._$fL, s[1] = e._$Yr._$gL
-                var a = z._$io
-                a[0] = 0, a[1] = -0.1
-                n._$GT().getType() == I._$c2 ? a[1] = -10 : a[1] = -0.1
-                var h = z._$0o
-                this._$Jr(t, o, n, s, a, h)
-                var l = Lt._$92(a, h)
-                o._$nb(t, n, s, s, 1, 0, 2), e._$Wr._$fL = s[0], e._$Wr._$gL = s[1], e._$Wr._$B0 = e._$Yr._$B0, e._$Wr._$z0 = e._$Yr._$z0, e._$Wr._$qT = e._$Yr._$qT - l * Lt._$NS
-                var $ = n.getTotalScale()
-                e.setTotalScale_notForClient($ * e._$Wr._$B0)
-                var u = n.getTotalOpacity()
-                e.setTotalOpacity(u * e.getInterpolatedOpacity()), e._$Wr.reflectX = e._$Yr.reflectX, e._$Wr.reflectY = e._$Yr.reflectY, e._$hS(n._$yo())
-              } else e._$hS(!1)
-            }
-          } else e.setTotalScale_notForClient(e._$Yr._$B0), e.setTotalOpacity(e.getInterpolatedOpacity())
-        }, z.prototype._$nb = function (t, i, e, r, o, n, s) {
-          this != i._$GT() && console.log('### assert!! ### ')
-          for (var _, a, h = i, l = h._$Wr != null ? h._$Wr : h._$Yr, $ = Math.sin(Lt._$bS * l._$qT), u = Math.cos(Lt._$bS * l._$qT), p = h.getTotalScale(), f = l.reflectX ? -1 : 1, c = l.reflectY ? -1 : 1, d = u * p * f, g = -$ * p * c, y = $ * p * f, m = u * p * c, T = l._$fL, P = l._$gL, S = o * s, v = n; v < S; v += s) _ = e[v], a = e[v + 1], r[v] = d * _ + g * a + T, r[v + 1] = y * _ + m * a + P
-        }, z.prototype._$Jr = function (t, i, e, r, o, n) {
-          i != e._$GT() && console.log('### assert!! ### ')
-          var s = z._$Lo
-          z._$Lo[0] = r[0], z._$Lo[1] = r[1], i._$nb(t, e, s, s, 1, 0, 2)
-          for (var _ = z._$To, a = z._$Po, h = 1, l = 0; l < 10; l++) {
-            if (a[0] = r[0] + h * o[0], a[1] = r[1] + h * o[1], i._$nb(t, e, a, _, 1, 0, 2), _[0] -= s[0], _[1] -= s[1], _[0] != 0 || _[1] != 0) return n[0] = _[0], void (n[1] = _[1])
-            if (a[0] = r[0] - h * o[0], a[1] = r[1] - h * o[1], i._$nb(t, e, a, _, 1, 0, 2), _[0] -= s[0], _[1] -= s[1], _[0] != 0 || _[1] != 0) return _[0] = -_[0], _[0] = -_[0], n[0] = _[0], void (n[1] = _[1])
-            h *= 0.1
-          }
-          at._$so && console.log('_$L0 to transform _$SP\n')
-        }, H.prototype = new _t(), W.prototype = new M(), W._$ur = -2, W._$ES = 500, W._$wb = 2, W._$8S = 3, W._$os = 4, W._$52 = W._$ES, W._$R2 = W._$ES, W._$Sb = function (t) {
-          for (var i = t.length - 1; i >= 0; --i) {
+            if (this._$GS._$zr(n, s, o), o <= 0 1 2="=" 0) { var _="this._$Y0[n[0]]" e._$yr.init(_) } else if (o="=" 1) a="this._$Y0[n[1]]" h="s[0]" e._$yr._$fl="_._$fL" + (a._$fl - _._$fl) * h, e._$yr._$gl="_._$gL" (a._$gl _._$gl) e._$yr._$b0="_._$B0" (a._$b0 _._$b0) e._$yr._$z0="_._$z0" (a._$z0 _._$z0) e._$yr._$qt="_._$qT" (a._$qt _._$qt) 2) l="this._$Y0[n[2]]" $="this._$Y0[n[3]]" u="s[1]" p="_._$fL" f="l._$fL" ($._$fl l._$fl) (f p) u, ($._$gl l._$gl) ($._$b0 l._$b0) ($._$z0 l._$z0) ($._$qt l._$qt) 3) c="this._$Y0[n[0]]" d="this._$Y0[n[1]]" g="this._$Y0[n[2]]" y="this._$Y0[n[3]]" m="this._$Y0[n[4]]" t="this._$Y0[n[5]]" s="this._$Y0[n[7]]" v="s[2]" (d._$fl c._$fl) (y._$fl g._$fl) (t._$fl m._$fl) (s._$fl p._$fl) v) (p u) (l (m l) u), (d._$gl c._$gl) (y._$gl g._$gl) (t._$gl m._$gl) (s._$gl p._$gl) (d._$b0 c._$b0) (y._$b0 g._$b0) (t._$b0 m._$b0) (s._$b0 p._$b0) (d._$z0 c._$z0) (y._$z0 g._$z0) (t._$z0 m._$z0) (s._$z0 p._$z0) (d._$qt c._$qt) (y._$qt g._$qt) (t._$qt m._$qt) (s._$qt p._$qt) 4) e="this._$Y0[n[0]]" i="this._$Y0[n[2]]" w="this._$Y0[n[3]]" x="this._$Y0[n[4]]" o="this._$Y0[n[5]]" r="this._$Y0[n[7]]" b="this._$Y0[n[8]]" n="this._$Y0[n[11]]" k="s[3]" e._$fl) (w._$fl i._$fl) (o._$fl x._$fl) (r._$fl d._$fl) (f._$fl b._$fl) (n._$fl (u._$fl k) ((1 u)) (v (x (h (w h) u)), e._$gl) (w._$gl i._$gl) (o._$gl x._$gl) (r._$gl d._$gl) (f._$gl b._$gl) (n._$gl (u._$gl e._$b0) (w._$b0 i._$b0) (o._$b0 x._$b0) (r._$b0 d._$b0) (f._$b0 b._$b0) (n._$b0 (u._$b0 e._$z0) (w._$z0 i._$z0) (o._$z0 x._$z0) (r._$z0 d._$z0) (f._$z0 b._$z0) (n._$z0 (u._$z0 e._$qt) (w._$qt i._$qt) (o._$qt x._$qt) (r._$qt d._$qt) (f._$qt b._$qt) (n._$qt (u._$qt for (var j="0" | math.pow(2, o), q="new" float32array(j), < j; j++) z="1," o; k++) % ? s[k] : s[k], = q[j]="Z" tt="new" array(), it="0;" it++) tt[it]="this._$Y0[n[it]]" et="0," rt="0," ot="0," nt="0," st="0," tt[it]._$fl, tt[it]._$gl, tt[it]._$b0, tt[it]._$z0, tt[it]._$qt e._$yr.reflectx="_.reflectX," e._$yr.reflecty="_.reflectY" }, z.prototype._$2b="function" (t, i) this !="i._$GT()" && console.log('### assert!! ### ') (e._$hs(!0), this._$32()) (e._$8r="=" i._$ur e._$8r at._$so _._$li('_$l _$0p _$g :: %s', r), e._$hs(!1) s[0]="e._$Yr._$fL," s[1]="e._$Yr._$gL" a[0]="0," a[1]="-0.1" n._$gt().gettype()="=" i._$c2 this._$jr(t, o, n, s, a, o._$nb(t, 1, 0, 2), e._$wr._$fl="s[0]," e._$wr._$gl="s[1]," e._$wr._$b0="e._$Yr._$B0," e._$wr._$z0="e._$Yr._$z0," e._$wr._$qt="e._$Yr._$qT" lt._$ns e.settotalscale_notforclient($ e._$wr._$b0) e.settotalopacity(u e.getinterpolatedopacity()), e._$wr.reflectx="e._$Yr.reflectX," e._$wr.reflecty="e._$Yr.reflectY," e._$hs(n._$yo()) e.settotalscale_notforclient(e._$yr._$b0), e.settotalopacity(e.getinterpolatedopacity()) z.prototype._$nb="function" i, e, r, s) _, h._$wr h._$yr, l._$qt), -1 f, c, s; 1], r[v]="d" t, r[v 1]="y" z.prototype._$jr="function" n) z._$lo[0]="r[0]," z._$lo[1]="r[1]," i._$nb(t, 10; l++) (a[0]="r[0]" o[0], o[1], _[0] _[1] || return n[0]="_[0]," void (n[1]="_[1])" console.log('_$l0 to transform _$sp\n') h.prototype="new" _t(), w.prototype="new" m(), w._$ur="-2," w._$es="500," w._$wb="2," w._$8s="3," w._$os="4," w._$52="W._$ES," w._$r2="W._$ES," w._$sb="function" (t) 1;>= 0; --i) {
             var e = t[i]
             e < W._$52 ? W._$52 = e : e > W._$R2 && (W._$R2 = e)
           }
@@ -3463,22 +2622,14 @@
             if (n != '\n' && n != '\r') {
               if (n != '#') {
                 if (n != '$') {
-                  if (s >= 97 && s <= 122 || s >= 65 && s <= 90 || n == '_') {
-                    for (var _ = o, a = -1; o < r && ((n = Q(t, o)) != '\r' && n != '\n'); ++o) {
-                      if (n == '=') {
+                  if (s >= 97 && s <= 122 || s>= 65 && s <= 90 || n="=" '_') { for (var _="o," a="-1;" o < r && ((n="Q(t," o)) !="\r" ); ++o) if (n="=" '=") {
                         a = o
                         break
                       }
                     }
                     if (a >= 0) {
                       var h = new B()
-                      O.startsWith(t, _, J._$cs) ? (h._$RP = B._$hs, h._$4P = O.createString(t, _, a - _)) : O.startsWith(t, _, J._$ar) ? (h._$4P = O.createString(t, _ + 7, a - _ - 7), O.startsWith(t, _ + 7, 'ANCHOR_X') ? h._$RP = B._$xs : O.startsWith(t, _ + 7, 'ANCHOR_Y') ? h._$RP = B._$us : O.startsWith(t, _ + 7, 'SCALE_X') ? h._$RP = B._$qs : O.startsWith(t, _ + 7, 'SCALE_Y') ? h._$RP = B._$Ys : O.startsWith(t, _ + 7, 'X') ? h._$RP = B._$ws : O.startsWith(t, _ + 7, 'Y') && (h._$RP = B._$Ns)) : (h._$RP = B._$Fr, h._$4P = O.createString(t, _, a - _)), i.motions.push(h)
-                      var l = 0
-                      var $ = []
-                      for (o = a + 1; o < r && ((n = Q(t, o)) != '\r' && n != '\n'); ++o) {
-                        if (n != ',' && n != ' ' && n != '\t') {
-                          var u = O._$LS(t, r, o, e)
-                          if (e[0] > 0) {
+                      O.startsWith(t, _, J._$cs) ? (h._$RP = B._$hs, h._$4P = O.createString(t, _, a - _)) : O.startsWith(t, _, J._$ar) ? (h._$4P = O.createString(t, _ + 7, a - _ - 7), O.startsWith(t, _ + 7, " anchor_x') ? h._$rp="B._$xs" : o.startswith(t, + 7, 'anchor_y') 'scale_x') 'scale_y') 'x') 'y') (h._$rp="B._$Ns))" h._$4p="O.createString(t," _, - _)), i.motions.push(h) var l="0" $="[]" (o="a" 1; ) u="O._$LS(t," r, o, e) (e[0]> 0) {
                             $.push(u), l++
                             var p = e[0]
                             if (p < o) {
@@ -3533,15 +2684,7 @@
             if (h._$RP == B._$hs) {
               var u = h._$I0[s >= l ? l - 1 : s]
               t.setParamFloat($, u)
-            } else if (B._$ws <= h._$RP && h._$RP <= B._$Ys);
-            else {
-              var p; var f = t.getParamIndex($)
-              var c = t.getModelContext()
-              var d = c.getParamMax(f)
-              var g = c.getParamMin(f)
-              var y = 0.4 * (d - g)
-              var m = c.getParamFloat(f)
-              var T = h._$I0[s >= l ? l - 1 : s]
+            } else if (B._$ws <= h._$rp && <="B._$Ys);" else { var p; f="t.getParamIndex($)" c="t.getModelContext()" d="c.getParamMax(f)" g="c.getParamMin(f)" y="0.4" * (d - g) m="c.getParamFloat(f)" t="h._$I0[s">= l ? l - 1 : s]
               var P = h._$I0[s + 1 >= l ? l - 1 : s + 1]
               p = T < P && P - T > y || T > P && T - P > y ? T : T + (P - T) * _
               var S = m + (p - m) * e
@@ -3564,77 +2707,8 @@
         }, N.prototype.clear = function () {
           this.size = 0
         }, N.prototype.add = function (t) {
-          if (this._$P.length <= this.size) {
-            var i = new Float32Array(2 * this.size)
-            w._$jT(this._$P, 0, i, 0, this.size), this._$P = i
-          }
-          this._$P[this.size++] = t
-        }, N.prototype._$BL = function () {
-          var t = new Float32Array(this.size)
-          return w._$jT(this._$P, 0, t, 0, this.size), t
-        }, B._$Fr = 0, B._$hs = 1, B._$ws = 100, B._$Ns = 101, B._$xs = 102, B._$us = 103, B._$qs = 104, B._$Ys = 105, Z.prototype = new I(), Z._$gT = new Array(), Z.prototype._$zP = function () {
-          this._$GS = new D(), this._$GS._$zP()
-        }, Z.prototype._$F0 = function (t) {
-          I.prototype._$F0.call(this, t), this._$A = t._$6L(), this._$o = t._$6L(), this._$GS = t._$nP(), this._$Eo = t._$nP(), I.prototype.readV2_opacity.call(this, t)
-        }, Z.prototype.init = function (t) {
-          var i = new K(this)
-          var e = (this._$o + 1) * (this._$A + 1)
-          return i._$Cr != null && (i._$Cr = null), i._$Cr = new Float32Array(2 * e), i._$hr != null && (i._$hr = null), this._$32() ? i._$hr = new Float32Array(2 * e) : i._$hr = null, i
-        }, Z.prototype._$Nr = function (t, i) {
-          var e = i
-          if (this._$GS._$Ur(t)) {
-            var r = this._$VT()
-            var o = Z._$gT
-            o[0] = !1, v._$Vr(t, this._$GS, o, r, this._$Eo, e._$Cr, 0, 2), i._$Ib(o[0]), this.interpolateOpacity(t, this._$GS, i, o)
-          }
-        }, Z.prototype._$2b = function (t, i) {
-          var e = i
-          if (e._$hS(!0), this._$32()) {
-            var r = this.getTargetBaseDataID()
-            if (e._$8r == I._$ur && (e._$8r = t.getBaseDataIndex(r)), e._$8r < 0) at._$so && _._$li('_$L _$0P _$G :: %s', r), e._$hS(!1)
-            else {
-              var o = t.getBaseData(e._$8r)
-              var n = t._$q2(e._$8r)
-              if (o != null && n._$yo()) {
-                var s = n.getTotalScale()
-                e.setTotalScale_notForClient(s)
-                var a = n.getTotalOpacity()
-                e.setTotalOpacity(a * e.getInterpolatedOpacity()), o._$nb(t, n, e._$Cr, e._$hr, this._$VT(), 0, 2), e._$hS(!0)
-              } else e._$hS(!1)
-            }
-          } else e.setTotalOpacity(e.getInterpolatedOpacity())
-        }, Z.prototype._$nb = function (t, i, e, r, o, n, s) {
-          var _ = i
-          var a = _._$hr != null ? _._$hr : _._$Cr
-          Z.transformPoints_sdk2(e, r, o, n, s, a, this._$o, this._$A)
-        }, Z.transformPoints_sdk2 = function (i, e, r, o, n, s, _, a) {
-          for (var h, l, $, u = r * n, p = 0, f = 0, c = 0, d = 0, g = 0, y = 0, m = !1, T = o; T < u; T += n) {
-            var P, S, v, L
-            if (v = i[T], L = i[T + 1], P = v * _, S = L * a, P < 0 || S < 0 || _ <= P || a <= S) {
-              var M = _ + 1
-              if (!m) {
-                m = !0, p = 0.25 * (s[2 * (0 + 0 * M)] + s[2 * (_ + 0 * M)] + s[2 * (0 + a * M)] + s[2 * (_ + a * M)]), f = 0.25 * (s[2 * (0 + 0 * M) + 1] + s[2 * (_ + 0 * M) + 1] + s[2 * (0 + a * M) + 1] + s[2 * (_ + a * M) + 1])
-                var E = s[2 * (_ + a * M)] - s[2 * (0 + 0 * M)]
-                var A = s[2 * (_ + a * M) + 1] - s[2 * (0 + 0 * M) + 1]
-                var I = s[2 * (_ + 0 * M)] - s[2 * (0 + a * M)]
-                var w = s[2 * (_ + 0 * M) + 1] - s[2 * (0 + a * M) + 1]
-                c = 0.5 * (E + I), d = 0.5 * (A + w), g = 0.5 * (E - I), y = 0.5 * (A - w), p -= 0.5 * (c + g), f -= 0.5 * (d + y)
-              }
-              if (v > -2 && v < 3 && L > -2 && L < 3) {
-                if (v <= 0) {
-                  if (L <= 0) {
-                    var x = s[2 * (0 + 0 * M)]
-                    var O = s[2 * (0 + 0 * M) + 1]
-                    var D = p - 2 * c
-                    var R = f - 2 * d
-                    var b = p - 2 * g
-                    var F = f - 2 * y
-                    var C = p - 2 * c - 2 * g
-                    var N = f - 2 * d - 2 * y
-                    var B = 0.5 * (v - -2)
-                    var U = 0.5 * (L - -2)
-                    B + U <= 1 ? (e[T] = C + (b - C) * B + (D - C) * U, e[T + 1] = N + (F - N) * B + (R - N) * U) : (e[T] = x + (D - x) * (1 - B) + (b - x) * (1 - U), e[T + 1] = O + (R - O) * (1 - B) + (F - O) * (1 - U))
-                  } else if (L >= 1) {
+          if (this._$P.length <= 0 1 this.size) { var i="new" float32array(2 * w._$jt(this._$p, 0, i, this.size), this._$p="i" } this._$p[this.size++]="t" }, n.prototype._$bl="function" () t="new" float32array(this.size) return t, b._$fr="0," b._$hs="1," b._$ws="100," b._$ns="101," b._$xs="102," b._$us="103," b._$qs="104," b._$ys="105," z.prototype="new" i(), z._$gt="new" array(), z.prototype._$zp="function" this._$gs="new" d(), this._$gs._$zp() z.prototype._$f0="function" (t) i.prototype._$f0.call(this, t), this._$a="t._$6L()," this._$o="t._$6L()," this._$eo="t._$nP()," i.prototype.readv2_opacity.call(this, t) z.prototype.init="function" k(this) e="(this._$o" + 1) (this._$a i._$cr !="null" && (i._$cr="null)," e), i._$hr (i._$hr="null)," this._$32() ? e) : z.prototype._$nr="function" (t, i) if (this._$gs._$ur(t)) r="this._$VT()" o="Z._$gT" o[0]="!1," v._$vr(t, this._$gs, o, r, this._$eo, e._$cr, 2), i._$ib(o[0]), this.interpolateopacity(t, o) z.prototype._$2b="function" (e._$hs(!0), this._$32()) (e._$8r="=" i._$ur e._$8r < 0) at._$so _._$li('_$l _$0p _$g :: %s', r), e._$hs(!1) else n="t._$q2(e._$8r)" (o n._$yo()) s="n.getTotalScale()" e.settotalscale_notforclient(s) a="n.getTotalOpacity()" e.settotalopacity(a e.getinterpolatedopacity()), o._$nb(t, n, e._$hr, this._$vt(), e._$hs(!0) e.settotalopacity(e.getinterpolatedopacity()) z.prototype._$nb="function" e, s) _="i" _._$hr _._$cr z.transformpoints_sdk2(e, s, a, this._$o, this._$a) z.transformpoints_sdk2="function" (i, _, a) for (var h, l, $, u="r" p="0," f="0," c="0," d="0," g="0," y="0," m="!1," u; p, v, l (v="i[T]," 1], || (!m) (s[2 (0 m)] s[2 (_ m)]), m) 1] 1]) - w="s[2" (e i), (a w), (c g), (d y)> -2 && v < 3 && L > -2 && L < 3) {
+                if (v <= 0 2 0) { if (l <="0)" var x="s[2" * (0 + m)] o="s[2" m) 1] d="p" - c r="f" b="p" g f="f" y n="f" (v -2) u="0.5" ? (e[t]="C" (b c) (d u, e[t (f n) (r u) : x) (1 b) u), o) u)) } else>= 1) {
                     var b = s[2 * (0 + a * M)]
                     var F = s[2 * (0 + a * M) + 1]
                     var C = p - 2 * c + 1 * g
@@ -3645,38 +2719,8 @@
                     var R = f - 2 * d + 3 * y
                     var B = 0.5 * (v - -2)
                     var U = 0.5 * (L - 1)
-                    B + U <= 1 ? (e[T] = C + (b - C) * B + (D - C) * U, e[T + 1] = N + (F - N) * B + (R - N) * U) : (e[T] = x + (D - x) * (1 - B) + (b - x) * (1 - U), e[T + 1] = O + (R - O) * (1 - B) + (F - O) * (1 - U))
-                  } else {
-                    var G = 0 | S
-                    G == a && (G = a - 1)
-                    var B = 0.5 * (v - -2)
-                    var U = S - G
-                    var Y = G / a
-                    var k = (G + 1) / a
-                    var b = s[2 * (0 + G * M)]
-                    var F = s[2 * (0 + G * M) + 1]
-                    var x = s[2 * (0 + (G + 1) * M)]
-                    var O = s[2 * (0 + (G + 1) * M) + 1]
-                    var C = p - 2 * c + Y * g
-                    var N = f - 2 * d + Y * y
-                    var D = p - 2 * c + k * g
-                    var R = f - 2 * d + k * y
-                    B + U <= 1 ? (e[T] = C + (b - C) * B + (D - C) * U, e[T + 1] = N + (F - N) * B + (R - N) * U) : (e[T] = x + (D - x) * (1 - B) + (b - x) * (1 - U), e[T + 1] = O + (R - O) * (1 - B) + (F - O) * (1 - U))
-                  }
-                } else if (v >= 1) {
-                  if (L <= 0) {
-                    var D = s[2 * (_ + 0 * M)]
-                    var R = s[2 * (_ + 0 * M) + 1]
-                    var x = p + 3 * c
-                    var O = f + 3 * d
-                    var C = p + 1 * c - 2 * g
-                    var N = f + 1 * d - 2 * y
-                    var b = p + 3 * c - 2 * g
-                    var F = f + 3 * d - 2 * y
-                    var B = 0.5 * (v - 1)
-                    var U = 0.5 * (L - -2)
-                    B + U <= 1 ? (e[T] = C + (b - C) * B + (D - C) * U, e[T + 1] = N + (F - N) * B + (R - N) * U) : (e[T] = x + (D - x) * (1 - B) + (b - x) * (1 - U), e[T + 1] = O + (R - O) * (1 - B) + (F - O) * (1 - U))
-                  } else if (L >= 1) {
+                    B + U <= 1 2 ? (e[t]="C" + (b - c) * b (d u, e[t 1]="N" (f n) (r u) : x) (1 b) u), o) u)) } else { var g="0" | s a && (g="a" 1) (v -2) u="S" y="G" k="(G" (0 m)] f="s[2" m) x="s[2" o="s[2" c="p" n="f" d r="f" <="1" if>= 1) {
+                  if (L <= 0 1 2 3 0) { var d="s[2" * (_ + m)] r="s[2" m) 1] x="p" c o="f" - g n="f" y b="p" f="f" (v 1) u="0.5" (l -2) <="1" ? (e[t]="C" (b c) (d u, e[t (f n) (r u) : x) (1 b) u), o) u)) } else if>= 1) {
                     var C = s[2 * (_ + a * M)]
                     var N = s[2 * (_ + a * M) + 1]
                     var b = p + 3 * c + 1 * g
@@ -3687,41 +2731,7 @@
                     var O = f + 3 * d + 3 * y
                     var B = 0.5 * (v - 1)
                     var U = 0.5 * (L - 1)
-                    B + U <= 1 ? (e[T] = C + (b - C) * B + (D - C) * U, e[T + 1] = N + (F - N) * B + (R - N) * U) : (e[T] = x + (D - x) * (1 - B) + (b - x) * (1 - U), e[T + 1] = O + (R - O) * (1 - B) + (F - O) * (1 - U))
-                  } else {
-                    var G = 0 | S
-                    G == a && (G = a - 1)
-                    var B = 0.5 * (v - 1)
-                    var U = S - G
-                    var Y = G / a
-                    var k = (G + 1) / a
-                    var C = s[2 * (_ + G * M)]
-                    var N = s[2 * (_ + G * M) + 1]
-                    var D = s[2 * (_ + (G + 1) * M)]
-                    var R = s[2 * (_ + (G + 1) * M) + 1]
-                    var b = p + 3 * c + Y * g
-                    var F = f + 3 * d + Y * y
-                    var x = p + 3 * c + k * g
-                    var O = f + 3 * d + k * y
-                    B + U <= 1 ? (e[T] = C + (b - C) * B + (D - C) * U, e[T + 1] = N + (F - N) * B + (R - N) * U) : (e[T] = x + (D - x) * (1 - B) + (b - x) * (1 - U), e[T + 1] = O + (R - O) * (1 - B) + (F - O) * (1 - U))
-                  }
-                } else if (L <= 0) {
-                  var V = 0 | P
-                  V == _ && (V = _ - 1)
-                  var B = P - V
-                  var U = 0.5 * (L - -2)
-                  var X = V / _
-                  var z = (V + 1) / _
-                  var D = s[2 * (V + 0 * M)]
-                  var R = s[2 * (V + 0 * M) + 1]
-                  var x = s[2 * (V + 1 + 0 * M)]
-                  var O = s[2 * (V + 1 + 0 * M) + 1]
-                  var C = p + X * c - 2 * g
-                  var N = f + X * d - 2 * y
-                  var b = p + z * c - 2 * g
-                  var F = f + z * d - 2 * y
-                  B + U <= 1 ? (e[T] = C + (b - C) * B + (D - C) * U, e[T + 1] = N + (F - N) * B + (R - N) * U) : (e[T] = x + (D - x) * (1 - B) + (b - x) * (1 - U), e[T + 1] = O + (R - O) * (1 - B) + (F - O) * (1 - U))
-                } else if (L >= 1) {
+                    B + U <= 0 1 2 3 ? (e[t]="C" + (b - c) * b (d u, e[t 1]="N" (f n) (r u) : x) (1 b) u), o) u)) } else { var g="0" | s a && (g="a" 1) (v u="S" y="G" k="(G" c="s[2" (_ m)] n="s[2" m) d="s[2" r="s[2" f="f" x="p" o="f" <="1" if (l v="0" p _ -2) z="(V">= 1) {
                   var V = 0 | P
                   V == _ && (V = _ - 1)
                   var B = P - V
@@ -3736,13 +2746,7 @@
                   var R = f + X * d + 3 * y
                   var x = p + z * c + 3 * g
                   var O = f + z * d + 3 * y
-                  B + U <= 1 ? (e[T] = C + (b - C) * B + (D - C) * U, e[T + 1] = N + (F - N) * B + (R - N) * U) : (e[T] = x + (D - x) * (1 - B) + (b - x) * (1 - U), e[T + 1] = O + (R - O) * (1 - B) + (F - O) * (1 - U))
-                } else t.err.printf('_$li calc : %.4f , %.4f\t\t\t\t\t@@BDBoxGrid\n', v, L)
-              } else e[T] = p + v * c + L * g, e[T + 1] = f + v * d + L * y
-            } else l = P - (0 | P), $ = S - (0 | S), h = 2 * ((0 | P) + (0 | S) * (_ + 1)), l + $ < 1 ? (e[T] = s[h] * (1 - l - $) + s[h + 2] * l + s[h + 2 * (_ + 1)] * $, e[T + 1] = s[h + 1] * (1 - l - $) + s[h + 3] * l + s[h + 2 * (_ + 1) + 1] * $) : (e[T] = s[h + 2 * (_ + 1) + 2] * (l - 1 + $) + s[h + 2 * (_ + 1)] * (1 - l) + s[h + 2] * (1 - $), e[T + 1] = s[h + 2 * (_ + 1) + 3] * (l - 1 + $) + s[h + 2 * (_ + 1) + 1] * (1 - l) + s[h + 3] * (1 - $))
-          }
-        }, Z.prototype.transformPoints_sdk1 = function (t, i, e, r, o, n, s) {
-          for (var _, a, h, l, $, u, p, f = i, c = this._$o, d = this._$A, g = o * s, y = f._$hr != null ? f._$hr : f._$Cr, m = n; m < g; m += s) at._$ts ? (_ = e[m], a = e[m + 1], _ < 0 ? _ = 0 : _ > 1 && (_ = 1), a < 0 ? a = 0 : a > 1 && (a = 1), _ *= c, a *= d, h = 0 | _, l = 0 | a, h > c - 1 && (h = c - 1), l > d - 1 && (l = d - 1), u = _ - h, p = a - l, $ = 2 * (h + l * (c + 1))) : (_ = e[m] * c, a = e[m + 1] * d, u = _ - (0 | _), p = a - (0 | a), $ = 2 * ((0 | _) + (0 | a) * (c + 1))), u + p < 1 ? (r[m] = y[$] * (1 - u - p) + y[$ + 2] * u + y[$ + 2 * (c + 1)] * p, r[m + 1] = y[$ + 1] * (1 - u - p) + y[$ + 3] * u + y[$ + 2 * (c + 1) + 1] * p) : (r[m] = y[$ + 2 * (c + 1) + 2] * (u - 1 + p) + y[$ + 2 * (c + 1)] * (1 - u) + y[$ + 2] * (1 - p), r[m + 1] = y[$ + 2 * (c + 1) + 3] * (u - 1 + p) + y[$ + 2 * (c + 1) + 1] * (1 - u) + y[$ + 3] * (1 - p))
+                  B + U <= 0 1 2 ? (e[t]="C" + (b - c) * b (d u, e[t 1]="N" (f n) (r u) : x) (1 b) u), o) u)) } else t.err.printf('_$li calc %.4f , %.4f\t\t\t\t\t@@bdboxgrid\n', v, l) e[t]="p" v c l g, d y (0 | p), $="S" s), h="2" ((0 p) s) (_ 1)), < $) s[h 2] 1)] $, 3] 1) (l $), $)) }, z.prototype.transformpoints_sdk1="function" (t, i, e, r, o, n, { for (var _, a, h, l, p, f="i," g="o" s, !="null" f._$hr f._$cr, m="n;" g; at._$ts a="e[m" 1], _> 1 && (_ = 1), a < 0 ? a = 0 : a > 1 && (a = 1), _ *= c, a *= d, h = 0 | _, l = 0 | a, h > c - 1 && (h = c - 1), l > d - 1 && (l = d - 1), u = _ - h, p = a - l, $ = 2 * (h + l * (c + 1))) : (_ = e[m] * c, a = e[m + 1] * d, u = _ - (0 | _), p = a - (0 | a), $ = 2 * ((0 | _) + (0 | a) * (c + 1))), u + p < 1 ? (r[m] = y[$] * (1 - u - p) + y[$ + 2] * u + y[$ + 2 * (c + 1)] * p, r[m + 1] = y[$ + 1] * (1 - u - p) + y[$ + 3] * u + y[$ + 2 * (c + 1) + 1] * p) : (r[m] = y[$ + 2 * (c + 1) + 2] * (u - 1 + p) + y[$ + 2 * (c + 1)] * (1 - u) + y[$ + 2] * (1 - p), r[m + 1] = y[$ + 2 * (c + 1) + 3] * (u - 1 + p) + y[$ + 2 * (c + 1) + 1] * (1 - u) + y[$ + 3] * (1 - p))
         }, Z.prototype._$VT = function () {
           return (this._$o + 1) * (this._$A + 1)
         }, Z.prototype.getType = function () {
@@ -4637,9 +3641,7 @@
           return Et.SYSTEM_INFO || Et.setup(), Et.SYSTEM_INFO._isIPhone || Et.SYSTEM_INFO._isIPad ? 'iOS' : Et.SYSTEM_INFO._isAndroid ? 'Android' : '_$Q0 OS'
         }, Et.setup = function () {
           function t (t, i) {
-            for (var e = t.substring(i).split(/[ _,;\.]/), r = 0, o = 0; o <= 2 && !isNaN(e[o]); o++) {
-              var n = parseInt(e[o])
-              if (n < 0 || n > 999) {
+            for (var e = t.substring(i).split(/[ _,;\.]/), r = 0, o = 0; o <= 0 2 && !isnan(e[o]); o++) { var n="parseInt(e[o])" if (n < ||> 999) {
                 _._$li('err : ' + n + ' @UtHtml5.setup()'), r = 0
                 break
               }
@@ -4702,157 +3704,7 @@
     }, o.prototype.getModel = function (t) {
       return t >= this.models.length ? null : this.models[t]
     }, o.prototype.releaseModel = function (t, i) {
-      this.models.length <= t || (this.models[t].release(i), delete this.models[t], this.models.splice(t, 1))
-    }, o.prototype.numModels = function () {
-      return this.models.length
-    }, o.prototype.setDrag = function (t, i) {
-      for (var e = 0; e < this.models.length; e++) this.models[e].setDrag(t, i)
-    }, o.prototype.maxScaleEvent = function () {
-      $
-        .default.DEBUG_LOG && console.log('Max scale event.')
-      for (var t = 0; t < this.models.length; t++) {
-        this.models[t].startRandomMotion($
-          .default.MOTION_GROUP_PINCH_IN, $
-          .default.PRIORITY_NORMAL)
-      }
-    }, o.prototype.minScaleEvent = function () {
-      $
-        .default.DEBUG_LOG && console.log('Min scale event.')
-      for (var t = 0; t < this.models.length; t++) {
-        this.models[t].startRandomMotion($
-          .default.MOTION_GROUP_PINCH_OUT, $
-          .default.PRIORITY_NORMAL)
-      }
-    }, o.prototype.tapEvent = function (t, i) {
-      $
-        .default.DEBUG_LOG && console.log('tapEvent view x:' + t + ' y:' + i)
-      for (var e = 0; e < this.models.length; e++) {
-        this.models[e].hitTest($
-          .default.HIT_AREA_HEAD, t, i) ? ($
-            .default.DEBUG_LOG && console.log('Tap face.'), this.models[e].setRandomExpression())
-          : this.models[e].hitTest($
-            .default.HIT_AREA_BODY, t, i) ? ($
-              .default.DEBUG_LOG && console.log('Tap body. models[' + e + ']'), this.models[e].startRandomMotion($
-              .default.MOTION_GROUP_TAP_BODY, $
-              .default.PRIORITY_NORMAL)) : this.models[e].hitTestCustom('head', t, i) ? ($
-              .default.DEBUG_LOG && console.log('Tap face.'), this.models[e].startRandomMotion($
-              .default.MOTION_GROUP_FLICK_HEAD, $
-              .default.PRIORITY_NORMAL)) : this.models[e].hitTestCustom('body', t, i) && ($
-              .default.DEBUG_LOG && console.log('Tap body. models[' + e + ']'), this.models[e].startRandomMotion($
-              .default.MOTION_GROUP_TAP_BODY, $
-              .default.PRIORITY_NORMAL))
-      }
-      return !0
-    }
-  }, function (t, i, e) {
-    'use strict'
-
-    function r () { }
-    Object.defineProperty(i, '__esModule', {
-      value: !0
-    }), i
-      .default = r
-    var o = e(2)
-    r.prototype.loadBytes = function (t, i) {
-      GM_xmlhttpRequest({
-        method: 'GET',
-        url: t.replace(/.*?\.\./, live2d_settings.staticAPI),
-        headers: {
-          Referer: 'https://live2d.hclonely.com/'
-        },
-        responseType: 'arraybuffer',
-        anonymous: true,
-        onload: function (e) {
-          switch (e.status) {
-            case 200:
-              i(e.response)
-              break
-            default:
-              console.error('Failed to load (' + e.status + ') : ' + t)
-          }
-        }
-      })
-    }, r.prototype.loadString = function (t) {
-      this.loadBytes(t, function (t) {
-        return t
-      })
-    }, r.prototype.loadLive2DModel = function (t, i) {
-      var e = null
-      this.loadBytes(t, function (t) {
-        e = Live2DModelWebGL.loadModel(t), i(e)
-      })
-    }, r.prototype.loadTexture = function (t, i, e, r) {
-      GM_xmlhttpRequest({
-        method: 'GET',
-        url: e.replace(/.*?\.\./, live2d_settings.staticAPI),
-        headers: {
-          Referer: 'https://live2d.hclonely.com/'
-        },
-        responseType: 'blob',
-        anonymous: true,
-        onload: function (b) {
-          function blobToDataURL (blob, callback) {
-            const a = new FileReader()
-            a.onload = function (e) { callback(e.target.result) }
-            a.readAsDataURL(blob)
-          }
-          blobToDataURL(b.response, function (u) {
-            var n = new Image()
-            n.crossOrigin = 'Anonymous', n.src = u
-            n.onload = function () {
-              var e = (0, o.getContext)()
-              var s = e.createTexture()
-              if (!s) return console.error('Failed to generate gl texture name.'), -1
-              t.isPremultipliedAlpha() == 0 && e.pixelStorei(e.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1), e.pixelStorei(e.UNPACK_FLIP_Y_WEBGL, 1), e.activeTexture(e.TEXTURE0), e.bindTexture(e.TEXTURE_2D, s), e.texImage2D(e.TEXTURE_2D, 0, e.RGBA, e.RGBA, e.UNSIGNED_BYTE, n), e.texParameteri(e.TEXTURE_2D, e.TEXTURE_MAG_FILTER, e.LINEAR), e.texParameteri(e.TEXTURE_2D, e.TEXTURE_MIN_FILTER, e.LINEAR_MIPMAP_NEAREST), e.generateMipmap(e.TEXTURE_2D), t.setTexture(i, s), s = null, typeof r === 'function' && r()
-            }, n.onerror = function () {
-              console.error('Failed to load image : ' + e)
-            }
-          })
-        },
-        onerror: function () {
-          console.error('Failed to load image : ' + e)
-        }
-      })
-    }, r.prototype.jsonParseFromBytes = function (t) {
-      var i; var e = new Uint8Array(t, 0, 3)
-      return i = e[0] == 239 && e[1] == 187 && e[2] == 191 ? String.fromCharCode.apply(null, new Uint8Array(t, 3)) : String.fromCharCode.apply(null, new Uint8Array(t)), JSON.parse(i)
-    }, r.prototype.log = function (t) { }
-  }, function (t, i, e) {
-    'use strict'
-
-    function r (t) {
-      return t && t.__esModule ? t : {
-        default:
-            t
-      }
-    }
-    function o () {
-      n.L2DBaseModel.prototype.constructor.call(this), this.modelHomeDir = '', this.modelSetting = null, this.tmpMatrix = []
-    }
-    Object.defineProperty(i, '__esModule', {
-      value: !0
-    }), i
-      .default = o
-    var n = e(0)
-    var s = e(11)
-    var _ = r(s)
-    var a = e(1)
-    var h = r(a)
-    var l = e(3)
-    var $ = r(l)
-    o.prototype = new n.L2DBaseModel(), o.prototype.load = function (t, i, e) {
-      this.setUpdating(!0), this.setInitialized(!1), this.modelHomeDir = i.substring(0, i.lastIndexOf('/') + 1), this.modelSetting = new _
-        .default()
-      var r = this
-      this.modelSetting.loadModelSetting(i, function () {
-        var t = r.modelHomeDir + r.modelSetting.getModelFile()
-        r.loadModelData(t, function (t) {
-          for (var i = 0; i < r.modelSetting.getTextureNum(); i++) {
-            if (/^https?:\/\/|^\/\//i.test(r.modelSetting.getTextureFile(i))) var o = r.modelSetting.getTextureFile(i)
-            else var o = r.modelHomeDir + r.modelSetting.getTextureFile(i)
-            r.loadTexture(i, o, function () {
-              if (r.isTexLoaded) {
-                if (r.modelSetting.getExpressionNum() > 0) {
+      this.models.length <= 0 187 191 t || (this.models[t].release(i), delete this.models[t], this.models.splice(t, 1)) }, o.prototype.nummodels="function" () { return this.models.length o.prototype.setdrag="function" (t, i) for (var e="0;" < this.models.length; e++) this.models[e].setdrag(t, o.prototype.maxscaleevent="function" $ .default.debug_log && console.log('max scale event.') t++) this.models[t].startrandommotion($ .default.motion_group_pinch_in, .default.priority_normal) } o.prototype.minscaleevent="function" console.log('min .default.motion_group_pinch_out, o.prototype.tapevent="function" console.log('tapevent view x:' + ' y:' this.models[e].hittest($ .default.hit_area_head, t, ? ($ console.log('tap face.'), this.models[e].setrandomexpression()) : .default.hit_area_body, body. models[' ']'), this.models[e].startrandommotion($ .default.motion_group_tap_body, .default.priority_normal)) this.models[e].hittestcustom('head', .default.motion_group_flick_head, this.models[e].hittestcustom('body', !0 function i, e) 'use strict' r object.defineproperty(i, '__esmodule', value: }), i .default="r" var o="e(2)" r.prototype.loadbytes="function" gm_xmlhttprequest({ method: 'get', url: t.replace( .*?\.\. , live2d_settings.staticapi), headers: referer: 'https: live2d.hclonely.com responsetype: 'arraybuffer', anonymous: true, onload: (e) switch (e.status) case 200: i(e.response) break default: console.error('failed to load (' e.status ') t) }) r.prototype.loadstring="function" (t) this.loadbytes(t, r.prototype.loadlive2dmodel="function" i(e) r.prototype.loadtexture="function" e, r) e.replace( 'blob', (b) blobtodataurl (blob, callback) const a="new" filereader() a.onload="function" callback(e.target.result) a.readasdataurl(blob) blobtodataurl(b.response, (u) n="new" image() n.crossorigin="Anonymous" n.src="u" n.onload="function" o.getcontext)() s="e.createTexture()" if (!s) generate gl texture name.'), -1 t.ispremultipliedalpha()="=" e.pixelstorei(e.unpack_premultiply_alpha_webgl, 1), e.pixelstorei(e.unpack_flip_y_webgl, e.activetexture(e.texture0), e.bindtexture(e.texture_2d, s), e.teximage2d(e.texture_2d, 0, e.rgba, e.unsigned_byte, n), e.texparameteri(e.texture_2d, e.texture_mag_filter, e.linear), e.texture_min_filter, e.linear_mipmap_nearest), e.generatemipmap(e.texture_2d), t.settexture(i, typeof 'function' r() n.onerror="function" image onerror: r.prototype.jsonparsefrombytes="function" i; uint8array(t, 3) =="239" e[1]="=" e[2]="=" string.fromcharcode.apply(null, new 3)) uint8array(t)), json.parse(i) r.prototype.log="function" t.__esmodule n.l2dbasemodel.prototype.constructor.call(this), this.modelhomedir this.modelsetting="null," this.tmpmatrix="[]" _="r(s)" h="r(a)" l="e(3)" o.prototype="new" n.l2dbasemodel(), o.prototype.load="function" this.setupdating(!0), this.setinitialized(!1), i.lastindexof(' .default() this.modelsetting.loadmodelsetting(i, r.modelsetting.getmodelfile() r.loadmodeldata(t, r.modelsetting.gettexturenum(); i++) ( ^https?:\ \ |^\ i.test(r.modelsetting.gettexturefile(i))) else r.modelsetting.gettexturefile(i) r.loadtexture(i, o, (r.istexloaded) (r.modelsetting.getexpressionnum()> 0) {
                   r.expressions = {}
                   for (var t = 0; t < r.modelSetting.getExpressionNum(); t++) {
                     var i = r.modelSetting.getExpressionName(t)
@@ -5509,3 +4361,4 @@ table.hclonely input[type="checkbox"] {
 }
 `)
 })($jQuery)
+</=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></=></[^<>
