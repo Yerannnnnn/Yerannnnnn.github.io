@@ -89,18 +89,6 @@
       </tags>
   </entry>
   <entry>
-    <title>tags页面测试</title>
-    <url>/2020/04/11/tags/</url>
-    <content><![CDATA[<p>.</p>
-]]></content>
-      <categories>
-        <category>建站测试</category>
-      </categories>
-      <tags>
-        <tag>建站测试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【折腾笔记】个人网站</title>
     <url>/2020/05/24/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/</url>
     <content><![CDATA[<p>终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。</p>
@@ -211,6 +199,18 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>建站测试</category>
+      </categories>
+      <tags>
+        <tag>建站测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tags页面测试</title>
+    <url>/2020/04/11/tags/</url>
+    <content><![CDATA[<p>.</p>
 ]]></content>
       <categories>
         <category>建站测试</category>
