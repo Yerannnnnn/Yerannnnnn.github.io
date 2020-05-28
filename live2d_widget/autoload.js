@@ -1,5 +1,5 @@
-// const live2d_path = "https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_widget/"
-const live2d_path = "https://yuanjiuzheng.com/live2d_widget/"
+const live2d_path = "https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_widget/"
+// const live2d_path = "https://yuanjiuzheng.com/live2d_widget/"
 const cdn_path    = "https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_api/"
 const api_path    = "https://yuanjiuzheng.com/live2d_api/"
 
@@ -36,12 +36,12 @@ function loadExternalResource(url, type) {
 		loadExternalResource(live2d_path + "waifu.css", "css"),
 		loadExternalResource(live2d_path + "live2d.min.js", "js"),
         // loadExternalResource(live2d_path + "live2d_src/src_min/main.js", "js"),
-		loadExternalResource(live2d_path + "waifu-tips.js", "js")
+		loadExternalResource(live2d_path + "waifu-tips.min.js", "js")
 	]).then(() => {
 		initWidget({
 			waifuPath: live2d_path + "waifu-tips.js",
             apiPath: api_path,
-            // cdnPath: cdn_path,
+            cdnPath: cdn_path,
 		});
 	});
 // }
