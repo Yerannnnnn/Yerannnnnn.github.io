@@ -34,8 +34,8 @@ function loadExternalResource(url, type) {
 // if (screen.width >= 768) {
 	Promise.all([
 		loadExternalResource(live2d_path + "waifu.css", "css"),
-		// loadExternalResource(live2d_path + "live2d.min.js", "js"),
-        loadExternalResource(live2d_path + "live2d_src/src_min/main.js", "js"),
+		loadExternalResource(live2d_path + "live2d.min.js", "js"),
+        // loadExternalResource(live2d_path + "live2d_src/src_min/main.js", "js"),
 		loadExternalResource(live2d_path + "waifu-tips.js", "js")
 	]).then(() => {
 		initWidget({

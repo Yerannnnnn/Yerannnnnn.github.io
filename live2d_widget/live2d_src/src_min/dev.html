@@ -8,14 +8,29 @@
 </head>
 <body>
 
-<div id="app_canvas">
-    <canvas id="live2dcanvas" width="280" height="250" class="live2d"></canvas>
+<!-- <div id="app_canvas">
+    <canvas id="live2dcanvas" width="800" height="800" class="live2d"></canvas>
 </div>
+ -->
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_widget\autoload.js"></script>
+    <script type="text/javascript">
+document.body.insertAdjacentHTML("beforeend", `<div id="waifu">
+        <div id="waifu-tips"></div>
+        <canvas id="live2d" width="800" height="800"></canvas>
+        <div id="waifu-tool">
+            <span class="fa fa-lg fa-comment"></span>
+            <span class="fa fa-lg fa-user-circle"></span>
+            <span class="fa fa-lg fa-street-view"></span>
+            <span class="fa fa-lg fa-camera-retro"></span>
+            <span class="fa fa-lg fa-info-circle"></span>
+            <span class="fa fa-lg fa-times"></span>
+        </div>
+    </div>`);
+    </script>
 
-    <script type="text/javascript" src="./lib/device.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_widget\autoload.js"></script> -->
+
+    <!-- <script type="text/javascript" src="./lib/device.min.js"></script> -->
     <script type="text/javascript" src="./main.js"></script>
 
 
@@ -24,18 +39,6 @@
     </script>
 
 
-
-    <div id="vue_test">
-      {{ message }}
-    </div>
-    <script type="text/javascript">
-        var app = new Vue({
-          el: '#vue_test',
-          data: {
-            message: 'Hello Vue!'
-          }
-        })
-    </script>
 
 </body>
 </html>
