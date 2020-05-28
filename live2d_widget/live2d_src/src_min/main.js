@@ -601,8 +601,6 @@ PlatformManager.prototype.jsonParseFromBytes = function(buf){
 
     var jsonStr;
 
-
-
     var bomCode = new Uint8Array(buf, 0, 3);
     if (bomCode[0] == 239 && bomCode[1] == 187 && bomCode[2] == 191) {
         jsonStr = String.fromCharCode.apply(null, new Uint8Array(buf, 3));
@@ -623,20 +621,6 @@ PlatformManager.prototype.log             = function(txt/*String*/)
 {
     //console.log(txt);
 }
-
-function getWebGLContext(canvas)
-{
-    var NAMES = [ "webgl" , "experimental-webgl" , "webkit-3d" , "moz-webgl"];
-    for( var i = 0; i < NAMES.length; i++ ){
-        try{
-            var ctx = canvas.getContext(NAMES[i], {premultipliedAlpha : true});
-            if(ctx) return ctx;
-        }
-        catch(e){}
-    }
-    return null;
-};
-
 
 /**
  * EYHN 基于 live2d 官方 Live2DFramework.js 修改
@@ -3146,25 +3130,24 @@ function transformScreenY(deviceY)
 {
     return deviceToScreen.transformY(deviceY);
 }
-
-// function getWebGLContext()
-// {
-//     var NAMES = [ "webgl" , "experimental-webgl" , "webkit-3d" , "moz-webgl"];
-//     for( var i = 0; i < NAMES.length; i++ ){
-//         try{
-//             var ctx = canvas.getContext(NAMES[i], {premultipliedAlpha : true});
-//             if(ctx) return ctx;
-//         }
-//         catch(e){}
-//     }
-//     return null;
-// };
+function getWebGLContext()
+{
+    var NAMES = [ "webgl" , "experimental-webgl" , "webkit-3d" , "moz-webgl"];
+    for( var i = 0; i < NAMES.length; i++ ){
+        try{
+            var ctx = canvas.getContext(NAMES[i], {premultipliedAlpha : true});
+            if(ctx) return ctx;
+        }
+        catch(e){}
+    }
+    return null;
+};
 
 function loadlive2d(id,modelurl,headPos) {
     head_pos = typeof headPos === 'undefined' ? 0.5 : headPos;
     initL2dCanvas(id);
     init(modelurl);
+    console.log(modelurl);
 }
 
 window.loadlive2d = loadlive2d;
-console.log("1111");
