@@ -1,5 +1,6 @@
 <?php
 isset($_GET['id']) ? $id = $_GET['id'] : exit('error');
+// header("Access-Control-Allow-Origin:*");
 
 require '../tools/modelList.php';
 require '../tools/modelTextures.php';
@@ -40,6 +41,22 @@ if (isset($json['motions']))
 if (isset($json['expressions']))
     foreach ($json['expressions'] as $k => $v) foreach($v as $k2 => $expression)
         if ($k2 == 'file') $json['expressions'][$k][$k2] = '../model/' . $modelName . '/' . $expression;
+
+
+if (!isset($json["layout"])) {
+    $json["layout"] = array(
+        "center_x"=>0.0,
+        "center_y"=>0.0
+    );
+}
+if (!isset($json["hit_areas_custom"])) {
+    $json["hit_areas_custom"] = array(
+        "head_x"=>array(0.0, 0.0),
+        "head_y"=>array(0.0, 0.0),
+        "body_x"=>array(0.0, 0.0),
+        "body_y"=>array(0.0, 0.0)
+    );
+}
 
 header("Content-type: application/json");
 echo $jsonCompatible->json_encode($json);
