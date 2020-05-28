@@ -38,7 +38,7 @@ function loadExternalResource(url, type) {
 		loadExternalResource(live2d_path + "waifu-tips.js", "js")
 	]).then(() => {
 		initWidget({
-			waifuPath: live2d_path + "waifu-tips.js",
+			waifuPath: live2d_path + "waifu-tips.json",
             apiPath: api_path,
             cdnPath: cdn_path,
 		});
