@@ -22,19 +22,23 @@ LAppModel.prototype = new L2DBaseModel();
 
 LAppModel.prototype.load = function(gl, modelSettingPath, callback)
 {
+
     this.setUpdating(true);
     this.setInitialized(false);
 
     this.modelHomeDir = modelSettingPath.substring(0, modelSettingPath.lastIndexOf("/") + 1);
-
+    // this.modelHomeDir = modelurl.replace(/.*?(\.\.\/)*/, "//cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/");
+    this.modelHomeDir = "//cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_api/model/";
     this.modelSetting = new ModelSettingJson();
 
     var thisRef = this;
 
+
     this.modelSetting.loadModelSetting(modelSettingPath, function(){
 
-        var path = thisRef.modelHomeDir + thisRef.modelSetting.getModelFile();
-        thisRef.loadModelData(path, function(model){
+        var modelDataPath = thisRef.modelHomeDir + thisRef.modelSetting.getModelFile();
+
+        thisRef.loadModelData(modelDataPath, function(model){
 
             for (var i = 0; i < thisRef.modelSetting.getTextureNum(); i++)
             {
@@ -3146,10 +3150,6 @@ function getWebGLContext()
 function loadlive2d(id,modelurl,headPos) {
     head_pos = typeof headPos === 'undefined' ? 0.5 : headPos;
     initL2dCanvas(id);
-    // init(modelurl);
-    console.log(modelurl);
-
-    modelurl = modelurl.replace(/.*?(\.\.\/)*/, "//cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/");
     init(modelurl);
     console.log(modelurl);
 }

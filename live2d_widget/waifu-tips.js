@@ -167,7 +167,7 @@ function loadWidget(config) {
             // modelId = 1; // 模型 ID
             // modelTexturesId = 20; // 材质 ID 46(jk) 72(粉白蝴蝶裙)
             modelId = 1;
-            modelTexturesId = 1;
+            modelTexturesId = 0;
         }
         loadModel(modelId, modelTexturesId);
         fetch(waifuPath)
