@@ -3146,6 +3146,10 @@ function getWebGLContext()
 function loadlive2d(id,modelurl,headPos) {
     head_pos = typeof headPos === 'undefined' ? 0.5 : headPos;
     initL2dCanvas(id);
+    // init(modelurl);
+    console.log(modelurl);
+
+    modelurl = modelurl.replace(/.*?(\.\.\/)*/, "//cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/");
     init(modelurl);
     console.log(modelurl);
 }

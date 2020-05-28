@@ -9,23 +9,23 @@
 <body>
 
 <!-- <div id="app_canvas">
-    <canvas id="live2dcanvas" width="800" height="800" class="live2d"></canvas>
+    <canvas id="live2d" width="800" height="800" class="live2d"></canvas>
 </div>
  -->
 
     <script type="text/javascript">
-document.body.insertAdjacentHTML("beforeend", `<div id="waifu">
-        <div id="waifu-tips"></div>
-        <canvas id="live2d" width="800" height="800"></canvas>
-        <div id="waifu-tool">
-            <span class="fa fa-lg fa-comment"></span>
-            <span class="fa fa-lg fa-user-circle"></span>
-            <span class="fa fa-lg fa-street-view"></span>
-            <span class="fa fa-lg fa-camera-retro"></span>
-            <span class="fa fa-lg fa-info-circle"></span>
-            <span class="fa fa-lg fa-times"></span>
-        </div>
-    </div>`);
+    document.body.insertAdjacentHTML("beforeend", `<div id="waifu">
+            <div id="waifu-tips"></div>
+            <canvas id="live2d" width="800" height="800"></canvas>
+            <div id="waifu-tool">
+                <span class="fa fa-lg fa-comment"></span>
+                <span class="fa fa-lg fa-user-circle"></span>
+                <span class="fa fa-lg fa-street-view"></span>
+                <span class="fa fa-lg fa-camera-retro"></span>
+                <span class="fa fa-lg fa-info-circle"></span>
+                <span class="fa fa-lg fa-times"></span>
+            </div>
+        </div>`);
     </script>
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_widget\autoload.js"></script> -->
@@ -35,7 +35,7 @@ document.body.insertAdjacentHTML("beforeend", `<div id="waifu">
 
 
     <script type="text/javascript">
-        loadlive2d("live2dcanvas", "../../../live2d_api/model/mengxiang/snow_miku/index.json", 0.5);
+        loadlive2d("live2d", "../../../live2d_api/model/mengxiang/snow_miku/index.json", 0.5);
     </script>
 
 
