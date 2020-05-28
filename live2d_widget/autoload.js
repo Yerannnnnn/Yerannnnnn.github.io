@@ -1,5 +1,5 @@
-const live2d_path = "https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_widget/"
-// const live2d_path = "https://yuanjiuzheng.com/live2d_widget/"
+// const live2d_path = "https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_widget/"
+const live2d_path = "https://yuanjiuzheng.com/live2d_widget/"
 const cdn_path    = "https://cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_api/"
 const api_path    = "https://yuanjiuzheng.com/live2d_api/"
 
@@ -30,12 +30,11 @@ function loadExternalResource(url, type) {
 	});
 }
 
-// 加载 waifu.css live2d.min.js waifu-tips.js
 // if (screen.width >= 768) {
 	Promise.all([
 		loadExternalResource(live2d_path + "waifu.css", "css"),
 		// loadExternalResource(live2d_path + "live2d.min.js", "js"),
-        loadExternalResource(live2d_path + "live2d.ny.js", "js"),
+        loadExternalResource(live2d_path + "live2d.ny.min.js", "js"),
 		loadExternalResource(live2d_path + "waifu-tips.min.js", "js")
 	]).then(() => {
 		initWidget({
@@ -45,9 +44,6 @@ function loadExternalResource(url, type) {
 		});
 	});
 // }
-// initWidget 第一个参数为 waifu-tips.json 的路径，第二个参数为 API 地址
-// API 后端可自行搭建，参考 https://github.com/fghrsh/live2d_api
-// 初始化看板娘会自动加载指定目录下的 waifu-tips.json
 
 console.log(`
   く__,.ヘヽ.        /  ,ー､ 〉
