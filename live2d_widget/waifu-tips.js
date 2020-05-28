@@ -226,7 +226,7 @@ function initWidget(waifuPath, apiPath ,cdnPath) {
     toggle.addEventListener("click", () => {
         toggle.classList.remove("waifu-toggle-active");
         if (toggle.getAttribute("first-time")) {
-            loadWidget(config);
+            loadWidget(waifuPath, apiPath ,cdnPath);
             toggle.removeAttribute("first-time");
         } else {
             localStorage.removeItem("waifu-display");
@@ -243,6 +243,6 @@ function initWidget(waifuPath, apiPath ,cdnPath) {
             toggle.classList.add("waifu-toggle-active");
         }, 0);
     } else {
-        loadWidget(config);
+        loadWidget(waifuPath, apiPath ,cdnPath);
     }
 }
