@@ -28,11 +28,11 @@
         }
             Promise.all([
                 loadExternalResource( "//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css", "css"),
-                loadExternalResource( "./ny.live2d.css", "css"),
-                loadExternalResource( "./ny.live2d.js", "js"),
+                loadExternalResource( "./ny.waifu.css", "css"),
+                loadExternalResource( "./ny.waifu.js", "js"),
             ]).then(() => {
                 initWidget({
-                    waifuPath: "./ny.live2d-tips.json",
+                    waifuPath: "./ny.waifu-tips.json",
                     apiPath: api_path,
                     cdnPath: cdn_path,
                 });
