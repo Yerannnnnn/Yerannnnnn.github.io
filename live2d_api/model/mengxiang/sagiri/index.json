@@ -1,1 +1,36 @@
-{"posted":"Dreamer-Paul","version":"Live2DViewerEX Config 1.0","model":"sagiri.moc","textures":["textures.1024/texture_00.png","textures.1024/texture_01.png"],"layout":{"center_x":0,"center_y":-0.3,"width":1.4},"motions":{"tap":[{"file":"motions/tap/c.mtn"}],"idle":[{"file":"motions/idle/idle_01.mtn"},{"file":"motions/idle/idle_02.mtn"},{"file":"motions/idle/idle_03.mtn"},{"file":"motions/idle/idle_04.mtn"}]},"physics":"physics.json"}
+{
+    "posted": "Dreamer-Paul",
+    "version": "Live2DViewerEX Config 1.0",
+    "model": "sagiri.moc",
+    "textures": [
+        "textures.1024/texture_00.png",
+        "textures.1024/texture_01.png"
+    ],
+    "layout": {
+        "center_x": 0,
+        "center_y": -0.3,
+        "width": 1.4
+    },
+    "motions": {
+        "tap": [
+            {
+                "file": "motions/tap/c.mtn"
+            }
+        ],
+        "idle": [
+            {
+                "file": "motions/idle/idle_01.mtn"
+            },
+            {
+                "file": "motions/idle/idle_02.mtn"
+            },
+            {
+                "file": "motions/idle/idle_03.mtn"
+            },
+            {
+                "file": "motions/idle/idle_04.mtn"
+            }
+        ]
+    },
+    "physics": "physics.json"
+}
