@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>tags页面测试</title>
+    <url>/2020/04/11/tags/</url>
+    <content><![CDATA[<p>.</p>
+]]></content>
+      <categories>
+        <category>建站测试</category>
+      </categories>
+      <tags>
+        <tag>建站测试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>文章格式测试</title>
     <url>/2020/04/11/test/</url>
     <content><![CDATA[<h1 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h1><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://xxx.com/live2d_widget/autoload.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -80,18 +92,6 @@
 <a href="/2020/04/10/hello-world/" title="链接文字">链接文字</a>
 <hr>
 <p>markdown语法<br><code>[hello-world](./hello-world.md)</code><br>失败，不过外链可以用这个。</p>
-]]></content>
-      <categories>
-        <category>建站测试</category>
-      </categories>
-      <tags>
-        <tag>建站测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>tags页面测试</title>
-    <url>/2020/04/11/tags/</url>
-    <content><![CDATA[<p>.</p>
 ]]></content>
       <categories>
         <category>建站测试</category>
