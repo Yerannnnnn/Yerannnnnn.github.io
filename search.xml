@@ -13,6 +13,103 @@
       </tags>
   </entry>
   <entry>
+    <title>【折腾笔记】个人网站</title>
+    <url>/2020/05/24/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/</url>
+    <content><![CDATA[<p>终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。</p>
+<p>从14年开始搞个人网站，那时候用虚拟主机，便宜耐用，但配置差，网速慢，备份不方便，自由度极低，而且那时候网站程序是用的 WordPress ，Emm 可能是因为当时太菜了，觉得不好用，网站搬家也很费力，备份也不太方便，虽然有一次趁着打折续了五年的，但后来也弃了虚拟主机。</p>
+<p>后来开始买国外或香港VPS，免备案，预装Ubuntu，一键xx面板，一键LNMP，面板后台操作一番，WordPress 网站就建起来了，体验还不错。不过感觉xx面板有点不安全，而且依赖性太强，既然是瞎折腾，隔着一层面板折腾来折腾去也的确没什么意思。</p>
+<p>再后来docker火热，用 docker 搭了一个 WordPress 的，这个感觉蛮好的，备份一下docker的脚本，备份下数据库文件就好了，搬家也方便。但那时候没管理网站的注册机制，被脚本机器人注册了大量垃圾用户，而且也没怎么维护网站，后来数据库撑炸了，2333，再后来国外服务器总被封，各种原因也没再继续维护个人网站了。</p>
+<p>中间还试过GitHub Page，那时候用的叫 JK什么（误）的静态框架，但没什么好看的主题，而且emm反正不是很喜欢，就没继续搞。</p>
+<p>这波是2019年了，趁阿里云搞活动买了波基础机型，然后一直没动。直到有一天看到一个人的网站里有看板娘，emmmm，毕竟死宅，i了i了，于是就：”我也要这个！”，开始了这波Hexo博客的搭建。后面是留给自己的折腾笔记。</p>
+<hr>
+<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>由于平时开发使用Windows+WSL，所以两个平台都试了下，都很香。</p>
+<p>不过现在WSL的文件管理还不是很稳定，用Sublime浏览的时候，时而加载不出来，不是很方便，所以最后全都转到Windows下了（WSL近期要更新了 windows可以直接访问wsl文件，那时候应该比较好用，期待一下，就不暂时折腾win10更新的东西了）</p>
+<p>依赖：</p>
+<ol>
+<li>git</li>
+<li>node.js</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">hexo new <span class="string">"Hello Hexo"</span></span><br><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>大概这样就运行起来了。</p>
+<h2 id="配置自动发布"><a href="#配置自动发布" class="headerlink" title="配置自动发布"></a>配置自动发布</h2><p>emm Hexo支持很多种方式自动发布部署，rsync sftp ftpsync git，反正试到最后git最好用。rsync跨系统会有点坑在里面，sftp速度太慢，ftpsync现在的包并不好用，还要打补丁，打完补丁第一天还ok，第二天不好使了 2333。</p>
+<p>反正最后折腾到只用git了，git到 GitHub 很简单，到阿里云服务器的话，我是搭了一个 Gitea 服务，然后传到自己的 Gitea 的库里面，然后在 Gitea 的 action 里配置自动发布，大概长这样。。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">git --work-tree=/var/www/html/xxxxx --git-dir=/home/git/gitea-repositories/xxx/xxx.git checkout -f</span><br></pre></td></tr></table></figure>
+
+<p>所以hexo这里的自动发布 就只用git就ok了，github网速慢的问题可以走代理</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy https://127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+
+<p>而且Git可以配置公私钥来免登录，比较方便。</p>
+<h2 id="hexo-asset-image"><a href="#hexo-asset-image" class="headerlink" title="hexo-asset-image"></a>hexo-asset-image</h2><p>这个包好像有个问题，一开始图片一直显示不出来，调试发现生成图片链接的相关逻辑不太对，后来把index.js替换掉了就好使了。</p>
+<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
+
+<p>next主题还是很好用的，也比较喜欢，但旧的next库很久不维护了，其中的主要贡献者另起炉灶开了新库（上面的链接）。</p>
+<p><strong>关于配置文件</strong>。有两个配置文件，一个是Hexo的，一个是主题的配置文件，有办法统一只使用一个配置文件：在hexo的配置文件最下方增加<code>theme_config:</code>，然后把主题的配置文件内容全部copy到Hexo的下面，并增加2缩进，如：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">theme_config:</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line">  <span class="comment"># Theme Core Configuration Settings</span></span><br><span class="line">  <span class="comment"># See: https://theme-next.org/docs/theme-settings/</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># If false, merge configs from `_data/next.yml` into default configuration (rewrite).</span></span><br><span class="line">  <span class="comment"># If true, will fully override default configuration by options from `_data/next.yml` (override). Only for NexT settings.</span></span><br><span class="line">  <span class="comment"># And if true, all config from default NexT `_config.yml` have to be copied into `next.yml`. Use if you know what you are doing.</span></span><br><span class="line">  <span class="comment"># Useful if you want to comment some options from NexT `_config.yml` by `next.yml` without editing default config.</span></span><br><span class="line">  <span class="attr">override:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+
+<p>这样可以避免更新主题时由于配置不统一导致需要手动处理merge的问题。</p>
+<h2 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h2><p>参考</p>
+<blockquote>
+<ol>
+<li><a href="https://github.com/stevenjoezhang/live2d-widget" target="_blank" rel="noopener">live2d-widget</a></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><a href="https://www.fghrsh.net/post/123.html" target="_blank" rel="noopener">网页添加 Live2D 看板娘</a></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-01/" target="_blank" rel="noopener">给博客添加能动的看板娘</a></li>
+</ol>
+</blockquote>
+<p>增加了部分修改：</p>
+<ol>
+<li><p>去掉了小飞机。<code>// &lt;span class=&quot;fa fa-lg fa-paper-plane&quot;&gt;&lt;/span&gt;</code></p>
+</li>
+<li><p>去掉了宽度过窄就不显示的逻辑。（让手机端默认显示）</p>
+</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">@media (max-width: 768px) &#123;</span></span><br><span class="line"><span class="comment">	#waifu &#123;</span></span><br><span class="line"><span class="comment">		display: none;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// if (screen.width &gt;= 768) &#123;</span></span><br><span class="line">4...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="自建API"><a href="#自建API" class="headerlink" title="自建API"></a>自建API</h2><p>一开始是用的别人的API，但别人API总炸，一炸看板娘就没了。</p>
+<p>于是打算自己建API自己用。我在网页方面真心是菜鸟了，工作不搞这方面的东西，知识暂时全靠瞎折腾获取，所以自建API也要写一节！毕竟自己通过查资料试验测试，搞通了之后还是比较有成就感的。</p>
+<p>服务端需要有几个东西。</p>
+<ol>
+<li>php-fpm php-cgi</li>
+<li>fastcgi </li>
+<li>nginx</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/fghrsh/live2d_api.git</span><br></pre></td></tr></table></figure>
+
+<p>把API直接clone到了Hexo的souce里，这样就能搭车同步了，这也是为什么需要同步的文件又多又大的原因，内置的方法里，只有 Git 能比较轻松的搞定了。</p>
+<p>服务端</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install php-fpm php-cgi</span><br></pre></td></tr></table></figure>
+
+<p>然后在nginx里面配置使用<code>FastCGI server</code> </p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># pass PHP scripts to FastCGI server</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">    <span class="attribute">include</span> snippets/fastcgi-php.conf;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># With php-fpm (or other unix sockets):</span></span><br><span class="line">    <span class="attribute">fastcgi_pass</span> unix:/var/run/php/php7.2-fpm.sock;</span><br><span class="line">    <span class="comment"># With php-cgi (or other tcp sockets):</span></span><br><span class="line">    <span class="comment"># fastcgi_pass 127.0.0.1:9000;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="增加模型"><a href="#增加模型" class="headerlink" title="增加模型"></a>增加模型</h2><p>读了读大佬的API的代码，逻辑也不是很复杂，而且提供了增加模型的支持，在<a href="https://mx.paul.ren/page/1/" target="_blank" rel="noopener">梦象</a>获取模型后，放到<code>/model/*/</code>里，把<code>model.json</code>重命名为<code>index.json</code>即可，然后修改<code>model_list.json</code>，测试了一下没有对<code>live2d</code>模型动作的依赖。如果有模型大小不合适的，在<code>index.json</code>中修改<code>layout</code>项。</p>
+<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>服务器本地加载Live2d有些慢，毕竟小水管服务器，还是CDN加速比较稳定而且负载小一些，有时间可以搞一下。</p>
+<p>Live2d的模型在<a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">Live2d-model</a>找到了有大佬在收集。</p>
+<p>emm，后来也发现了好多大佬的博客做的非常漂亮，暂时不再深入下去，（前端深坑，好可怕……</p>
+]]></content>
+      <categories>
+        <category>折腾笔记</category>
+      </categories>
+      <tags>
+        <tag>不务正业</tag>
+        <tag>折腾笔记</tag>
+        <tag>web</tag>
+        <tag>hexo</tag>
+        <tag>waifu</tag>
+        <tag>live2d</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>文章格式测试</title>
     <url>/2020/04/11/test/</url>
     <content><![CDATA[<h1 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h1><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://xxx.com/live2d_widget/autoload.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -169,103 +266,6 @@
       </categories>
       <tags>
         <tag>建站测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【折腾笔记】个人网站</title>
-    <url>/2020/05/24/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/</url>
-    <content><![CDATA[<p>终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。</p>
-<p>从14年开始搞个人网站，那时候用虚拟主机，便宜耐用，但配置差，网速慢，备份不方便，自由度极低，而且那时候网站程序是用的 WordPress ，Emm 可能是因为当时太菜了，觉得不好用，网站搬家也很费力，备份也不太方便，虽然有一次趁着打折续了五年的，但后来也弃了虚拟主机。</p>
-<p>后来开始买国外或香港VPS，免备案，预装Ubuntu，一键xx面板，一键LNMP，面板后台操作一番，WordPress 网站就建起来了，体验还不错。不过感觉xx面板有点不安全，而且依赖性太强，既然是瞎折腾，隔着一层面板折腾来折腾去也的确没什么意思。</p>
-<p>再后来docker火热，用 docker 搭了一个 WordPress 的，这个感觉蛮好的，备份一下docker的脚本，备份下数据库文件就好了，搬家也方便。但那时候没管理网站的注册机制，被脚本机器人注册了大量垃圾用户，而且也没怎么维护网站，后来数据库撑炸了，2333，再后来国外服务器总被封，各种原因也没再继续维护个人网站了。</p>
-<p>中间还试过GitHub Page，那时候用的叫 JK什么（误）的静态框架，但没什么好看的主题，而且emm反正不是很喜欢，就没继续搞。</p>
-<p>这波是2019年了，趁阿里云搞活动买了波基础机型，然后一直没动。直到有一天看到一个人的网站里有看板娘，emmmm，毕竟死宅，i了i了，于是就：”我也要这个！”，开始了这波Hexo博客的搭建。后面是留给自己的折腾笔记。</p>
-<hr>
-<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>由于平时开发使用Windows+WSL，所以两个平台都试了下，都很香。</p>
-<p>不过现在WSL的文件管理还不是很稳定，用Sublime浏览的时候，时而加载不出来，不是很方便，所以最后全都转到Windows下了（WSL近期要更新了 windows可以直接访问wsl文件，那时候应该比较好用，期待一下，就不暂时折腾win10更新的东西了）</p>
-<p>依赖：</p>
-<ol>
-<li>git</li>
-<li>node.js</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">hexo new <span class="string">"Hello Hexo"</span></span><br><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>大概这样就运行起来了。</p>
-<h2 id="配置自动发布"><a href="#配置自动发布" class="headerlink" title="配置自动发布"></a>配置自动发布</h2><p>emm Hexo支持很多种方式自动发布部署，rsync sftp ftpsync git，反正试到最后git最好用。rsync跨系统会有点坑在里面，sftp速度太慢，ftpsync现在的包并不好用，还要打补丁，打完补丁第一天还ok，第二天不好使了 2333。</p>
-<p>反正最后折腾到只用git了，git到 GitHub 很简单，到阿里云服务器的话，我是搭了一个 Gitea 服务，然后传到自己的 Gitea 的库里面，然后在 Gitea 的 action 里配置自动发布，大概长这样。。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">git --work-tree=/var/www/html/xxxxx --git-dir=/home/git/gitea-repositories/xxx/xxx.git checkout -f</span><br></pre></td></tr></table></figure>
-
-<p>所以hexo这里的自动发布 就只用git就ok了，github网速慢的问题可以走代理</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy https://127.0.0.1:1080</span><br></pre></td></tr></table></figure>
-
-<p>而且Git可以配置公私钥来免登录，比较方便。</p>
-<h2 id="hexo-asset-image"><a href="#hexo-asset-image" class="headerlink" title="hexo-asset-image"></a>hexo-asset-image</h2><p>这个包好像有个问题，一开始图片一直显示不出来，调试发现生成图片链接的相关逻辑不太对，后来把index.js替换掉了就好使了。</p>
-<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
-
-<p>next主题还是很好用的，也比较喜欢，但旧的next库很久不维护了，其中的主要贡献者另起炉灶开了新库（上面的链接）。</p>
-<p><strong>关于配置文件</strong>。有两个配置文件，一个是Hexo的，一个是主题的配置文件，有办法统一只使用一个配置文件：在hexo的配置文件最下方增加<code>theme_config:</code>，然后把主题的配置文件内容全部copy到Hexo的下面，并增加2缩进，如：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">theme_config:</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line">  <span class="comment"># Theme Core Configuration Settings</span></span><br><span class="line">  <span class="comment"># See: https://theme-next.org/docs/theme-settings/</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># If false, merge configs from `_data/next.yml` into default configuration (rewrite).</span></span><br><span class="line">  <span class="comment"># If true, will fully override default configuration by options from `_data/next.yml` (override). Only for NexT settings.</span></span><br><span class="line">  <span class="comment"># And if true, all config from default NexT `_config.yml` have to be copied into `next.yml`. Use if you know what you are doing.</span></span><br><span class="line">  <span class="comment"># Useful if you want to comment some options from NexT `_config.yml` by `next.yml` without editing default config.</span></span><br><span class="line">  <span class="attr">override:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
-
-<p>这样可以避免更新主题时由于配置不统一导致需要手动处理merge的问题。</p>
-<h2 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h2><p>参考</p>
-<blockquote>
-<ol>
-<li><a href="https://github.com/stevenjoezhang/live2d-widget" target="_blank" rel="noopener">live2d-widget</a></li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="2">
-<li><a href="https://www.fghrsh.net/post/123.html" target="_blank" rel="noopener">网页添加 Live2D 看板娘</a></li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="3">
-<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-01/" target="_blank" rel="noopener">给博客添加能动的看板娘</a></li>
-</ol>
-</blockquote>
-<p>增加了部分修改：</p>
-<ol>
-<li><p>去掉了小飞机。<code>// &lt;span class=&quot;fa fa-lg fa-paper-plane&quot;&gt;&lt;/span&gt;</code></p>
-</li>
-<li><p>去掉了宽度过窄就不显示的逻辑。（让手机端默认显示）</p>
-</li>
-</ol>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">@media (max-width: 768px) &#123;</span></span><br><span class="line"><span class="comment">	#waifu &#123;</span></span><br><span class="line"><span class="comment">		display: none;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// if (screen.width &gt;= 768) &#123;</span></span><br><span class="line">4...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="自建API"><a href="#自建API" class="headerlink" title="自建API"></a>自建API</h2><p>一开始是用的别人的API，但别人API总炸，一炸看板娘就没了。</p>
-<p>于是打算自己建API自己用。我在网页方面真心是菜鸟了，工作不搞这方面的东西，知识暂时全靠瞎折腾获取，所以自建API也要写一节！毕竟自己通过查资料试验测试，搞通了之后还是比较有成就感的。</p>
-<p>服务端需要有几个东西。</p>
-<ol>
-<li>php-fpm php-cgi</li>
-<li>fastcgi </li>
-<li>nginx</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/fghrsh/live2d_api.git</span><br></pre></td></tr></table></figure>
-
-<p>把API直接clone到了Hexo的souce里，这样就能搭车同步了，这也是为什么需要同步的文件又多又大的原因，内置的方法里，只有 Git 能比较轻松的搞定了。</p>
-<p>服务端</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install php-fpm php-cgi</span><br></pre></td></tr></table></figure>
-
-<p>然后在nginx里面配置使用<code>FastCGI server</code> </p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># pass PHP scripts to FastCGI server</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">    <span class="attribute">include</span> snippets/fastcgi-php.conf;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># With php-fpm (or other unix sockets):</span></span><br><span class="line">    <span class="attribute">fastcgi_pass</span> unix:/var/run/php/php7.2-fpm.sock;</span><br><span class="line">    <span class="comment"># With php-cgi (or other tcp sockets):</span></span><br><span class="line">    <span class="comment"># fastcgi_pass 127.0.0.1:9000;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="增加模型"><a href="#增加模型" class="headerlink" title="增加模型"></a>增加模型</h2><p>读了读大佬的API的代码，逻辑也不是很复杂，而且提供了增加模型的支持，在<a href="https://mx.paul.ren/page/1/" target="_blank" rel="noopener">梦象</a>获取模型后，放到<code>/model/*/</code>里，把<code>model.json</code>重命名为<code>index.json</code>即可，然后修改<code>model_list.json</code>，测试了一下没有对<code>live2d</code>模型动作的依赖。如果有模型大小不合适的，在<code>index.json</code>中修改<code>layout</code>项。</p>
-<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>服务器本地加载Live2d有些慢，毕竟小水管服务器，还是CDN加速比较稳定而且负载小一些，有时间可以搞一下。</p>
-<p>Live2d的模型在<a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">Live2d-model</a>找到了有大佬在收集。</p>
-<p>emm，后来也发现了好多大佬的博客做的非常漂亮，暂时不再深入下去，（前端深坑，好可怕……</p>
-]]></content>
-      <categories>
-        <category>折腾笔记</category>
-      </categories>
-      <tags>
-        <tag>不务正业</tag>
-        <tag>折腾笔记</tag>
-        <tag>web</tag>
-        <tag>waifu</tag>
-        <tag>live2d</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
