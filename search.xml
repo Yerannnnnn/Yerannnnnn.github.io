@@ -103,7 +103,7 @@
   <entry>
     <title>【折腾笔记】个人网站</title>
     <url>/2020/05/24/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/</url>
-    <content><![CDATA[<p>终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。</p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。</p>
 <p>从14年开始搞个人网站，那时候用虚拟主机，便宜耐用，但配置差，网速慢，备份不方便，自由度极低，而且那时候网站程序是用的 WordPress ，Emm 可能是因为当时太菜了，觉得不好用，网站搬家也很费力，备份也不太方便，虽然有一次趁着打折续了五年的，但后来也弃了虚拟主机。</p>
 <p>后来开始买国外或香港VPS，免备案，预装Ubuntu，一键xx面板，一键LNMP，面板后台操作一番，WordPress 网站就建起来了，体验还不错。不过感觉xx面板有点不安全，而且依赖性太强，既然是瞎折腾，隔着一层面板折腾来折腾去也的确没什么意思。</p>
 <p>再后来docker火热，用 docker 搭了一个 WordPress 的，这个感觉蛮好的，备份一下docker的脚本，备份下数据库文件就好了，搬家也方便。但那时候没管理网站的注册机制，被脚本机器人注册了大量垃圾用户，而且也没怎么维护网站，后来数据库撑炸了，2333，再后来国外服务器总被封，各种原因也没再继续维护个人网站了。</p>
@@ -230,6 +230,24 @@
 <li>CDN的缓存，更改js不会及时生效，要用版本号/更改文件名等方式来刷新，好像给Github库打tag也行。</li>
 </ol>
 <h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>日常写C/C++，突然接触js的语法，不检查类型，不检查参数，变量全局，各种不一样，感觉，emm好松！但也挺爽挺好用。</p>
+]]></content>
+      <categories>
+        <category>折腾笔记</category>
+      </categories>
+      <tags>
+        <tag>不务正业</tag>
+        <tag>折腾笔记</tag>
+        <tag>web</tag>
+        <tag>waifu</tag>
+        <tag>live2d</tag>
+        <tag>jsdelivr</tag>
+        <tag>CDN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【折腾笔记】看板娘</title>
+    <url>/2020/05/30/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E7%9C%8B%E6%9D%BF%E5%A8%98%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><!-- https://yuanjiuzheng.com/live2d_widget/ny.waifuViewer.html -->
 ]]></content>
       <categories>
         <category>折腾笔记</category>
