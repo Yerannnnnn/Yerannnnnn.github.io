@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>tags页面测试</title>
+    <url>/2020/04/11/tags/</url>
+    <content><![CDATA[<p>.</p>
+]]></content>
+      <categories>
+        <category>建站测试</category>
+      </categories>
+      <tags>
+        <tag>建站测试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>文章格式测试</title>
     <url>/2020/04/11/test/</url>
     <content><![CDATA[<h1 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h1><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://xxx.com/live2d_widget/autoload.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -86,65 +98,6 @@
       </categories>
       <tags>
         <tag>建站测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>tags页面测试</title>
-    <url>/2020/04/11/tags/</url>
-    <content><![CDATA[<p>.</p>
-]]></content>
-      <categories>
-        <category>建站测试</category>
-      </categories>
-      <tags>
-        <tag>建站测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【折腾笔记】看板娘</title>
-    <url>/2020/05/28/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E7%9C%8B%E6%9D%BF%E5%A8%98/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>又来更新了，前两天把网站折腾利索,前端加上了看板娘的js源码,把Live2D模型搬到了服务器上做了看板娘的API,美滋滋,但小水管服务器加载速度太慢了。看板娘可是网站灵魂,要优化！于是开始了新一轮的折腾！（折腾完这一波，我也算是接触过前端相关技术了 23333）</p>
-<p>目标：</p>
-<ol>
-<li>CDN加速（要快, ？？</li>
-<li>不依赖别人（纸片人老婆怎么能用别人的</li>
-<li>模型易增加（？？</li>
-<li>源码可更改（尽量搞到非压缩非混淆的源码）</li>
-</ol>
-<h1 id="相关源码"><a href="#相关源码" class="headerlink" title="相关源码"></a>相关源码</h1><p>翻了翻github,找到了这些相关的库</p>
-<ol>
-<li><a href="https://github.com/stevenjoezhang/live2d-widget" target="_blank" rel="noopener">https://github.com/stevenjoezhang/live2d-widget</a></li>
-<li><a href="https://github.com/HCLonely/live2d.user.js" target="_blank" rel="noopener">https://github.com/HCLonely/live2d.user.js</a></li>
-<li><a href="https://github.com/journey-ad/live2d_src" target="_blank" rel="noopener">https://github.com/journey-ad/live2d_src</a></li>
-<li><a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">https://github.com/EYHN/hexo-helper-live2d</a></li>
-<li><a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">https://github.com/Eikanya/Live2d-model</a></li>
-</ol>
-<p>emm,一开始是用的库1的代码,但有个问题,API和CDN方式冲突,API的话模型加载慢,CDN的话不能换衣服2333,所以打算改改看。看了看代码,根源在于live2d.min.js的接口就只接受一个json的path,以这个PATH的相对路径来查找模型资源。所以如果要改的话要么改到live2d.min.js里,要么把原来API返回的JSON都预备好,弃用API,直接给live2d接口CDN的JSON资源，通过换JSON来换衣服。但显然即麻烦又不够优雅，所以决定要改live2d.js。</p>
-<p>但库1的live2d.min.js是已经压缩过的,变量名看起来好像也混淆过,难以修改,不是很想用,所以继续找了其他的库。</p>
-<p>库2是一个浏览器插件的js源码，并不能直接移植到自己的网站上，但通过里面的一些做法可以得到启发：加载资源时用正则表达式把PATH替换成CDN的path，来即支持live2d-API 也支持CDN加速资源,</p>
-<p>库3是基于库4<a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">hexo-helper-live2d</a>改的,代码能读,功能看起来也OK最终决定基于库3来魔改。</p>
-<p>第一次接触js，改了半天吧，还踩了不少坑，{ import/export，ES6的语法，babel的兼容性，Hexo的默认渲染 } 等问题，好在最后搞定了，踩坑的东西就不写了，网上一大把解决方案。</p>
-<p>好像不写踩坑的东西，又没啥写的了？ 那写写吧</p>
-<h1 id="踩坑日志"><a href="#踩坑日志" class="headerlink" title="踩坑日志"></a>踩坑日志</h1><ol>
-<li>本地JS代码，和上传的代码不一样，很神奇，&lt;=会变成 &lt;= 1，一开始调试了好久，以为是js或者浏览器或者哪的bug，最后发现是忘了关HEXO的默认渲染，在HEXO的skip_render中添加路径即可。</li>
-<li>用本地html文件做测试的时候，加载相对路径的css/js时报错“不支持file://”，emm最后还是hexo s，启server来调试比较方便。</li>
-<li><code>type=&quot;module&quot;</code>才支持带有import/export的js代码，最后把js变成了单文件没这个问题了。</li>
-<li>gulp压缩的时候，不支持ES6语法，看了看gulp的文档，有个Stage-0的plugins，再外加<a href="https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js" target="_blank" rel="noopener">runtime.js</a>，才算通过。</li>
-<li>CDN的缓存，更改js不会及时生效，要用版本号/更改文件名等方式来刷新，好像给Github库打tag也行。</li>
-</ol>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>日常写C/C++，突然接触js的语法，不检查类型，不检查参数，变量全局，各种不一样，感觉，emm好松！但也挺爽挺好用。</p>
-]]></content>
-      <categories>
-        <category>折腾笔记</category>
-      </categories>
-      <tags>
-        <tag>不务正业</tag>
-        <tag>折腾笔记</tag>
-        <tag>web</tag>
-        <tag>waifu</tag>
-        <tag>live2d</tag>
-        <tag>jsdelivr</tag>
-        <tag>CDN</tag>
       </tags>
   </entry>
   <entry>
@@ -239,15 +192,62 @@
         <tag>不务正业</tag>
         <tag>折腾笔记</tag>
         <tag>web</tag>
+        <tag>hexo</tag>
         <tag>waifu</tag>
         <tag>live2d</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
     <title>【折腾笔记】看板娘</title>
     <url>/2020/05/30/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E7%9C%8B%E6%9D%BF%E5%A8%98%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><!-- https://yuanjiuzheng.com/live2d_widget/ny.waifuViewer.html -->
+]]></content>
+      <categories>
+        <category>折腾笔记</category>
+      </categories>
+      <tags>
+        <tag>不务正业</tag>
+        <tag>折腾笔记</tag>
+        <tag>web</tag>
+        <tag>waifu</tag>
+        <tag>live2d</tag>
+        <tag>jsdelivr</tag>
+        <tag>CDN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【折腾笔记】看板娘</title>
+    <url>/2020/05/28/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E7%9C%8B%E6%9D%BF%E5%A8%98/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>又来更新了，前两天把网站折腾利索,前端加上了看板娘的js源码,把Live2D模型搬到了服务器上做了看板娘的API,美滋滋,但小水管服务器加载速度太慢了。看板娘可是网站灵魂,要优化！于是开始了新一轮的折腾！（折腾完这一波，我也算是接触过前端相关技术了 23333）</p>
+<p>目标：</p>
+<ol>
+<li>CDN加速（要快, ？？</li>
+<li>不依赖别人（纸片人老婆怎么能用别人的</li>
+<li>模型易增加（？？</li>
+<li>源码可更改（尽量搞到非压缩非混淆的源码）</li>
+</ol>
+<h1 id="相关源码"><a href="#相关源码" class="headerlink" title="相关源码"></a>相关源码</h1><p>翻了翻github,找到了这些相关的库</p>
+<ol>
+<li><a href="https://github.com/stevenjoezhang/live2d-widget" target="_blank" rel="noopener">https://github.com/stevenjoezhang/live2d-widget</a></li>
+<li><a href="https://github.com/HCLonely/live2d.user.js" target="_blank" rel="noopener">https://github.com/HCLonely/live2d.user.js</a></li>
+<li><a href="https://github.com/journey-ad/live2d_src" target="_blank" rel="noopener">https://github.com/journey-ad/live2d_src</a></li>
+<li><a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">https://github.com/EYHN/hexo-helper-live2d</a></li>
+<li><a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">https://github.com/Eikanya/Live2d-model</a></li>
+</ol>
+<p>emm,一开始是用的库1的代码,但有个问题,API和CDN方式冲突,API的话模型加载慢,CDN的话不能换衣服2333,所以打算改改看。看了看代码,根源在于live2d.min.js的接口就只接受一个json的path,以这个PATH的相对路径来查找模型资源。所以如果要改的话要么改到live2d.min.js里,要么把原来API返回的JSON都预备好,弃用API,直接给live2d接口CDN的JSON资源，通过换JSON来换衣服。但显然即麻烦又不够优雅，所以决定要改live2d.js。</p>
+<p>但库1的live2d.min.js是已经压缩过的,变量名看起来好像也混淆过,难以修改,不是很想用,所以继续找了其他的库。</p>
+<p>库2是一个浏览器插件的js源码，并不能直接移植到自己的网站上，但通过里面的一些做法可以得到启发：加载资源时用正则表达式把PATH替换成CDN的path，来即支持live2d-API 也支持CDN加速资源,</p>
+<p>库3是基于库4<a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">hexo-helper-live2d</a>改的,代码能读,功能看起来也OK最终决定基于库3来魔改。</p>
+<p>第一次接触js，改了半天吧，还踩了不少坑，{ import/export，ES6的语法，babel的兼容性，Hexo的默认渲染 } 等问题，好在最后搞定了，踩坑的东西就不写了，网上一大把解决方案。</p>
+<p>好像不写踩坑的东西，又没啥写的了？ 那写写吧</p>
+<h1 id="踩坑日志"><a href="#踩坑日志" class="headerlink" title="踩坑日志"></a>踩坑日志</h1><ol>
+<li>本地JS代码，和上传的代码不一样，很神奇，&lt;=会变成 &lt;= 1，一开始调试了好久，以为是js或者浏览器或者哪的bug，最后发现是忘了关HEXO的默认渲染，在HEXO的skip_render中添加路径即可。</li>
+<li>用本地html文件做测试的时候，加载相对路径的css/js时报错“不支持file://”，emm最后还是hexo s，启server来调试比较方便。</li>
+<li><code>type=&quot;module&quot;</code>才支持带有import/export的js代码，最后把js变成了单文件没这个问题了。</li>
+<li>gulp压缩的时候，不支持ES6语法，看了看gulp的文档，有个Stage-0的plugins，再外加<a href="https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js" target="_blank" rel="noopener">runtime.js</a>，才算通过。</li>
+<li>CDN的缓存，更改js不会及时生效，要用版本号/更改文件名等方式来刷新，好像给Github库打tag也行。</li>
+</ol>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>日常写C/C++，突然接触js的语法，不检查类型，不检查参数，变量全局，各种不一样，感觉，emm好松！但也挺爽挺好用。</p>
 ]]></content>
       <categories>
         <category>折腾笔记</category>
