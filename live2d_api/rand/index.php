@@ -1,5 +1,6 @@
 <?php
 isset($_GET['id']) ? $modelId = (int)$_GET['id'] : exit('error');
+header("Access-Control-Allow-Origin:*");
 
 require '../tools/modelList.php';
 require '../tools/jsonCompatible.php';
