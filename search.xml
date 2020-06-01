@@ -127,7 +127,7 @@
 <h2 id="hexo-asset-image"><a href="#hexo-asset-image" class="headerlink" title="hexo-asset-image"></a>hexo-asset-image</h2><p>这个包好像有个问题，一开始图片一直显示不出来，调试发现生成图片链接的相关逻辑不太对，后来把index.js替换掉了就好使了。</p>
 <h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
 
-<p>next主题还是很好用的，也比较喜欢，但旧的next库很久不维护了，其中的主要贡献者另起炉灶开了新库（上面的链接）。</p>
+<p>next主题还是很好用的，也比较喜欢，旧的next库很久不维护了，其中的主要贡献者另起炉灶开了新库（上面的链接）。</p>
 <p><strong>关于配置文件</strong>。有两个配置文件，一个是Hexo的，一个是主题的配置文件，有办法统一只使用一个配置文件：在hexo的配置文件最下方增加<code>theme_config:</code>，然后把主题的配置文件内容全部copy到Hexo的下面，并增加2缩进，如：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">theme_config:</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line">  <span class="comment"># Theme Core Configuration Settings</span></span><br><span class="line">  <span class="comment"># See: https://theme-next.org/docs/theme-settings/</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># If false, merge configs from `_data/next.yml` into default configuration (rewrite).</span></span><br><span class="line">  <span class="comment"># If true, will fully override default configuration by options from `_data/next.yml` (override). Only for NexT settings.</span></span><br><span class="line">  <span class="comment"># And if true, all config from default NexT `_config.yml` have to be copied into `next.yml`. Use if you know what you are doing.</span></span><br><span class="line">  <span class="comment"># Useful if you want to comment some options from NexT `_config.yml` by `next.yml` without editing default config.</span></span><br><span class="line">  <span class="attr">override:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
 
@@ -194,30 +194,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/04/10/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>建站测试</category>
-      </categories>
-      <tags>
-        <tag>建站测试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【折腾笔记】看板娘</title>
     <url>/2020/05/28/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E7%9C%8B%E6%9D%BF%E5%A8%98/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>又来更新了，前两天把网站折腾利索,前端加上了看板娘的js源码,把Live2D模型搬到了服务器上做了看板娘的API,美滋滋,但小水管服务器加载速度太慢了。看板娘可是网站灵魂,要优化！于是开始了新一轮的折腾！（折腾完这一波，我也算是接触过前端相关技术了 23333）</p>
@@ -262,6 +238,30 @@
         <tag>live2d</tag>
         <tag>jsdelivr</tag>
         <tag>CDN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/04/10/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>建站测试</category>
+      </categories>
+      <tags>
+        <tag>建站测试</tag>
       </tags>
   </entry>
   <entry>

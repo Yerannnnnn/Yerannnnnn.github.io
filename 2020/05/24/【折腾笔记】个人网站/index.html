@@ -1,4 +1,450 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta name="generator" content="Hexo 4.2.0"><link rel="apple-touch-icon" sizes="180x180" href="/images/web/favicon/fulan-apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/web/favicon/fulan-favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/web/favicon/fulan-favicon-16x16.png"><link rel="mask-icon" href="/images/web/favicon/fulan-safari-pinned-tab.svg" color="#222"><meta name="google-site-verification" content="QFS_u_GWmr82u0hid-IEXe4tHKtR2xqNYBOM1ls7Ck8"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css"><script id="hexo-configurations">var NexT=window.NexT||{},CONFIG={hostname:"yuanjiuzheng.com",root:"/",scheme:"Gemini",version:"8.0.0-rc.2",exturl:!1,sidebar:{position:"left",display:"post",padding:18,offset:12,onmobile:!1},copycode:{enable:!0,show_result:!0,style:"default"},back2top:{enable:!0,sidebar:!0,scrollpercent:!0},bookmark:{enable:!1,color:"#222",save:"auto"},fancybox:!0,mediumzoom:!1,lazyload:!0,pangu:!1,comments:{style:"tabs",active:"gitalk",storage:!1,lazyload:!0,nav:null,activeClass:"gitalk"},algolia:{hits:{per_page:10,perpages:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}},localsearch:{enable:!0,trigger:"auto",top_n_per_article:1,unescape:!1,preload:!1},motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},path:"search.xml"}</script><meta name="description" content="前言终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。 从14年开始搞个人网站，那时候用虚拟主机，便宜耐用，但配置差，网速慢，备份不方便，自由度极低，而且那时候网站程序是用的 WordPress ，Emm 可能是因为当时太菜了，觉得不好用，网站搬家也很费力，备份也不太方便，虽然有一次趁着打折续了五年的，但后来也弃了虚拟主机"><meta property="og:type" content="article"><meta property="og:title" content="【折腾笔记】个人网站"><meta property="og:url" content="https://yuanjiuzheng.com/2020/05/24/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/index.html"><meta property="og:site_name" content="Yeran"><meta property="og:description" content="前言终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。 从14年开始搞个人网站，那时候用虚拟主机，便宜耐用，但配置差，网速慢，备份不方便，自由度极低，而且那时候网站程序是用的 WordPress ，Emm 可能是因为当时太菜了，觉得不好用，网站搬家也很费力，备份也不太方便，虽然有一次趁着打折续了五年的，但后来也弃了虚拟主机"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2020-05-24T09:36:06.000Z"><meta property="article:modified_time" content="2020-05-30T05:36:32.098Z"><meta property="article:author" content="Nemo.yeran"><meta property="article:tag" content="不务正业"><meta property="article:tag" content="折腾笔记"><meta property="article:tag" content="web"><meta property="article:tag" content="hexo"><meta property="article:tag" content="waifu"><meta property="article:tag" content="live2d"><meta name="twitter:card" content="summary"><link rel="canonical" href="https://yuanjiuzheng.com/2020/05/24/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/"><script id="page-configurations">CONFIG.page={sidebar:"",isHome:!1,isPost:!0,lang:"zh-CN"}</script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"><link rel="stylesheet" type="text/css" href="/live2d_widget/ny.waifu-load.css"><script src="//cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_widget/ny.waifu.js" id="nywaifujs"></script><script src="/live2d_widget/ny.waifu-load.js" id="ny_waifu_load_js"></script><title>【折腾笔记】个人网站 | Yeran</title><noscript><style>.sidebar-inner,.use-motion .brand,.use-motion .collection-header,.use-motion .comments,.use-motion .menu-item,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.use-motion .logo-line-before i{left:initial}.use-motion .logo-line-after i{right:initial}</style></noscript><link rel="alternate" href="/atom.xml" title="Yeran" type="application/atom+xml"></head><body itemscope itemtype="http://schema.org/WebPage"><div class="container use-motion"><div class="headband"></div><header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-container"><div class="site-nav-toggle"><div class="toggle" aria-label="切换导航栏"><span class="toggle-line toggle-line-first"></span><span class="toggle-line toggle-line-middle"></span><span class="toggle-line toggle-line-last"></span></div></div><div class="site-meta"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span><h1 class="site-title">Yeran</h1><span class="logo-line-after"><i></i></span></a><p class="site-subtitle" itemprop="description">不忘初心</p></div><div class="site-nav-right"><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class="site-nav"><ul id="menu" class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i> 首页</a></li><li class="menu-item menu-item-about"><a href="/pages/about/" rel="section"><i class="fa fa-user fa-fw"></i> 关于</a></li><li class="menu-item menu-item-tags"><a href="/pages/tags/" rel="section"><i class="fa fa-tags fa-fw"></i> 标签</a></li><li class="menu-item menu-item-categories"><a href="/pages/categories/" rel="section"><i class="fa fa-th fa-fw"></i> 分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i> 归档</a></li><li class="menu-item menu-item-bangumis"><a href="/bangumis/" rel="section"><i class="fab fa-youtube fa-fw"></i> 追番</a></li><li class="menu-item menu-item-playground"><a href="/pages/playground/" rel="section"><i class="fa fa-grin-tongue fa-fw"></i> 玩具</a></li><li class="menu-item menu-item-search"><a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i> 搜索</a></li></ul></nav><div class="search-pop-overlay"><div class="popup search-popup"><div class="search-header"><span class="search-icon"><i class="fa fa-search"></i></span><div class="search-input-container"> <input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input"></div><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span></div><div id="search-result"><div id="no-result"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div></div></div></div></header><div class="reading-progress-bar"></div> <a href="https://github.com/yerannnnnn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0 0 115 115 130 115 142 142 250 250 250 0Z"></path><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4L133.7 101.6C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8Z" fill="currentColor" class="octo-body"></path></svg></a><main class="main"><div class="main-inner"><div class="content-wrap"><div class="content post posts-expand"><article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://yuanjiuzheng.com/2020/05/24/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/web/avatar-nemo3.jpg"><meta itemprop="name" content="Nemo.yeran"><meta itemprop="description" content="一直折腾一直爽"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Yeran"></span><header class="post-header"><h1 class="post-title" itemprop="name headline"> 【折腾笔记】个人网站</h1><div class="post-meta"><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar"></i></span> <span class="post-meta-item-text">发表于</span> <time title="创建时间：2020-05-24 17:36:06" itemprop="dateCreated datePublished" datetime="2020-05-24T17:36:06+08:00">2020-05-24</time></span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar-check"></i></span> <span class="post-meta-item-text">更新于</span> <time title="修改时间：2020-05-30 13:36:32" itemprop="dateModified" datetime="2020-05-30T13:36:32+08:00">2020-05-30</time></span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-folder"></i></span> <span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">折腾笔记</span></a></span></span><span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span> <span class="post-meta-item-text">阅读次数：</span><span id="busuanzi_value_page_pv"></span></span><br><span class="post-meta-item" title="本文字数"><span class="post-meta-item-icon"><i class="far fa-file-word"></i></span> <span class="post-meta-item-text">本文字数：</span> <span>3.6k</span></span><span class="post-meta-item" title="阅读时长"><span class="post-meta-item-icon"><i class="far fa-clock"></i></span> <span class="post-meta-item-text">阅读时长 &asymp;</span> <span>3 分钟</span></span></div></header><div class="post-body" itemprop="articleBody"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。</p><p>从14年开始搞个人网站，那时候用虚拟主机，便宜耐用，但配置差，网速慢，备份不方便，自由度极低，而且那时候网站程序是用的 WordPress ，Emm 可能是因为当时太菜了，觉得不好用，网站搬家也很费力，备份也不太方便，虽然有一次趁着打折续了五年的，但后来也弃了虚拟主机。</p><p>后来开始买国外或香港VPS，免备案，预装Ubuntu，一键xx面板，一键LNMP，面板后台操作一番，WordPress 网站就建起来了，体验还不错。不过感觉xx面板有点不安全，而且依赖性太强，既然是瞎折腾，隔着一层面板折腾来折腾去也的确没什么意思。</p><p>再后来docker火热，用 docker 搭了一个 WordPress 的，这个感觉蛮好的，备份一下docker的脚本，备份下数据库文件就好了，搬家也方便。但那时候没管理网站的注册机制，被脚本机器人注册了大量垃圾用户，而且也没怎么维护网站，后来数据库撑炸了，2333，再后来国外服务器总被封，各种原因也没再继续维护个人网站了。</p><p>中间还试过GitHub Page，那时候用的叫 JK什么（误）的静态框架，但没什么好看的主题，而且emm反正不是很喜欢，就没继续搞。</p><p>这波是2019年了，趁阿里云搞活动买了波基础机型，然后一直没动。直到有一天看到一个人的网站里有看板娘，emmmm，毕竟死宅，i了i了，于是就：”我也要这个！”，开始了这波Hexo博客的搭建。后面是留给自己的折腾笔记。</p><hr><h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>由于平时开发使用Windows+WSL，所以两个平台都试了下，都很香。</p><p>不过现在WSL的文件管理还不是很稳定，用Sublime浏览的时候，时而加载不出来，不是很方便，所以最后全都转到Windows下了（WSL近期要更新了 windows可以直接访问wsl文件，那时候应该比较好用，期待一下，就不暂时折腾win10更新的东西了）</p><p>依赖：</p><ol><li>git</li><li>node.js</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">hexo new <span class="string">"Hello Hexo"</span></span><br><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure><p>大概这样就运行起来了。</p><h2 id="配置自动发布"><a href="#配置自动发布" class="headerlink" title="配置自动发布"></a>配置自动发布</h2><p>emm Hexo支持很多种方式自动发布部署，rsync sftp ftpsync git，反正试到最后git最好用。rsync跨系统会有点坑在里面，sftp速度太慢，ftpsync现在的包并不好用，还要打补丁，打完补丁第一天还ok，第二天不好使了 2333。</p><p>反正最后折腾到只用git了，git到 GitHub 很简单，到阿里云服务器的话，我是搭了一个 Gitea 服务，然后传到自己的 Gitea 的库里面，然后在 Gitea 的 action 里配置自动发布，大概长这样。。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">git --work-tree=/var/www/html/xxxxx --git-dir=/home/git/gitea-repositories/xxx/xxx.git checkout -f</span><br></pre></td></tr></table></figure><p>所以hexo这里的自动发布 就只用git就ok了，github网速慢的问题可以走代理</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy https://127.0.0.1:1080</span><br></pre></td></tr></table></figure><p>而且Git可以配置公私钥来免登录，比较方便。</p><h2 id="hexo-asset-image"><a href="#hexo-asset-image" class="headerlink" title="hexo-asset-image"></a>hexo-asset-image</h2><p>这个包好像有个问题，一开始图片一直显示不出来，调试发现生成图片链接的相关逻辑不太对，后来把index.js替换掉了就好使了。</p><h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure><p>next主题还是很好用的，也比较喜欢，但旧的next库很久不维护了，其中的主要贡献者另起炉灶开了新库（上面的链接）。</p><p><strong>关于配置文件</strong>。有两个配置文件，一个是Hexo的，一个是主题的配置文件，有办法统一只使用一个配置文件：在hexo的配置文件最下方增加<code>theme_config:</code>，然后把主题的配置文件内容全部copy到Hexo的下面，并增加2缩进，如：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme_config:</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line">  <span class="comment"># Theme Core Configuration Settings</span></span><br><span class="line">  <span class="comment"># See: https://theme-next.org/docs/theme-settings/</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># If false, merge configs from `_data/next.yml` into default configuration (rewrite).</span></span><br><span class="line">  <span class="comment"># If true, will fully override default configuration by options from `_data/next.yml` (override). Only for NexT settings.</span></span><br><span class="line">  <span class="comment"># And if true, all config from default NexT `_config.yml` have to be copied into `next.yml`. Use if you know what you are doing.</span></span><br><span class="line">  <span class="comment"># Useful if you want to comment some options from NexT `_config.yml` by `next.yml` without editing default config.</span></span><br><span class="line">  <span class="attr">override:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># ...</span></span><br></pre></td></tr></table></figure><p>这样可以避免更新主题时由于配置不统一导致需要手动处理merge的问题。</p><h2 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h2><p>参考</p><blockquote><ol><li><a href="https://github.com/stevenjoezhang/live2d-widget" target="_blank" rel="noopener">live2d-widget</a></li></ol></blockquote><blockquote><ol start="2"><li><a href="https://www.fghrsh.net/post/123.html" target="_blank" rel="noopener">网页添加 Live2D 看板娘</a></li></ol></blockquote><blockquote><ol start="3"><li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-01/" target="_blank" rel="noopener">给博客添加能动的看板娘</a></li></ol></blockquote><p>增加了部分修改：</p><ol><li><p>去掉了小飞机。<code>// &lt;span class=&quot;fa fa-lg fa-paper-plane&quot;&gt;&lt;/span&gt;</code></p></li><li><p>去掉了宽度过窄就不显示的逻辑。（让手机端默认显示）</p></li></ol><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">@media (max-width: 768px) &#123;</span></span><br><span class="line"><span class="comment">	#waifu &#123;</span></span><br><span class="line"><span class="comment">		display: none;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// if (screen.width &gt;= 768) &#123;</span></span><br><span class="line">4...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="自建API"><a href="#自建API" class="headerlink" title="自建API"></a>自建API</h2><p>一开始是用的别人的API，但别人API总炸，一炸看板娘就没了。</p><p>于是打算自己建API自己用。我在网页方面真心是菜鸟了，工作不搞这方面的东西，知识暂时全靠瞎折腾获取，所以自建API也要写一节！毕竟自己通过查资料试验测试，搞通了之后还是比较有成就感的。</p><p>服务端需要有几个东西。</p><ol><li>php-fpm php-cgi</li><li>fastcgi</li><li>nginx</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/fghrsh/live2d_api.git</span><br></pre></td></tr></table></figure><p>把API直接clone到了Hexo的souce里，这样就能搭车同步了，这也是为什么需要同步的文件又多又大的原因，内置的方法里，只有 Git 能比较轻松的搞定了。</p><p>服务端</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install php-fpm php-cgi</span><br></pre></td></tr></table></figure><p>然后在nginx里面配置使用<code>FastCGI server</code></p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pass PHP scripts to FastCGI server</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">    <span class="attribute">include</span> snippets/fastcgi-php.conf;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># With php-fpm (or other unix sockets):</span></span><br><span class="line">    <span class="attribute">fastcgi_pass</span> unix:/var/run/php/php7.2-fpm.sock;</span><br><span class="line">    <span class="comment"># With php-cgi (or other tcp sockets):</span></span><br><span class="line">    <span class="comment"># fastcgi_pass 127.0.0.1:9000;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="增加模型"><a href="#增加模型" class="headerlink" title="增加模型"></a>增加模型</h2><p>读了读大佬的API的代码，逻辑也不是很复杂，而且提供了增加模型的支持，在<a href="https://mx.paul.ren/page/1/" target="_blank" rel="noopener">梦象</a>获取模型后，放到<code>/model/*/</code>里，把<code>model.json</code>重命名为<code>index.json</code>即可，然后修改<code>model_list.json</code>，测试了一下没有对<code>live2d</code>模型动作的依赖。如果有模型大小不合适的，在<code>index.json</code>中修改<code>layout</code>项。</p><h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>服务器本地加载Live2d有些慢，毕竟小水管服务器，还是CDN加速比较稳定而且负载小一些，有时间可以搞一下。</p><p>Live2d的模型在<a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">Live2d-model</a>找到了有大佬在收集。</p><p>emm，后来也发现了好多大佬的博客做的非常漂亮，暂时不再深入下去，（前端深坑，好可怕……</p></div><div class="popular-posts-header">相关文章</div><ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><a href="\2020\05\28\【折腾笔记】看板娘\" rel="bookmark">【折腾笔记】看板娘</a></div></li><li class="popular-posts-item"><div class="popular-posts-title"><a href="\2020\05\30\【折腾笔记】看板娘浏览器\" rel="bookmark">【折腾笔记】看板娘浏览器</a></div></li></ul><div><ul class="post-copyright"><li class="post-copyright-author"> <strong>本文作者：</strong> Nemo.yeran</li><li class="post-copyright-link"> <strong>本文链接：</strong> <a href="https://yuanjiuzheng.com/2020/05/24/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/" title="【折腾笔记】个人网站">https://yuanjiuzheng.com/2020/05/24/【折腾笔记】个人网站/</a></li><li class="post-copyright-license"> <strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><footer class="post-footer"><div class="post-tags"> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" rel="tag"># 不务正业</a> <a href="/tags/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" rel="tag"># 折腾笔记</a> <a href="/tags/web/" rel="tag"># web</a> <a href="/tags/hexo/" rel="tag"># hexo</a> <a href="/tags/waifu/" rel="tag"># waifu</a> <a href="/tags/live2d/" rel="tag"># live2d</a></div><div class="post-nav"><div class="post-nav-item"><a href="/2020/04/11/test/" rel="prev" title="文章格式测试"><i class="fa fa-chevron-left"></i> 文章格式测试</a></div><div class="post-nav-item"> <a href="/2020/05/28/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E7%9C%8B%E6%9D%BF%E5%A8%98/" rel="next" title="【折腾笔记】看板娘">【折腾笔记】看板娘<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div><div class="comments" id="gitalk-container"></div><script>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/web/favicon/fulan-apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/web/favicon/fulan-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/web/favicon/fulan-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/web/favicon/fulan-safari-pinned-tab.svg" color="#222">
+  <meta name="google-site-verification" content="QFS_u_GWmr82u0hid-IEXe4tHKtR2xqNYBOM1ls7Ck8">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yuanjiuzheng.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":false,"lazyload":true,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10,"perpages":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。 从14年开始搞个人网站，那时候用虚拟主机，便宜耐用，但配置差，网速慢，备份不方便，自由度极低，而且那时候网站程序是用的 WordPress ，Emm 可能是因为当时太菜了，觉得不好用，网站搬家也很费力，备份也不太方便，虽然有一次趁着打折续了五年的，但后来也弃了虚拟主机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【折腾笔记】个人网站">
+<meta property="og:url" content="https://yuanjiuzheng.com/2020/05/24/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/index.html">
+<meta property="og:site_name" content="Yeran">
+<meta property="og:description" content="前言终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。 从14年开始搞个人网站，那时候用虚拟主机，便宜耐用，但配置差，网速慢，备份不方便，自由度极低，而且那时候网站程序是用的 WordPress ，Emm 可能是因为当时太菜了，觉得不好用，网站搬家也很费力，备份也不太方便，虽然有一次趁着打折续了五年的，但后来也弃了虚拟主机">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-24T09:36:06.000Z">
+<meta property="article:modified_time" content="2020-06-01T12:09:09.955Z">
+<meta property="article:author" content="Nemo.yeran">
+<meta property="article:tag" content="不务正业">
+<meta property="article:tag" content="折腾笔记">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="waifu">
+<meta property="article:tag" content="live2d">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://yuanjiuzheng.com/2020/05/24/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/live2d_widget/ny.waifu-load.css">
+
+
+<script src="//cdn.jsdelivr.net/gh/Yerannnnnn/Yerannnnnn.github.io@master/live2d_widget/ny.waifu.js" id="nywaifujs"></script>
+<script  src="/live2d_widget/ny.waifu-load.js" id="ny_waifu_load_js"></script>
+
+  <title>【折腾笔记】个人网站 | Yeran</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Yeran" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yeran</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-playground">
+
+    <a href="/pages/playground/" rel="section"><i class="fa fa-grin-tongue fa-fw"></i>玩具</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/pages/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/pages/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/pages/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-bangumis">
+
+    <a href="/bangumis/" rel="section"><i class="fab fa-youtube fa-fw"></i>追番</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/yerannnnnn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yuanjiuzheng.com/2020/05/24/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/web/avatar-nemo3.jpg">
+      <meta itemprop="name" content="Nemo.yeran">
+      <meta itemprop="description" content="一直折腾一直爽">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yeran">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【折腾笔记】个人网站
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-24 17:36:06" itemprop="dateCreated datePublished" datetime="2020-05-24T17:36:06+08:00">2020-05-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-01 20:09:09" itemprop="dateModified" datetime="2020-06-01T20:09:09+08:00">2020-06-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">折腾笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。</p>
+<p>从14年开始搞个人网站，那时候用虚拟主机，便宜耐用，但配置差，网速慢，备份不方便，自由度极低，而且那时候网站程序是用的 WordPress ，Emm 可能是因为当时太菜了，觉得不好用，网站搬家也很费力，备份也不太方便，虽然有一次趁着打折续了五年的，但后来也弃了虚拟主机。</p>
+<p>后来开始买国外或香港VPS，免备案，预装Ubuntu，一键xx面板，一键LNMP，面板后台操作一番，WordPress 网站就建起来了，体验还不错。不过感觉xx面板有点不安全，而且依赖性太强，既然是瞎折腾，隔着一层面板折腾来折腾去也的确没什么意思。</p>
+<p>再后来docker火热，用 docker 搭了一个 WordPress 的，这个感觉蛮好的，备份一下docker的脚本，备份下数据库文件就好了，搬家也方便。但那时候没管理网站的注册机制，被脚本机器人注册了大量垃圾用户，而且也没怎么维护网站，后来数据库撑炸了，2333，再后来国外服务器总被封，各种原因也没再继续维护个人网站了。</p>
+<p>中间还试过GitHub Page，那时候用的叫 JK什么（误）的静态框架，但没什么好看的主题，而且emm反正不是很喜欢，就没继续搞。</p>
+<p>这波是2019年了，趁阿里云搞活动买了波基础机型，然后一直没动。直到有一天看到一个人的网站里有看板娘，emmmm，毕竟死宅，i了i了，于是就：”我也要这个！”，开始了这波Hexo博客的搭建。后面是留给自己的折腾笔记。</p>
+<hr>
+<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>由于平时开发使用Windows+WSL，所以两个平台都试了下，都很香。</p>
+<p>不过现在WSL的文件管理还不是很稳定，用Sublime浏览的时候，时而加载不出来，不是很方便，所以最后全都转到Windows下了（WSL近期要更新了 windows可以直接访问wsl文件，那时候应该比较好用，期待一下，就不暂时折腾win10更新的东西了）</p>
+<p>依赖：</p>
+<ol>
+<li>git</li>
+<li>node.js</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">hexo new <span class="string">"Hello Hexo"</span></span><br><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>大概这样就运行起来了。</p>
+<h2 id="配置自动发布"><a href="#配置自动发布" class="headerlink" title="配置自动发布"></a>配置自动发布</h2><p>emm Hexo支持很多种方式自动发布部署，rsync sftp ftpsync git，反正试到最后git最好用。rsync跨系统会有点坑在里面，sftp速度太慢，ftpsync现在的包并不好用，还要打补丁，打完补丁第一天还ok，第二天不好使了 2333。</p>
+<p>反正最后折腾到只用git了，git到 GitHub 很简单，到阿里云服务器的话，我是搭了一个 Gitea 服务，然后传到自己的 Gitea 的库里面，然后在 Gitea 的 action 里配置自动发布，大概长这样。。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">git --work-tree=/var/www/html/xxxxx --git-dir=/home/git/gitea-repositories/xxx/xxx.git checkout -f</span><br></pre></td></tr></table></figure>
+
+<p>所以hexo这里的自动发布 就只用git就ok了，github网速慢的问题可以走代理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy https://127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+
+<p>而且Git可以配置公私钥来免登录，比较方便。</p>
+<h2 id="hexo-asset-image"><a href="#hexo-asset-image" class="headerlink" title="hexo-asset-image"></a>hexo-asset-image</h2><p>这个包好像有个问题，一开始图片一直显示不出来，调试发现生成图片链接的相关逻辑不太对，后来把index.js替换掉了就好使了。</p>
+<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
+
+<p>next主题还是很好用的，也比较喜欢，旧的next库很久不维护了，其中的主要贡献者另起炉灶开了新库（上面的链接）。</p>
+<p><strong>关于配置文件</strong>。有两个配置文件，一个是Hexo的，一个是主题的配置文件，有办法统一只使用一个配置文件：在hexo的配置文件最下方增加<code>theme_config:</code>，然后把主题的配置文件内容全部copy到Hexo的下面，并增加2缩进，如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme_config:</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line">  <span class="comment"># Theme Core Configuration Settings</span></span><br><span class="line">  <span class="comment"># See: https://theme-next.org/docs/theme-settings/</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># If false, merge configs from `_data/next.yml` into default configuration (rewrite).</span></span><br><span class="line">  <span class="comment"># If true, will fully override default configuration by options from `_data/next.yml` (override). Only for NexT settings.</span></span><br><span class="line">  <span class="comment"># And if true, all config from default NexT `_config.yml` have to be copied into `next.yml`. Use if you know what you are doing.</span></span><br><span class="line">  <span class="comment"># Useful if you want to comment some options from NexT `_config.yml` by `next.yml` without editing default config.</span></span><br><span class="line">  <span class="attr">override:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+
+<p>这样可以避免更新主题时由于配置不统一导致需要手动处理merge的问题。</p>
+<h2 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h2><p>参考</p>
+<blockquote>
+<ol>
+<li><a href="https://github.com/stevenjoezhang/live2d-widget" target="_blank" rel="noopener">live2d-widget</a></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><a href="https://www.fghrsh.net/post/123.html" target="_blank" rel="noopener">网页添加 Live2D 看板娘</a></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-01/" target="_blank" rel="noopener">给博客添加能动的看板娘</a></li>
+</ol>
+</blockquote>
+<p>增加了部分修改：</p>
+<ol>
+<li><p>去掉了小飞机。<code>// &lt;span class=&quot;fa fa-lg fa-paper-plane&quot;&gt;&lt;/span&gt;</code></p>
+</li>
+<li><p>去掉了宽度过窄就不显示的逻辑。（让手机端默认显示）</p>
+</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">@media (max-width: 768px) &#123;</span></span><br><span class="line"><span class="comment">	#waifu &#123;</span></span><br><span class="line"><span class="comment">		display: none;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// if (screen.width &gt;= 768) &#123;</span></span><br><span class="line">4...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="自建API"><a href="#自建API" class="headerlink" title="自建API"></a>自建API</h2><p>一开始是用的别人的API，但别人API总炸，一炸看板娘就没了。</p>
+<p>于是打算自己建API自己用。我在网页方面真心是菜鸟了，工作不搞这方面的东西，知识暂时全靠瞎折腾获取，所以自建API也要写一节！毕竟自己通过查资料试验测试，搞通了之后还是比较有成就感的。</p>
+<p>服务端需要有几个东西。</p>
+<ol>
+<li>php-fpm php-cgi</li>
+<li>fastcgi </li>
+<li>nginx</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/fghrsh/live2d_api.git</span><br></pre></td></tr></table></figure>
+
+<p>把API直接clone到了Hexo的souce里，这样就能搭车同步了，这也是为什么需要同步的文件又多又大的原因，内置的方法里，只有 Git 能比较轻松的搞定了。</p>
+<p>服务端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install php-fpm php-cgi</span><br></pre></td></tr></table></figure>
+
+<p>然后在nginx里面配置使用<code>FastCGI server</code> </p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pass PHP scripts to FastCGI server</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">    <span class="attribute">include</span> snippets/fastcgi-php.conf;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># With php-fpm (or other unix sockets):</span></span><br><span class="line">    <span class="attribute">fastcgi_pass</span> unix:/var/run/php/php7.2-fpm.sock;</span><br><span class="line">    <span class="comment"># With php-cgi (or other tcp sockets):</span></span><br><span class="line">    <span class="comment"># fastcgi_pass 127.0.0.1:9000;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="增加模型"><a href="#增加模型" class="headerlink" title="增加模型"></a>增加模型</h2><p>读了读大佬的API的代码，逻辑也不是很复杂，而且提供了增加模型的支持，在<a href="https://mx.paul.ren/page/1/" target="_blank" rel="noopener">梦象</a>获取模型后，放到<code>/model/*/</code>里，把<code>model.json</code>重命名为<code>index.json</code>即可，然后修改<code>model_list.json</code>，测试了一下没有对<code>live2d</code>模型动作的依赖。如果有模型大小不合适的，在<code>index.json</code>中修改<code>layout</code>项。</p>
+<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>服务器本地加载Live2d有些慢，毕竟小水管服务器，还是CDN加速比较稳定而且负载小一些，有时间可以搞一下。</p>
+<p>Live2d的模型在<a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">Live2d-model</a>找到了有大佬在收集。</p>
+<p>emm，后来也发现了好多大佬的博客做的非常漂亮，暂时不再深入下去，（前端深坑，好可怕……</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\05\28\【折腾笔记】看板娘\" rel="bookmark">【折腾笔记】看板娘</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\05\30\【折腾笔记】看板娘浏览器\" rel="bookmark">【折腾笔记】看板娘浏览器</a></div>
+    </li>
+  </ul>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Nemo.yeran
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://yuanjiuzheng.com/2020/05/24/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/" title="【折腾笔记】个人网站">https://yuanjiuzheng.com/2020/05/24/【折腾笔记】个人网站/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" rel="tag"># 不务正业</a>
+              <a href="/tags/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" rel="tag"># 折腾笔记</a>
+              <a href="/tags/web/" rel="tag"># web</a>
+              <a href="/tags/hexo/" rel="tag"># hexo</a>
+              <a href="/tags/waifu/" rel="tag"># waifu</a>
+              <a href="/tags/live2d/" rel="tag"># live2d</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/11/test/" rel="prev" title="文章格式测试">
+      <i class="fa fa-chevron-left"></i> 文章格式测试
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/28/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E7%9C%8B%E6%9D%BF%E5%A8%98/" rel="next" title="【折腾笔记】看板娘">
+      【折腾笔记】看板娘 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
   window.addEventListener('tabs:register', () => {
     let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
@@ -18,7 +464,199 @@
       localStorage.setItem('comments_active', commentClass);
     });
   }
-</script></div><div class="toggle sidebar-toggle"><span class="toggle-line toggle-line-first"></span><span class="toggle-line toggle-line-middle"></span><span class="toggle-line toggle-line-last"></span></div><aside class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc"> 文章目录</li><li class="sidebar-nav-overview"> 站点概览</li></ul><div class="post-toc-wrap sidebar-panel"><div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo"><span class="nav-number">2.</span> <span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置自动发布"><span class="nav-number">2.2.</span> <span class="nav-text">配置自动发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-asset-image"><span class="nav-number">2.3.</span> <span class="nav-text">hexo-asset-image</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题"><span class="nav-number">2.4.</span> <span class="nav-text">主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#看板娘"><span class="nav-number">2.5.</span> <span class="nav-text">看板娘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自建API"><span class="nav-number">2.6.</span> <span class="nav-text">自建API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加模型"><span class="nav-number">2.7.</span> <span class="nav-text">增加模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后续"><span class="nav-number">3.</span> <span class="nav-text">后续</span></a></li></ol></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"> <img class="site-author-image" itemprop="image" alt="Nemo.yeran" src="/images/web/avatar-nemo3.jpg"><p class="site-author-name" itemprop="name">Nemo.yeran</p><div class="site-description" itemprop="description">一直折腾一直爽</div></div><div class="site-state-wrap motion-element"><nav class="site-state"><div class="site-state-item site-state-posts"> <a href="/archives/"><span class="site-state-item-count">6</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"> <a href="/pages/categories/"><span class="site-state-item-count">2</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"> <a href="/pages/tags/"><span class="site-state-item-count">9</span> <span class="site-state-item-name">标签</span></a></div></nav></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/yerannnnnn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yerannnnnn" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i> GitHub</a></span><span class="links-of-author-item"><a href="https://space.bilibili.com/670716" title="BiliBili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;670716" rel="noopener" target="_blank"><i class="fa fa-tv fa-fw"></i> BiliBili</a></span><span class="links-of-author-item"><a href="mailto:yuanjiuzheng@foxmail.com" title="E-Mail → mailto:yuanjiuzheng@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i> E-Mail</a></span><span class="links-of-author-item"><a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i> RSS</a></span></div><div class="cc-license motion-element" itemprop="license"> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a></div><div class="links-of-blogroll motion-element"><div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"> <a href="https://yuanjiuzheng.com/" title="https:&#x2F;&#x2F;yuanjiuzheng.com">首页</a></li></ul></div></div><div class="back-to-top motion-element"><i class="fa fa-arrow-up"></i> <span>0%</span></div></div></aside><div id="sidebar-dimmer"></div></div></main><footer class="footer"><div class="footer-inner"><div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">沪ICP备 - 20008968号</a> <img src="/images/web/favicon/gov.png" style="display:inline-block"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=%E5%85%AC%E5%AE%89%E5%A4%87%E6%A1%88%E5%8F%B7%E5%BE%85%E7%A1%AE%E8%AE%A4" rel="noopener" target="_blank">公安备案号待确认</a></div><div class="copyright"> &copy; <span itemprop="copyrightYear">2020</span><span class="with-love"><i class="fa fa-heart"></i></span> <span class="author" itemprop="copyrightHolder">Nemo.yeran</span> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-chart-area"></i></span> <span title="站点总字数">8k</span> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-coffee"></i></span> <span title="站点阅读时长">7 分钟</span></div><div class="powered-by">基于 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 搭建</div><div class="addthis_inline_share_toolbox"><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e929ada50a7441f" async="async"></script></div><div class="busuanzi-count"><script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="post-meta-item" id="busuanzi_container_site_uv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-user"></i></span><span class="site-uv" title="总访客量"><span id="busuanzi_value_site_uv"></span></span></span> <span class="post-meta-divider">|</span><span class="post-meta-item" id="busuanzi_container_site_pv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span><span class="site-pv" title="总访问量"><span id="busuanzi_value_site_pv"></span></span></span></div></div></footer></div><script src="/lib/anime.min.js"></script><script src="//cdn.jsdelivr.net/gh/next-theme/pjax@0/pjax.min.js"></script><script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script><script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script><script src="/lib/velocity/velocity.min.js"></script><script src="/lib/velocity/velocity.ui.min.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/pisces.js"></script><script src="/js/next-boot.js"></script><script>
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo"><span class="nav-number">2.</span> <span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置自动发布"><span class="nav-number">2.2.</span> <span class="nav-text">配置自动发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-asset-image"><span class="nav-number">2.3.</span> <span class="nav-text">hexo-asset-image</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题"><span class="nav-number">2.4.</span> <span class="nav-text">主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#看板娘"><span class="nav-number">2.5.</span> <span class="nav-text">看板娘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自建API"><span class="nav-number">2.6.</span> <span class="nav-text">自建API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加模型"><span class="nav-number">2.7.</span> <span class="nav-text">增加模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后续"><span class="nav-number">3.</span> <span class="nav-text">后续</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Nemo.yeran"
+      src="/images/web/avatar-nemo3.jpg">
+  <p class="site-author-name" itemprop="name">Nemo.yeran</p>
+  <div class="site-description" itemprop="description">一直折腾一直爽</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/pages/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/pages/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yerannnnnn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yerannnnnn" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/670716" title="BiliBili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;670716" rel="noopener" target="_blank"><i class="fa fa-tv fa-fw"></i>BiliBili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yuanjiuzheng@foxmail.com" title="E-Mail → mailto:yuanjiuzheng@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://yuanjiuzheng.com/" title="https:&#x2F;&#x2F;yuanjiuzheng.com">首页</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">沪ICP备 - 20008968号 </a>
+      <img src="/images/web/favicon/gov.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=%E5%85%AC%E5%AE%89%E5%A4%87%E6%A1%88%E5%8F%B7%E5%BE%85%E7%A1%AE%E8%AE%A4" rel="noopener" target="_blank">公安备案号待确认 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Nemo.yeran</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">8k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7 分钟</span>
+</div>
+  <div class="powered-by">基于 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 搭建
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e929ada50a7441f" async="async"></script>
+  </div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/next-theme/pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
 var pjax = new Pjax({
   selectors: [
     'head title',
@@ -75,7 +713,48 @@ document.addEventListener('pjax:success', () => {
   }
   NexT.utils.updateSidebarPosition();
 });
-</script><script data-pjax>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script><script src="/js/local-search.js"></script><div id="pjax"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css"><script>
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
 NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
@@ -91,4 +770,14 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
     gitalk.render('gitalk-container');
   }, window.Gitalk);
 });
-</script></div></body></html>
+</script>
+
+
+
+
+
+
+
+    </div>
+</body>
+</html>
