@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuanjiuzheng.com/"/>
-  <updated>2020-06-01T06:34:58.710Z</updated>
+  <updated>2020-06-01T07:07:06.627Z</updated>
   <id>https://yuanjiuzheng.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://yuanjiuzheng.com/2020/05/30/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E7%9C%8B%E6%9D%BF%E5%A8%98%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
     <id>https://yuanjiuzheng.com/2020/05/30/%E3%80%90%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%E3%80%91%E7%9C%8B%E6%9D%BF%E5%A8%98%E6%B5%8F%E8%A7%88%E5%99%A8/</id>
     <published>2020-05-30T09:57:06.000Z</published>
-    <updated>2020-06-01T06:34:58.710Z</updated>
+    <updated>2020-06-01T07:07:06.627Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><a href="/ny/waifuViewer/" style="text-decoration:none !important;">    <button class="nybtn nybtn_link"  onclick="null" ><span onclick="null">waifuViewer</span></button></a><br><br><br><p>从<a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">Live2d-model</a>弄了好多模型下来，但是没法看，于是就弄了个waifuViewer~</p><hr><p>这几天沉迷个人主页，搞了四五天，emm，虽然自己这几篇文章都打了“不务正业”的标签，但这波也算是开拓视野了，以前从未接触js/css/html开发相关的东西，这算是在自己不熟悉的领域去实现自己的需求，虽然东西很简单，但坑处处都是，总的来说挺考验自己的，也从侧面证实了一直以来坚信的一个观点:</p><blockquote><p>重要的不是知识，而是对知识的应用和理解，以及快速查找知识的能力</p><p>重要的不是题解，而是解题的思路和方法，甚至风格、态度、执拗</p></blockquote><p>当然，<strong>认知</strong>（或者说经验+知识）也很重要。计算机世界的发展除了不断迸发的idea和design，也经历了无数的参考与借鉴，所以很多东西自然而然有<strong>相通</strong>的地方，在遇到新问题的时候，认知面会为解决问题提供支撑。</p><p>这段时间虽然”不务正业”，但对博导（前公司老板）的教诲有了新的认识，<strong>WHY-WHAT-HOW</strong>里面，虽然小规模的问题都体现在HOW上，但其实最不重要的就是HOW。计算机中也存在<strong>道法术</strong>。道，是规则、自然法则，上乘；法，是方法、法理，中乘；术，是行为、方式，下乘。以道御术，悟道比修炼法术更高一筹。但要做到这一点，还需要<strong>不断的努力</strong>，道法术三者兼备才能做出最好的策略。</p><p>这几天维护几个js/css/html，越发觉得软件开发不难，难的是其他方面，比如</p><ol><li>基本维护</li><li>质量与测试</li><li>预测与应对需求的变更</li></ol><p>个人主页先放放，要玩玩别的了！</p><hr><p>跑偏了，回到标题。</p><h1 id="踩坑小计"><a href="#踩坑小计" class="headerlink" title="踩坑小计"></a>踩坑小计</h1><table><thead><tr><th>ISSUE</th><th>FIXED</th></tr></thead><tbody><tr><td>✔ 布局异常</td><td>BOX+CSS解决</td></tr><tr><td>✔ 手机显示异常</td><td>CSS多设备适配</td></tr><tr><td>✔ 和左下角看板娘冲突</td><td>进入页面主动隐藏左下角看板娘</td></tr><tr><td>✔ 跳转会刷新整个页面</td><td>使用pjax</td></tr><tr><td>✔ pjax跳转但不加载js</td><td>对需要加载的js做pjax-data标记</td></tr><tr><td>✔ 按钮超链接有下划线</td><td>css增加nybtn_link</td></tr><tr><td>✔ pjax重复加载js报错</td><td>优化js</td></tr></tbody></table>]]></content>
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><a href="/ny/waifuViewer/" style="text-decoration:none !important;">    <button class="nybtn nybtn_link"  onclick="null" ><span onclick="null">waifuViewer</span></button></a><br><br><br><p>从<a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">Live2d-model</a>弄了好多模型下来，但是没法看，于是就折腾了个waifuViewer~</p><hr><p>这几天沉迷个人主页，搞了四五天，emm，虽然自己这几篇文章都打了“不务正业”的标签，但这波也算是开拓视野了。以前从未接触js/css/html开发相关的东西，这算是在自己不熟悉的领域去实现自己的需求，虽然<strong>东西很简单</strong>，但坑处处都是，总的来说挺考验自己的，也从侧面证实了一直以来坚信的一个观点:</p><blockquote><p>重要的不是知识，而是对知识的应用和理解，以及快速查找知识的能力</p><p>重要的不是题解，而是解题的思路和方法，甚至风格、态度、执拗</p></blockquote><p>当然，<strong>认知</strong>（或者说经验+知识）也很重要。计算机世界的发展除了不断迸发的idea和design，也经历了无数的参考与借鉴，所以很多东西自然而然有<strong>相通</strong>的地方，在遇到新问题的时候，认知面会为解决问题提供支撑。</p><p>这段时间虽然”不务正业”，但对博导（前公司老板）的教诲有了新的认识，<strong>WHY-WHAT-HOW</strong>里面，虽然小规模的问题都体现在HOW上，但其实最不重要的就是HOW。计算机中也存在<strong>道法术</strong>。道，是规则、自然法则，上乘；法，是方法、法理，中乘；术，是行为、方式，下乘。以道御术，悟道比修炼法术更高一筹。但要做到这一点，还需要<strong>不断的努力</strong>，道法术三者兼备才能做出最好的策略。</p><p>个人主页先放放，要玩玩别的了！</p><hr><h1 id="踩坑小计"><a href="#踩坑小计" class="headerlink" title="踩坑小计"></a>踩坑小计</h1><table><thead><tr><th>ISSUE</th><th>FIXED</th></tr></thead><tbody><tr><td>✔ 布局异常</td><td>BOX+CSS解决</td></tr><tr><td>✔ 手机显示异常</td><td>CSS多设备适配</td></tr><tr><td>✔ 和左下角看板娘冲突</td><td>进入页面主动隐藏左下角看板娘</td></tr><tr><td>✔ 跳转会刷新整个页面</td><td>使用pjax</td></tr><tr><td>✔ pjax跳转但不加载js</td><td>对需要加载的js做pjax-data标记</td></tr><tr><td>✔ 按钮超链接有下划线</td><td>css增加nybtn_link 追加处理</td></tr><tr><td>✔ pjax重复加载js报错</td><td>优化js</td></tr></tbody></table><p>后面还有todo的话 大概有以下几个方面</p><ol><li>支持多个live2d同时显示（纸片人老婆+1+1+1 ???</li><li>按钮列表换种方式布局，以便随意添加按钮</li><li>子页面用scrollbar控制来显示按钮</li></ol>]]></content>
     
     <summary type="html">
     
@@ -122,11 +122,11 @@
     
       <category term="web" scheme="https://yuanjiuzheng.com/tags/web/"/>
     
-      <category term="hexo" scheme="https://yuanjiuzheng.com/tags/hexo/"/>
-    
       <category term="waifu" scheme="https://yuanjiuzheng.com/tags/waifu/"/>
     
       <category term="live2d" scheme="https://yuanjiuzheng.com/tags/live2d/"/>
+    
+      <category term="hexo" scheme="https://yuanjiuzheng.com/tags/hexo/"/>
     
   </entry>
   
