@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuanjiuzheng.com/"/>
-  <updated>2020-06-02T05:47:43.118Z</updated>
+  <updated>2020-06-02T05:35:04.913Z</updated>
   <id>https://yuanjiuzheng.com/</id>
   
   <author>
@@ -15,32 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>【设计模式】可复用面向对象软件的基础</title>
-    <link href="https://yuanjiuzheng.com/blog/cc04/"/>
-    <id>https://yuanjiuzheng.com/blog/cc04/</id>
-    <published>2020-06-02T09:57:06.000Z</published>
-    <updated>2020-06-02T05:47:43.118Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="设计模式" scheme="https://yuanjiuzheng.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="设计模式" scheme="https://yuanjiuzheng.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
   
   <entry>
     <title>【折腾笔记】看板娘浏览器</title>
@@ -150,11 +124,11 @@
     
       <category term="web" scheme="https://yuanjiuzheng.com/tags/web/"/>
     
+      <category term="hexo" scheme="https://yuanjiuzheng.com/tags/hexo/"/>
+    
       <category term="waifu" scheme="https://yuanjiuzheng.com/tags/waifu/"/>
     
       <category term="live2d" scheme="https://yuanjiuzheng.com/tags/live2d/"/>
-    
-      <category term="hexo" scheme="https://yuanjiuzheng.com/tags/hexo/"/>
     
   </entry>
   

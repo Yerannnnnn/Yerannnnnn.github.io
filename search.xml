@@ -1,212 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>【建站测试】文章格式测试</title>
-    <url>/blog/cc00/</url>
-    <content><![CDATA[<h1 id="代码段测试"><a href="#代码段测试" class="headerlink" title="代码段测试"></a>代码段测试</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Tail&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(T head, Tail... tail)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  g(head);</span><br><span class="line">  f(tail...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// clang-format off</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(T x)</span></span>&#123;<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">" "</span>; &#125;</span><br><span class="line"><span class="comment">// clang-format on</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"testA:"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span> &lt;&lt; <span class="string">"\t"</span>;</span><br><span class="line">  f(<span class="number">1</span>, <span class="number">2.2</span>, <span class="string">"hello"</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"testB:"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span> &lt;&lt; <span class="string">"\t"</span>;</span><br><span class="line">  f(<span class="number">0.2</span>, <span class="number">666</span>, <span class="string">"yuck!"</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="图片测试"><a href="#图片测试" class="headerlink" title="图片测试"></a>图片测试</h1>
-
-<p><img data-src="/images/posts/test.jpg" alt=""><br><code>\{\%</code> <code>asset_img /images/posts/test.jpg This is an test image \}\%</code>  </p>
-<h1 id="表格测试"><a href="#表格测试" class="headerlink" title="表格测试"></a>表格测试</h1><table>
-<thead>
-<tr>
-<th>表头A</th>
-<th>表头B</th>
-<th>表头C</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>A</td>
-<td>B</td>
-<td>C</td>
-</tr>
-<tr>
-<td>A</td>
-<td>B</td>
-<td>C</td>
-</tr>
-<tr>
-<td>A</td>
-<td>B</td>
-<td>C</td>
-</tr>
-</tbody></table>
-<h1 id="标签插件"><a href="#标签插件" class="headerlink" title="标签插件"></a>标签插件</h1><h2 id="标签页"><a href="#标签页" class="headerlink" title="标签页"></a>标签页</h2><div class="tabs" id="fourth-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#fourth-unique-name-1">Solution 1 点我</a></li><li class="tab"><a href="#fourth-unique-name-2">Solution 2 点我</a></li><li class="tab"><a href="#fourth-unique-name-3">Solution 3 点我</a></li></ul><div class="tab-content"><div class="tab-pane active" id="fourth-unique-name-1"><p><strong>This is Tab 1.</strong></p></div><div class="tab-pane" id="fourth-unique-name-2"><p><strong>This is Tab 2.</strong></p></div><div class="tab-pane" id="fourth-unique-name-3"><p><strong>This is Tab 3.</strong></p></div></div></div>
-
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><hr>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
-<hr>
-<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
-</blockquote>
-
-<hr>
-<blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
-<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote>
-
-<hr>
-<blockquote><p>NEW: DevDocs now comes with syntax highlighting. <a href="http://devdocs.io" target="_blank" rel="noopener">http://devdocs.io</a></p>
-<footer><strong>@DevDocs</strong><cite><a href="https://twitter.com/devdocs/status/356095192085962752" target="_blank" rel="noopener">twitter.com/devdocs/status/356095192085962752</a></cite></footer></blockquote>
-
-<hr>
-<blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
-<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html" target="_blank" rel="noopener">Welcome to Island Marketing</a></cite></footer></blockquote>
-
-<hr>
-<h1 id="more"><a href="#more" class="headerlink" title="more"></a>more</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-<a id="more"></a>
-
-<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<h1 id="视频测试"><a href="#视频测试" class="headerlink" title="视频测试"></a>视频测试</h1><p><code>html bilibili</code></p>
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
-    <iframe src="//player.bilibili.com/player.html?aid=6692695&bvid=BV1as41147Tg&cid=10896147&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;"> </iframe>
-</div>
-
-<p><code>youtube video_id</code></p>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/qU6lIArty7E" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-
-<h1 id="引用文章"><a href="#引用文章" class="headerlink" title="引用文章"></a>引用文章</h1><p>获取永久链接<br>// hello-world</p>
-  
-
-<p>// test</p>
-  
-
-<hr>
-<p>超链接</p>
-
-<hr>
-<p>markdown语法<br><code>[hello-world](./hello-world.md)</code><br>失败，不过外链可以用这个。</p>
-]]></content>
-      <categories>
-        <category>建站测试</category>
-      </categories>
-      <tags>
-        <tag>建站测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【折腾笔记】看板娘</title>
-    <url>/blog/cc02/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>又来更新了，前两天把网站折腾利索,前端加上了看板娘的js源码,把Live2D模型搬到了服务器上做了看板娘的API,美滋滋,但小水管服务器加载速度太慢了。看板娘可是网站灵魂,要优化！于是开始了新一轮的折腾！（折腾完这一波，我也算是接触过前端相关技术了 23333）</p>
-<p>目标：</p>
-<ol>
-<li>CDN加速（要快, ？？</li>
-<li>不依赖别人（纸片人老婆怎么能用别人的</li>
-<li>模型易增加（？？</li>
-<li>源码可更改（尽量搞到非压缩非混淆的源码）</li>
-</ol>
-<h1 id="相关源码"><a href="#相关源码" class="headerlink" title="相关源码"></a>相关源码</h1><p>翻了翻github,找到了这些相关的库</p>
-<ol>
-<li><a href="https://github.com/stevenjoezhang/live2d-widget" target="_blank" rel="noopener">https://github.com/stevenjoezhang/live2d-widget</a></li>
-<li><a href="https://github.com/HCLonely/live2d.user.js" target="_blank" rel="noopener">https://github.com/HCLonely/live2d.user.js</a></li>
-<li><a href="https://github.com/journey-ad/live2d_src" target="_blank" rel="noopener">https://github.com/journey-ad/live2d_src</a></li>
-<li><a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">https://github.com/EYHN/hexo-helper-live2d</a></li>
-<li><a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">https://github.com/Eikanya/Live2d-model</a></li>
-</ol>
-<p>emm,一开始是用的库1的代码,但有个问题,API和CDN方式冲突,API的话模型加载慢,CDN的话不能换衣服2333,所以打算改改看。看了看代码,根源在于live2d.min.js的接口就只接受一个json的path,以这个PATH的相对路径来查找模型资源。所以如果要改的话要么改到live2d.min.js里,要么把原来API返回的JSON都预备好,弃用API,直接给live2d接口CDN的JSON资源，通过换JSON来换衣服。但显然即麻烦又不够优雅，所以决定要改live2d.js。</p>
-<p>但库1的live2d.min.js是已经压缩过的,变量名看起来好像也混淆过,难以修改,不是很想用,所以继续找了其他的库。</p>
-<p>库2是一个浏览器插件的js源码，并不能直接移植到自己的网站上，但通过里面的一些做法可以得到启发：加载资源时用正则表达式把PATH替换成CDN的path，来即支持live2d-API 也支持CDN加速资源,</p>
-<p>库3是基于库4<a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">hexo-helper-live2d</a>改的,代码能读,功能看起来也OK最终决定基于库3来魔改。</p>
-<p>第一次接触js，改了半天吧，还踩了不少坑，{ import/export，ES6的语法，babel的兼容性，Hexo的默认渲染 } 等问题，好在最后搞定了，踩坑的东西就不写了，网上一大把解决方案。</p>
-<p>好像不写踩坑的东西，又没啥写的了？ 那写写吧</p>
-<h1 id="踩坑日志"><a href="#踩坑日志" class="headerlink" title="踩坑日志"></a>踩坑日志</h1><ol>
-<li>本地JS代码，和上传的代码不一样，很神奇，&lt;=会变成 &lt;= 1，一开始调试了好久，以为是js或者浏览器或者哪的bug，最后发现是忘了关HEXO的默认渲染，在HEXO的skip_render中添加路径即可。</li>
-<li>用本地html文件做测试的时候，加载相对路径的css/js时报错“不支持file://”，emm最后还是hexo s，启server来调试比较方便。</li>
-<li><code>type=&quot;module&quot;</code>才支持带有import/export的js代码，最后把js变成了单文件没这个问题了。</li>
-<li>gulp压缩的时候，不支持ES6语法，看了看gulp的文档，有个Stage-0的plugins，再外加<a href="https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js" target="_blank" rel="noopener">runtime.js</a>，才算通过。</li>
-<li>CDN的缓存，更改js不会及时生效，要用版本号/更改文件名等方式来刷新，好像给Github库打tag也行。</li>
-</ol>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>日常写C/C++，突然接触js的语法，不检查类型，不检查参数，变量全局，各种不一样，感觉，emm好松！但也挺爽挺好用。</p>
-]]></content>
-      <categories>
-        <category>折腾笔记</category>
-      </categories>
-      <tags>
-        <tag>不务正业</tag>
-        <tag>折腾笔记</tag>
-        <tag>web</tag>
-        <tag>waifu</tag>
-        <tag>live2d</tag>
-        <tag>jsdelivr</tag>
-        <tag>CDN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【折腾笔记】看板娘浏览器</title>
-    <url>/blog/cc03/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><a href="/ny/waifuViewer/" style="text-decoration:none !important;">
-    <button class="nybtn nybtn_link"  onclick="null" ><span onclick="null">waifuViewer</span></button>
-</a><br><br><br>
-
-<p>从<a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">Live2d-model</a>弄了好多模型下来，但是没法看，于是就折腾了个waifuViewer~</p>
-<hr>
-<p>这几天沉迷个人主页，搞了四五天，emm，虽然自己这几篇文章都打了“不务正业”的标签，但这波也算是开拓视野了。以前从未接触js/css/html开发相关的东西，这算是在自己不熟悉的领域去实现自己的需求，虽然<strong>东西很简单</strong>，但坑处处都是，总的来说挺考验自己的，也从侧面证实了一直以来坚信的一个观点:</p>
-<blockquote>
-<p>重要的不是知识，而是对知识的应用和理解，以及快速查找知识的能力</p>
-<p>重要的不是题解，而是解题的思路和方法，甚至风格、态度、执拗</p>
-</blockquote>
-<p>当然，<strong>认知</strong>（或者说经验+知识）也很重要。计算机世界的发展除了不断迸发的idea和design，也经历了无数的参考与借鉴，所以很多东西自然而然有<strong>相通</strong>的地方，在遇到新问题的时候，认知面会为解决问题提供支撑。</p>
-<p>这段时间虽然”不务正业”，但对博导（前公司老板）的教诲有了新的认识，<strong>WHY-WHAT-HOW</strong>里面，虽然小规模的问题都体现在HOW上，但其实最不重要的就是HOW。计算机中也存在<strong>道法术</strong>。道，是规则、自然法则，上乘；法，是方法、法理，中乘；术，是行为、方式，下乘。以道御术，悟道比修炼法术更高一筹。但要做到这一点，还需要<strong>不断的努力</strong>，道法术三者兼备才能做出最好的策略。</p>
-<p>个人主页先放放，要玩玩别的了！</p>
-<hr>
-<h1 id="踩坑小计"><a href="#踩坑小计" class="headerlink" title="踩坑小计"></a>踩坑小计</h1><table>
-<thead>
-<tr>
-<th>ISSUE</th>
-<th>FIXED</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>✔ 布局异常</td>
-<td>BOX+CSS解决</td>
-</tr>
-<tr>
-<td>✔ 手机显示异常</td>
-<td>CSS多设备适配</td>
-</tr>
-<tr>
-<td>✔ 和左下角看板娘冲突</td>
-<td>进入页面主动隐藏左下角看板娘</td>
-</tr>
-<tr>
-<td>✔ 跳转会刷新整个页面</td>
-<td>使用pjax</td>
-</tr>
-<tr>
-<td>✔ pjax跳转但不加载js</td>
-<td>对需要加载的js做pjax-data标记</td>
-</tr>
-<tr>
-<td>✔ 按钮超链接有下划线</td>
-<td>css增加nybtn_link 追加处理</td>
-</tr>
-<tr>
-<td>✔ pjax重复加载js报错</td>
-<td>优化js</td>
-</tr>
-</tbody></table>
-<p>后面还有todo的话 大概有以下几个方面</p>
-<ol>
-<li>支持多个live2d同时显示（纸片人老婆+1+1+1 ???</li>
-<li>按钮列表换种方式布局，以便随意添加按钮</li>
-<li>子页面用scrollbar控制来显示按钮</li>
-</ol>
-]]></content>
-      <categories>
-        <category>折腾笔记</category>
-      </categories>
-      <tags>
-        <tag>不务正业</tag>
-        <tag>折腾笔记</tag>
-        <tag>web</tag>
-        <tag>waifu</tag>
-        <tag>live2d</tag>
-        <tag>jsdelivr</tag>
-        <tag>CDN</tag>
-        <tag>playground</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【折腾笔记】个人网站</title>
     <url>/blog/cc01/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。</p>
@@ -298,20 +92,215 @@
         <tag>不务正业</tag>
         <tag>折腾笔记</tag>
         <tag>web</tag>
+        <tag>hexo</tag>
         <tag>waifu</tag>
         <tag>live2d</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
-    <title>【设计模式】可复用面向对象软件的基础</title>
-    <url>/blog/cc04/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1>]]></content>
+    <title>【折腾笔记】看板娘</title>
+    <url>/blog/cc02/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>又来更新了，前两天把网站折腾利索,前端加上了看板娘的js源码,把Live2D模型搬到了服务器上做了看板娘的API,美滋滋,但小水管服务器加载速度太慢了。看板娘可是网站灵魂,要优化！于是开始了新一轮的折腾！（折腾完这一波，我也算是接触过前端相关技术了 23333）</p>
+<p>目标：</p>
+<ol>
+<li>CDN加速（要快, ？？</li>
+<li>不依赖别人（纸片人老婆怎么能用别人的</li>
+<li>模型易增加（？？</li>
+<li>源码可更改（尽量搞到非压缩非混淆的源码）</li>
+</ol>
+<h1 id="相关源码"><a href="#相关源码" class="headerlink" title="相关源码"></a>相关源码</h1><p>翻了翻github,找到了这些相关的库</p>
+<ol>
+<li><a href="https://github.com/stevenjoezhang/live2d-widget" target="_blank" rel="noopener">https://github.com/stevenjoezhang/live2d-widget</a></li>
+<li><a href="https://github.com/HCLonely/live2d.user.js" target="_blank" rel="noopener">https://github.com/HCLonely/live2d.user.js</a></li>
+<li><a href="https://github.com/journey-ad/live2d_src" target="_blank" rel="noopener">https://github.com/journey-ad/live2d_src</a></li>
+<li><a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">https://github.com/EYHN/hexo-helper-live2d</a></li>
+<li><a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">https://github.com/Eikanya/Live2d-model</a></li>
+</ol>
+<p>emm,一开始是用的库1的代码,但有个问题,API和CDN方式冲突,API的话模型加载慢,CDN的话不能换衣服2333,所以打算改改看。看了看代码,根源在于live2d.min.js的接口就只接受一个json的path,以这个PATH的相对路径来查找模型资源。所以如果要改的话要么改到live2d.min.js里,要么把原来API返回的JSON都预备好,弃用API,直接给live2d接口CDN的JSON资源，通过换JSON来换衣服。但显然即麻烦又不够优雅，所以决定要改live2d.js。</p>
+<p>但库1的live2d.min.js是已经压缩过的,变量名看起来好像也混淆过,难以修改,不是很想用,所以继续找了其他的库。</p>
+<p>库2是一个浏览器插件的js源码，并不能直接移植到自己的网站上，但通过里面的一些做法可以得到启发：加载资源时用正则表达式把PATH替换成CDN的path，来即支持live2d-API 也支持CDN加速资源,</p>
+<p>库3是基于库4<a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">hexo-helper-live2d</a>改的,代码能读,功能看起来也OK最终决定基于库3来魔改。</p>
+<p>第一次接触js，改了半天吧，还踩了不少坑，{ import/export，ES6的语法，babel的兼容性，Hexo的默认渲染 } 等问题，好在最后搞定了，踩坑的东西就不写了，网上一大把解决方案。</p>
+<p>好像不写踩坑的东西，又没啥写的了？ 那写写吧</p>
+<h1 id="踩坑日志"><a href="#踩坑日志" class="headerlink" title="踩坑日志"></a>踩坑日志</h1><ol>
+<li>本地JS代码，和上传的代码不一样，很神奇，&lt;=会变成 &lt;= 1，一开始调试了好久，以为是js或者浏览器或者哪的bug，最后发现是忘了关HEXO的默认渲染，在HEXO的skip_render中添加路径即可。</li>
+<li>用本地html文件做测试的时候，加载相对路径的css/js时报错“不支持file://”，emm最后还是hexo s，启server来调试比较方便。</li>
+<li><code>type=&quot;module&quot;</code>才支持带有import/export的js代码，最后把js变成了单文件没这个问题了。</li>
+<li>gulp压缩的时候，不支持ES6语法，看了看gulp的文档，有个Stage-0的plugins，再外加<a href="https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js" target="_blank" rel="noopener">runtime.js</a>，才算通过。</li>
+<li>CDN的缓存，更改js不会及时生效，要用版本号/更改文件名等方式来刷新，好像给Github库打tag也行。</li>
+</ol>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>日常写C/C++，突然接触js的语法，不检查类型，不检查参数，变量全局，各种不一样，感觉，emm好松！但也挺爽挺好用。</p>
+]]></content>
       <categories>
-        <category>设计模式</category>
+        <category>折腾笔记</category>
       </categories>
       <tags>
-        <tag>设计模式</tag>
+        <tag>不务正业</tag>
+        <tag>折腾笔记</tag>
+        <tag>web</tag>
+        <tag>waifu</tag>
+        <tag>live2d</tag>
+        <tag>jsdelivr</tag>
+        <tag>CDN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【建站测试】文章格式测试</title>
+    <url>/blog/cc00/</url>
+    <content><![CDATA[<h1 id="代码段测试"><a href="#代码段测试" class="headerlink" title="代码段测试"></a>代码段测试</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Tail&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(T head, Tail... tail)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  g(head);</span><br><span class="line">  f(tail...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// clang-format off</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(T x)</span></span>&#123;<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">" "</span>; &#125;</span><br><span class="line"><span class="comment">// clang-format on</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"testA:"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span> &lt;&lt; <span class="string">"\t"</span>;</span><br><span class="line">  f(<span class="number">1</span>, <span class="number">2.2</span>, <span class="string">"hello"</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"testB:"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span> &lt;&lt; <span class="string">"\t"</span>;</span><br><span class="line">  f(<span class="number">0.2</span>, <span class="number">666</span>, <span class="string">"yuck!"</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="图片测试"><a href="#图片测试" class="headerlink" title="图片测试"></a>图片测试</h1>
+
+<p><img data-src="/images/posts/test.jpg" alt=""><br><code>\{\%</code> <code>asset_img /images/posts/test.jpg This is an test image \}\%</code>  </p>
+<h1 id="表格测试"><a href="#表格测试" class="headerlink" title="表格测试"></a>表格测试</h1><table>
+<thead>
+<tr>
+<th>表头A</th>
+<th>表头B</th>
+<th>表头C</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+</tr>
+<tr>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+</tr>
+<tr>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+</tr>
+</tbody></table>
+<h1 id="标签插件"><a href="#标签插件" class="headerlink" title="标签插件"></a>标签插件</h1><h2 id="标签页"><a href="#标签页" class="headerlink" title="标签页"></a>标签页</h2><div class="tabs" id="fourth-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#fourth-unique-name-1">Solution 1 点我</a></li><li class="tab"><a href="#fourth-unique-name-2">Solution 2 点我</a></li><li class="tab"><a href="#fourth-unique-name-3">Solution 3 点我</a></li></ul><div class="tab-content"><div class="tab-pane active" id="fourth-unique-name-1"><p><strong>This is Tab 1.</strong></p></div><div class="tab-pane" id="fourth-unique-name-2"><p><strong>This is Tab 2.</strong></p></div><div class="tab-pane" id="fourth-unique-name-3"><p><strong>This is Tab 3.</strong></p></div></div></div>
+
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><hr>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
+<hr>
+<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
+</blockquote>
+
+<hr>
+<blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
+<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote>
+
+<hr>
+<blockquote><p>NEW: DevDocs now comes with syntax highlighting. <a href="http://devdocs.io" target="_blank" rel="noopener">http://devdocs.io</a></p>
+<footer><strong>@DevDocs</strong><cite><a href="https://twitter.com/devdocs/status/356095192085962752" target="_blank" rel="noopener">twitter.com/devdocs/status/356095192085962752</a></cite></footer></blockquote>
+
+<hr>
+<blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
+<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html" target="_blank" rel="noopener">Welcome to Island Marketing</a></cite></footer></blockquote>
+
+<hr>
+<h1 id="more"><a href="#more" class="headerlink" title="more"></a>more</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<a id="more"></a>
+
+<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h1 id="视频测试"><a href="#视频测试" class="headerlink" title="视频测试"></a>视频测试</h1><p><code>html bilibili</code></p>
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+    <iframe src="//player.bilibili.com/player.html?aid=6692695&bvid=BV1as41147Tg&cid=10896147&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;"> </iframe>
+</div>
+
+<p><code>youtube video_id</code></p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/qU6lIArty7E" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+<h1 id="引用文章"><a href="#引用文章" class="headerlink" title="引用文章"></a>引用文章</h1><p>获取永久链接<br>// hello-world</p>
+  
+
+<p>// test</p>
+  
+
+<hr>
+<p>超链接</p>
+
+<hr>
+<p>markdown语法<br><code>[hello-world](./hello-world.md)</code><br>失败，不过外链可以用这个。</p>
+]]></content>
+      <categories>
+        <category>建站测试</category>
+      </categories>
+      <tags>
+        <tag>建站测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【折腾笔记】看板娘浏览器</title>
+    <url>/blog/cc03/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><a href="/ny/waifuViewer/" style="text-decoration:none !important;">
+    <button class="nybtn nybtn_link"  onclick="null" ><span onclick="null">waifuViewer</span></button>
+</a><br><br><br>
+
+<p>从<a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">Live2d-model</a>弄了好多模型下来，但是没法看，于是就折腾了个waifuViewer~</p>
+<hr>
+<p>这几天沉迷个人主页，搞了四五天，emm，虽然自己这几篇文章都打了“不务正业”的标签，但这波也算是开拓视野了。以前从未接触js/css/html开发相关的东西，这算是在自己不熟悉的领域去实现自己的需求，虽然<strong>东西很简单</strong>，但坑处处都是，总的来说挺考验自己的，也从侧面证实了一直以来坚信的一个观点:</p>
+<blockquote>
+<p>重要的不是知识，而是对知识的应用和理解，以及快速查找知识的能力</p>
+<p>重要的不是题解，而是解题的思路和方法，甚至风格、态度、执拗</p>
+</blockquote>
+<p>当然，<strong>认知</strong>（或者说经验+知识）也很重要。计算机世界的发展除了不断迸发的idea和design，也经历了无数的参考与借鉴，所以很多东西自然而然有<strong>相通</strong>的地方，在遇到新问题的时候，认知面会为解决问题提供支撑。</p>
+<p>这段时间虽然”不务正业”，但对博导（前公司老板）的教诲有了新的认识，<strong>WHY-WHAT-HOW</strong>里面，虽然小规模的问题都体现在HOW上，但其实最不重要的就是HOW。计算机中也存在<strong>道法术</strong>。道，是规则、自然法则，上乘；法，是方法、法理，中乘；术，是行为、方式，下乘。以道御术，悟道比修炼法术更高一筹。但要做到这一点，还需要<strong>不断的努力</strong>，道法术三者兼备才能做出最好的策略。</p>
+<p>个人主页先放放，要玩玩别的了！</p>
+<hr>
+<h1 id="踩坑小计"><a href="#踩坑小计" class="headerlink" title="踩坑小计"></a>踩坑小计</h1><table>
+<thead>
+<tr>
+<th>ISSUE</th>
+<th>FIXED</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✔ 布局异常</td>
+<td>BOX+CSS解决</td>
+</tr>
+<tr>
+<td>✔ 手机显示异常</td>
+<td>CSS多设备适配</td>
+</tr>
+<tr>
+<td>✔ 和左下角看板娘冲突</td>
+<td>进入页面主动隐藏左下角看板娘</td>
+</tr>
+<tr>
+<td>✔ 跳转会刷新整个页面</td>
+<td>使用pjax</td>
+</tr>
+<tr>
+<td>✔ pjax跳转但不加载js</td>
+<td>对需要加载的js做pjax-data标记</td>
+</tr>
+<tr>
+<td>✔ 按钮超链接有下划线</td>
+<td>css增加nybtn_link 追加处理</td>
+</tr>
+<tr>
+<td>✔ pjax重复加载js报错</td>
+<td>优化js</td>
+</tr>
+</tbody></table>
+<p>后面还有todo的话 大概有以下几个方面</p>
+<ol>
+<li>支持多个live2d同时显示（纸片人老婆+1+1+1 ???</li>
+<li>按钮列表换种方式布局，以便随意添加按钮</li>
+<li>子页面用scrollbar控制来显示按钮</li>
+</ol>
+]]></content>
+      <categories>
+        <category>折腾笔记</category>
+      </categories>
+      <tags>
+        <tag>不务正业</tag>
+        <tag>折腾笔记</tag>
+        <tag>web</tag>
+        <tag>waifu</tag>
+        <tag>live2d</tag>
+        <tag>jsdelivr</tag>
+        <tag>CDN</tag>
+        <tag>playground</tag>
       </tags>
   </entry>
 </search>
