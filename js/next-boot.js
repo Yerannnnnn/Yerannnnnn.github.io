@@ -12,10 +12,10 @@ NexT.boot.registerEvents = function() {
     event.currentTarget.classList.toggle('toggle-close');
     const siteNav = document.querySelector('.site-nav');
     if (!siteNav) return;
-    const animateAction = siteNav.classList.contains('site-nav-on');
+    const animateAction = document.body.classList.contains('site-nav-on');
     const height = NexT.utils.getComputedStyle(siteNav);
     siteNav.style.height = animateAction ? height : 0;
-    const toggle = () => siteNav.classList.toggle('site-nav-on');
+    const toggle = () => document.body.classList.toggle('site-nav-on');
     const begin = () => {
       siteNav.style.overflow = 'hidden';
     };
@@ -45,9 +45,8 @@ NexT.boot.registerEvents = function() {
 
   const duration = 200;
   document.querySelectorAll('.sidebar-nav li').forEach((element, index) => {
-    element.addEventListener('click', event => {
-      const item = event.currentTarget;
-      if (item.matches('.sidebar-toc-active .sidebar-nav-toc, .sidebar-overview-active .sidebar-nav-overview')) return;
+    element.addEventListener('click', () => {
+      if (element.matches('.sidebar-toc-active .sidebar-nav-toc, .sidebar-overview-active .sidebar-nav-overview')) return;
       const sidebar = document.querySelector('.sidebar-inner');
       const panel = document.querySelectorAll('.sidebar-panel');
       const activeClassName = ['sidebar-toc-active', 'sidebar-overview-active'];
@@ -60,8 +59,7 @@ NexT.boot.registerEvents = function() {
         translateY: [0, -20],
         complete  : () => {
           // Prevent adding TOC to Overview if Overview was selected when close & open sidebar.
-          sidebar.classList.remove(activeClassName[1 - index]);
-          sidebar.classList.add(activeClassName[index]);
+          sidebar.classList.replace(activeClassName[1 - index], activeClassName[index]);
           window.anime({
             duration,
             targets   : panel[index],
