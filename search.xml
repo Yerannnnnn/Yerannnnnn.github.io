@@ -1,53 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>【折腾笔记】看板娘</title>
-    <url>/blog/cc02/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>又来更新了，前两天把网站折腾利索,前端加上了看板娘的js源码,把Live2D模型搬到了服务器上做了看板娘的API,美滋滋,但小水管服务器加载速度太慢了。看板娘可是网站灵魂,要优化！于是开始了新一轮的折腾！（折腾完这一波，我也算是接触过前端相关技术了 23333）</p>
-<p>目标：</p>
-<ol>
-<li>CDN加速（要快, ？？</li>
-<li>不依赖别人（纸片人老婆怎么能用别人的</li>
-<li>模型易增加（？？</li>
-<li>源码可更改（尽量搞到非压缩非混淆的源码）</li>
-</ol>
-<h1 id="相关源码"><a href="#相关源码" class="headerlink" title="相关源码"></a>相关源码</h1><p>翻了翻github,找到了这些相关的库</p>
-<ol>
-<li><a href="https://github.com/stevenjoezhang/live2d-widget" target="_blank" rel="noopener">https://github.com/stevenjoezhang/live2d-widget</a></li>
-<li><a href="https://github.com/HCLonely/live2d.user.js" target="_blank" rel="noopener">https://github.com/HCLonely/live2d.user.js</a></li>
-<li><a href="https://github.com/journey-ad/live2d_src" target="_blank" rel="noopener">https://github.com/journey-ad/live2d_src</a></li>
-<li><a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">https://github.com/EYHN/hexo-helper-live2d</a></li>
-<li><a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">https://github.com/Eikanya/Live2d-model</a></li>
-</ol>
-<p>emm,一开始是用的库1的代码,但有个问题,API和CDN方式冲突,API的话模型加载慢,CDN的话不能换衣服2333,所以打算改改看。看了看代码,根源在于live2d.min.js的接口就只接受一个json的path,以这个PATH的相对路径来查找模型资源。所以如果要改的话要么改到live2d.min.js里,要么把原来API返回的JSON都预备好,弃用API,直接给live2d接口CDN的JSON资源，通过换JSON来换衣服。但显然即麻烦又不够优雅，所以决定要改live2d.js。</p>
-<p>但库1的live2d.min.js是已经压缩过的,变量名看起来好像也混淆过,难以修改,不是很想用,所以继续找了其他的库。</p>
-<p>库2是一个浏览器插件的js源码，并不能直接移植到自己的网站上，但通过里面的一些做法可以得到启发：加载资源时用正则表达式把PATH替换成CDN的path，来即支持live2d-API 也支持CDN加速资源,</p>
-<p>库3是基于库4<a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">hexo-helper-live2d</a>改的,代码能读,功能看起来也OK最终决定基于库3来魔改。</p>
-<p>第一次接触js，改了半天吧，还踩了不少坑，{ import/export，ES6的语法，babel的兼容性，Hexo的默认渲染 } 等问题，好在最后搞定了，踩坑的东西就不写了，网上一大把解决方案。</p>
-<p>好像不写踩坑的东西，又没啥写的了？ 那写写吧</p>
-<h1 id="踩坑日志"><a href="#踩坑日志" class="headerlink" title="踩坑日志"></a>踩坑日志</h1><ol>
-<li>本地JS代码，和上传的代码不一样，很神奇，&lt;=会变成 &lt;= 1，一开始调试了好久，以为是js或者浏览器或者哪的bug，最后发现是忘了关HEXO的默认渲染，在HEXO的skip_render中添加路径即可。</li>
-<li>用本地html文件做测试的时候，加载相对路径的css/js时报错“不支持file://”，emm最后还是hexo s，启server来调试比较方便。</li>
-<li><code>type=&quot;module&quot;</code>才支持带有import/export的js代码，最后把js变成了单文件没这个问题了。</li>
-<li>gulp压缩的时候，不支持ES6语法，看了看gulp的文档，有个Stage-0的plugins，再外加<a href="https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js" target="_blank" rel="noopener">runtime.js</a>，才算通过。</li>
-<li>CDN的缓存，更改js不会及时生效，要用版本号/更改文件名等方式来刷新，好像给Github库打tag也行。</li>
-</ol>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>日常写C/C++，突然接触js的语法，不检查类型，不检查参数，变量全局，各种不一样，感觉，emm好松！但也挺爽挺好用。</p>
-]]></content>
-      <categories>
-        <category>折腾笔记</category>
-      </categories>
-      <tags>
-        <tag>不务正业</tag>
-        <tag>折腾笔记</tag>
-        <tag>web</tag>
-        <tag>waifu</tag>
-        <tag>live2d</tag>
-        <tag>jsdelivr</tag>
-        <tag>CDN</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【建站测试】文章格式测试</title>
     <url>/blog/cc00/</url>
     <content><![CDATA[<h1 id="代码段测试"><a href="#代码段测试" class="headerlink" title="代码段测试"></a>代码段测试</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Tail&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(T head, Tail... tail)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  g(head);</span><br><span class="line">  f(tail...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// clang-format off</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(T x)</span></span>&#123;<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">" "</span>; &#125;</span><br><span class="line"><span class="comment">// clang-format on</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"testA:"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span> &lt;&lt; <span class="string">"\t"</span>;</span><br><span class="line">  f(<span class="number">1</span>, <span class="number">2.2</span>, <span class="string">"hello"</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"testB:"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span> &lt;&lt; <span class="string">"\t"</span>;</span><br><span class="line">  f(<span class="number">0.2</span>, <span class="number">666</span>, <span class="string">"yuck!"</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -129,6 +82,128 @@
       </categories>
       <tags>
         <tag>建站测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【折腾笔记】看板娘</title>
+    <url>/blog/cc02/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>又来更新了，前两天把网站折腾利索,前端加上了看板娘的js源码,把Live2D模型搬到了服务器上做了看板娘的API,美滋滋,但小水管服务器加载速度太慢了。看板娘可是网站灵魂,要优化！于是开始了新一轮的折腾！（折腾完这一波，我也算是接触过前端相关技术了 23333）</p>
+<p>目标：</p>
+<ol>
+<li>CDN加速（要快, ？？</li>
+<li>不依赖别人（纸片人老婆怎么能用别人的</li>
+<li>模型易增加（？？</li>
+<li>源码可更改（尽量搞到非压缩非混淆的源码）</li>
+</ol>
+<h1 id="相关源码"><a href="#相关源码" class="headerlink" title="相关源码"></a>相关源码</h1><p>翻了翻github,找到了这些相关的库</p>
+<ol>
+<li><a href="https://github.com/stevenjoezhang/live2d-widget" target="_blank" rel="noopener">https://github.com/stevenjoezhang/live2d-widget</a></li>
+<li><a href="https://github.com/HCLonely/live2d.user.js" target="_blank" rel="noopener">https://github.com/HCLonely/live2d.user.js</a></li>
+<li><a href="https://github.com/journey-ad/live2d_src" target="_blank" rel="noopener">https://github.com/journey-ad/live2d_src</a></li>
+<li><a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">https://github.com/EYHN/hexo-helper-live2d</a></li>
+<li><a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">https://github.com/Eikanya/Live2d-model</a></li>
+</ol>
+<p>emm,一开始是用的库1的代码,但有个问题,API和CDN方式冲突,API的话模型加载慢,CDN的话不能换衣服2333,所以打算改改看。看了看代码,根源在于live2d.min.js的接口就只接受一个json的path,以这个PATH的相对路径来查找模型资源。所以如果要改的话要么改到live2d.min.js里,要么把原来API返回的JSON都预备好,弃用API,直接给live2d接口CDN的JSON资源，通过换JSON来换衣服。但显然即麻烦又不够优雅，所以决定要改live2d.js。</p>
+<p>但库1的live2d.min.js是已经压缩过的,变量名看起来好像也混淆过,难以修改,不是很想用,所以继续找了其他的库。</p>
+<p>库2是一个浏览器插件的js源码，并不能直接移植到自己的网站上，但通过里面的一些做法可以得到启发：加载资源时用正则表达式把PATH替换成CDN的path，来即支持live2d-API 也支持CDN加速资源,</p>
+<p>库3是基于库4<a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">hexo-helper-live2d</a>改的,代码能读,功能看起来也OK最终决定基于库3来魔改。</p>
+<p>第一次接触js，改了半天吧，还踩了不少坑，{ import/export，ES6的语法，babel的兼容性，Hexo的默认渲染 } 等问题，好在最后搞定了，踩坑的东西就不写了，网上一大把解决方案。</p>
+<p>好像不写踩坑的东西，又没啥写的了？ 那写写吧</p>
+<h1 id="踩坑日志"><a href="#踩坑日志" class="headerlink" title="踩坑日志"></a>踩坑日志</h1><ol>
+<li>本地JS代码，和上传的代码不一样，很神奇，&lt;=会变成 &lt;= 1，一开始调试了好久，以为是js或者浏览器或者哪的bug，最后发现是忘了关HEXO的默认渲染，在HEXO的skip_render中添加路径即可。</li>
+<li>用本地html文件做测试的时候，加载相对路径的css/js时报错“不支持file://”，emm最后还是hexo s，启server来调试比较方便。</li>
+<li><code>type=&quot;module&quot;</code>才支持带有import/export的js代码，最后把js变成了单文件没这个问题了。</li>
+<li>gulp压缩的时候，不支持ES6语法，看了看gulp的文档，有个Stage-0的plugins，再外加<a href="https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js" target="_blank" rel="noopener">runtime.js</a>，才算通过。</li>
+<li>CDN的缓存，更改js不会及时生效，要用版本号/更改文件名等方式来刷新，好像给Github库打tag也行。</li>
+</ol>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>日常写C/C++，突然接触js的语法，不检查类型，不检查参数，变量全局，各种不一样，感觉，emm好松！但也挺爽挺好用。</p>
+]]></content>
+      <categories>
+        <category>折腾笔记</category>
+      </categories>
+      <tags>
+        <tag>不务正业</tag>
+        <tag>折腾笔记</tag>
+        <tag>web</tag>
+        <tag>waifu</tag>
+        <tag>live2d</tag>
+        <tag>jsdelivr</tag>
+        <tag>CDN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【折腾笔记】看板娘浏览器</title>
+    <url>/blog/cc03/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><a href="/ny/waifuViewer/" style="text-decoration:none !important;">
+    <button class="nybtn nybtn_link"  onclick="null" ><span onclick="null">waifuViewer</span></button>
+</a><br><br><br>
+
+<p>从<a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">Live2d-model</a>弄了好多模型下来，但是没法看，于是就折腾了个waifuViewer~</p>
+<hr>
+<p>这几天沉迷个人主页，搞了四五天，emm，虽然自己这几篇文章都打了“不务正业”的标签，但这波也算是开拓视野了。以前从未接触js/css/html开发相关的东西，这算是在自己不熟悉的领域去实现自己的需求，虽然<strong>东西很简单</strong>，但坑处处都是，总的来说挺考验自己的，也从侧面证实了一直以来坚信的一个观点:</p>
+<blockquote>
+<p>重要的不是知识，而是对知识的应用和理解，以及快速查找知识的能力</p>
+<p>重要的不是题解，而是解题的思路和方法，甚至风格、态度、执拗</p>
+</blockquote>
+<p>当然，<strong>认知</strong>（或者说经验+知识）也很重要。计算机世界的发展除了不断迸发的idea和design，也经历了无数的参考与借鉴，所以很多东西自然而然有<strong>相通</strong>的地方，在遇到新问题的时候，认知面会为解决问题提供支撑。</p>
+<p>这段时间虽然”不务正业”，但对博导（前公司老板）的教诲有了新的认识，<strong>WHY-WHAT-HOW</strong>里面，虽然小规模的问题都体现在HOW上，但其实最不重要的就是HOW。计算机中也存在<strong>道法术</strong>。道，是规则、自然法则，上乘；法，是方法、法理，中乘；术，是行为、方式，下乘。以道御术，悟道比修炼法术更高一筹。但要做到这一点，还需要<strong>不断的努力</strong>，道法术三者兼备才能做出最好的策略。</p>
+<p>个人主页先放放，要玩玩别的了！</p>
+<hr>
+<h1 id="踩坑小计"><a href="#踩坑小计" class="headerlink" title="踩坑小计"></a>踩坑小计</h1><table>
+<thead>
+<tr>
+<th>ISSUE</th>
+<th>FIXED</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✔ 布局异常</td>
+<td>BOX+CSS解决</td>
+</tr>
+<tr>
+<td>✔ 手机显示异常</td>
+<td>CSS多设备适配</td>
+</tr>
+<tr>
+<td>✔ 和左下角看板娘冲突</td>
+<td>进入页面主动隐藏左下角看板娘</td>
+</tr>
+<tr>
+<td>✔ 跳转会刷新整个页面</td>
+<td>使用pjax</td>
+</tr>
+<tr>
+<td>✔ pjax跳转但不加载js</td>
+<td>对需要加载的js做pjax-data标记</td>
+</tr>
+<tr>
+<td>✔ 按钮超链接有下划线</td>
+<td>css增加nybtn_link 追加处理</td>
+</tr>
+<tr>
+<td>✔ pjax重复加载js报错</td>
+<td>优化js</td>
+</tr>
+</tbody></table>
+<p>后面还有todo的话 大概有以下几个方面</p>
+<ol>
+<li>支持多个live2d同时显示（纸片人老婆+1+1+1 ???</li>
+<li>按钮列表换种方式布局，以便随意添加按钮</li>
+<li>子页面用scrollbar控制来显示按钮</li>
+</ol>
+]]></content>
+      <categories>
+        <category>折腾笔记</category>
+      </categories>
+      <tags>
+        <tag>不务正业</tag>
+        <tag>折腾笔记</tag>
+        <tag>web</tag>
+        <tag>waifu</tag>
+        <tag>live2d</tag>
+        <tag>jsdelivr</tag>
+        <tag>CDN</tag>
+        <tag>playground</tag>
       </tags>
   </entry>
   <entry>
@@ -229,81 +304,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【折腾笔记】看板娘浏览器</title>
-    <url>/blog/cc03/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><a href="/ny/waifuViewer/" style="text-decoration:none !important;">
-    <button class="nybtn nybtn_link"  onclick="null" ><span onclick="null">waifuViewer</span></button>
-</a><br><br><br>
-
-<p>从<a href="https://github.com/Eikanya/Live2d-model" target="_blank" rel="noopener">Live2d-model</a>弄了好多模型下来，但是没法看，于是就折腾了个waifuViewer~</p>
-<hr>
-<p>这几天沉迷个人主页，搞了四五天，emm，虽然自己这几篇文章都打了“不务正业”的标签，但这波也算是开拓视野了。以前从未接触js/css/html开发相关的东西，这算是在自己不熟悉的领域去实现自己的需求，虽然<strong>东西很简单</strong>，但坑处处都是，总的来说挺考验自己的，也从侧面证实了一直以来坚信的一个观点:</p>
-<blockquote>
-<p>重要的不是知识，而是对知识的应用和理解，以及快速查找知识的能力</p>
-<p>重要的不是题解，而是解题的思路和方法，甚至风格、态度、执拗</p>
-</blockquote>
-<p>当然，<strong>认知</strong>（或者说经验+知识）也很重要。计算机世界的发展除了不断迸发的idea和design，也经历了无数的参考与借鉴，所以很多东西自然而然有<strong>相通</strong>的地方，在遇到新问题的时候，认知面会为解决问题提供支撑。</p>
-<p>这段时间虽然”不务正业”，但对博导（前公司老板）的教诲有了新的认识，<strong>WHY-WHAT-HOW</strong>里面，虽然小规模的问题都体现在HOW上，但其实最不重要的就是HOW。计算机中也存在<strong>道法术</strong>。道，是规则、自然法则，上乘；法，是方法、法理，中乘；术，是行为、方式，下乘。以道御术，悟道比修炼法术更高一筹。但要做到这一点，还需要<strong>不断的努力</strong>，道法术三者兼备才能做出最好的策略。</p>
-<p>个人主页先放放，要玩玩别的了！</p>
-<hr>
-<h1 id="踩坑小计"><a href="#踩坑小计" class="headerlink" title="踩坑小计"></a>踩坑小计</h1><table>
-<thead>
-<tr>
-<th>ISSUE</th>
-<th>FIXED</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>✔ 布局异常</td>
-<td>BOX+CSS解决</td>
-</tr>
-<tr>
-<td>✔ 手机显示异常</td>
-<td>CSS多设备适配</td>
-</tr>
-<tr>
-<td>✔ 和左下角看板娘冲突</td>
-<td>进入页面主动隐藏左下角看板娘</td>
-</tr>
-<tr>
-<td>✔ 跳转会刷新整个页面</td>
-<td>使用pjax</td>
-</tr>
-<tr>
-<td>✔ pjax跳转但不加载js</td>
-<td>对需要加载的js做pjax-data标记</td>
-</tr>
-<tr>
-<td>✔ 按钮超链接有下划线</td>
-<td>css增加nybtn_link 追加处理</td>
-</tr>
-<tr>
-<td>✔ pjax重复加载js报错</td>
-<td>优化js</td>
-</tr>
-</tbody></table>
-<p>后面还有todo的话 大概有以下几个方面</p>
-<ol>
-<li>支持多个live2d同时显示（纸片人老婆+1+1+1 ???</li>
-<li>按钮列表换种方式布局，以便随意添加按钮</li>
-<li>子页面用scrollbar控制来显示按钮</li>
-</ol>
-]]></content>
-      <categories>
-        <category>折腾笔记</category>
-      </categories>
-      <tags>
-        <tag>不务正业</tag>
-        <tag>折腾笔记</tag>
-        <tag>web</tag>
-        <tag>waifu</tag>
-        <tag>live2d</tag>
-        <tag>jsdelivr</tag>
-        <tag>CDN</tag>
-        <tag>playground</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【设计模式之美】开篇</title>
     <url>/blog/dp001/</url>
     <content><![CDATA[<blockquote>
@@ -328,51 +328,6 @@
 <p>再者，在技术这条职场道路上，当成长到一定阶段之后，势必要承担一些指导培养初级员工、新人，以及 code review 的工作。这个时候，如果自己都对“什么是好的代码？如何写出好的代码？”不了解，那又该如何指导别人，如何让人家信服呢？</p>
 <p>还有，如果作为leader负责一个项目整体的开发工作，就需要为开发进度、开发效率和项目质量负责。应用优秀的软件设计可相对有效地尽量避免团队堆砌垃圾代码，以免让整个项目无法维护、添加、修改一个功能都要费老大劲。优秀的设计可为整个团队的开发效率保驾护航。除此之外，代码质量低还会导致 bug 频发，排查困难。整个团队都陷在成天修改无意义的低级 bug、在烂代码中添补丁的事情中。而一个设计良好、易维护的系统，可以解放我们的时间，让我们做些更加有意义、更能提高自己和团队能力的事情。</p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>设计模式作为一门与编码、开发有着直接关系的基础知识，早点学习外加刻意练习，每写一行代码都是对内功的利用和加深，是可以受益整个职业生涯的事。</p>
-]]></content>
-      <categories>
-        <category>设计模式之美</category>
-      </categories>
-      <tags>
-        <tag>设计模式之美</tag>
-        <tag>学习笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【设计模式之美】如何评价代码的好坏</title>
-    <url>/blog/dp002/</url>
-    <content><![CDATA[<blockquote>
-<p>王争《设计模式之美》学习笔记</p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>代码质量的评价有很强的主观性，描述代码质量的词汇也有很多，比如可读性、可维护性、灵活、优雅、简洁。这些词汇是从不同的维度去评价代码质量的。它们之间有互相作用，并不是独立的，比如，代码的可读性好、可扩展性好就意味着代码的可维护性好。代码质量高低是一个综合各种因素得到的结论。并不能通过单一维度去评价一段代码的好坏。</p>
-<p>最常用到几个评判代码质量的标准有：可维护性、可读性、可扩展性、灵活性、简洁性、可复用性、可测试性。其中，可维护性、可读性、可扩展性又是提到最多的、最重要的三个评价标准。</p>
-<a id="more"></a>
-
-<h2 id="可维护性（maintainability）"><a href="#可维护性（maintainability）" class="headerlink" title="可维护性（maintainability）"></a>可维护性（maintainability）</h2><p>首先来看，什么是代码的“可维护性”？所谓的“维护代码”到底包含哪些具体工作？</p>
-<p>落实到编码开发，所谓的“维护”无外乎就是修改 bug、修改老的代码、添加新的代码之类的工作。所谓“代码易维护”就是指，在不破坏原有代码设计、不引入新的 bug 的情况下，能够快速地修改或者添加代码。所谓“代码不易维护”就是指，修改或者添加代码需要冒着极大的引入新 bug 的风险，并且需要花费很长的时间才能完成。</p>
-<p>知道，对于一个项目来说，维护代码的时间远远大于编写代码的时间。工程师大部分的时间可能都是花在修修 bug、改改老的功能逻辑、添加一些新的功能逻辑之类的工作上。所以，代码的可维护性就显得格外重要。</p>
-<p>维护、易维护、不易维护这三个概念不难理解。不过，对于实际的软件开发来说，更重要的是搞清楚，如何来判断代码可维护性的好坏。</p>
-<p>实际上，可维护性也是一个很难量化、偏向对代码整体的评价标准，它有点类似之前提到的“好”“坏”“优雅”之类的笼统评价。代码的可维护性是由很多因素协同作用的结果。代码的可读性好、简洁、可扩展性好，就会使得代码易维护；相反，就会使得代码不易维护。更细化地讲，如果代码分层清晰、模块化好、高内聚低耦合、遵从基于接口而非实现编程的设计原则等等，那就可能意味着代码易维护。除此之外，代码的易维护性还跟项目代码量的多少、业务的复杂程度、利用到的技术的复杂程度、文档是否全面、团队成员的开发水平等诸多因素有关。</p>
-<p>所以，从正面去分析一个代码是否易维护稍微有点难度。不过，可以从侧面上给出一个比较主观但又比较准确的感受。如果 bug 容易修复，修改、添加功能能够轻松完成，那就可以主观地认为代码对来说易维护。相反，如果修改一个 bug，修改、添加一个功能，需要花费很长的时间，那就可以主观地认为代码对来说不易维护。<br>你可能会说，这样的评价方式也太主观了吧？没错，是否易维护本来就是针对维护的人来说的。不同水平的人对于同一份代码的维护能力并不是相同的。对于同样一个系统，熟悉它的资深工程师会觉得代码的可维护性还不错，而一些新人因为不熟悉代码，修改 bug、修改添加代码要花费很长的时间，就有可能会觉得代码的可维护性不那么好。这实际上也印证了之前的观点：代码质量的评价有很强的主观性。</p>
-<h2 id="可读性（readability）"><a href="#可读性（readability）" class="headerlink" title="可读性（readability）"></a>可读性（readability）</h2><p>软件设计大师 Martin Fowler 曾经说过：“Any fool can write code that a computer can understand. Good programmers write code that humans can understand.”翻译成中文就是：“任何傻瓜都会编写计算机能理解的代码。好的程序员能够编写人能够理解的代码。”Google 内部甚至专门有个认证就叫作 Readability。只有拿到这个认证的工程师，才有资格在 code review 的时候，批准别人提交代码。可见代码的可读性有多重要，毕竟，代码被阅读的次数远远超过被编写和执行的次数。</p>
-<p>我个人认为，代码的可读性应该是评价代码质量最重要的指标之一。在编写代码的时候，时刻要考虑到代码是否易读、易理解。除此之外，代码的可读性在非常大程度上会影响代码的可维护性。毕竟，不管是修改 bug，还是修改添加功能代码，首先要做的事情就是读懂代码。代码读不大懂，就很有可能因为考虑不周全，而引入新的 bug。</p>
-<p>既然可读性如此重要，那又该如何评价一段代码的可读性呢？</p>
-<p>需要看代码是否符合编码规范、命名是否达意、注释是否详尽、函数是否长短合适、模块划分是否清晰、是否符合高内聚低耦合等等。你应该也能感觉到，从正面上，很难给出一个覆盖所有评价指标的列表。这也是无法量化可读性的原因。</p>
-<p>实际上，code review 是一个很好的测验代码可读性的手段。如果你的同事可以轻松地读懂你写的代码，那说明你的代码可读性很好；如果同事在读你的代码时，有很多疑问，那就说明你的代码可读性有待提高了。</p>
-<h2 id="可扩展性（extensibility）"><a href="#可扩展性（extensibility）" class="headerlink" title="可扩展性（extensibility）"></a>可扩展性（extensibility）</h2><p>可扩展性也是一个评价代码质量非常重要的标准。它表示的代码应对未来需求变化的能力。跟可读性一样，代码是否易扩展也很大程度上决定代码是否易维护。那到底什么是代码的可扩展性呢？</p>
-<p>代码的可扩展性表示，在不修改或少量修改原有代码的情况下，通过扩展的方式添加新的功能代码。说直白点就是，代码预留了一些功能扩展点，你可以把新功能代码，直接插到扩展点上，而不需要因为要添加一个功能而大动干戈，改动大量的原始代码。</p>
-<p>关于代码的扩展性，在后面讲到“对修改关闭，对扩展开放”这条设计原则的时候，我会来详细讲解，今天只需要知道，代码的可扩展性是评价代码质量非常重要的标准就可以了。</p>
-<h2 id="灵活性（flexibility）"><a href="#灵活性（flexibility）" class="headerlink" title="灵活性（flexibility）"></a>灵活性（flexibility）</h2><p>灵活性也是描述代码质量的一个常用词汇。比如经常会听到这样的描述：“代码写得很灵活”。那这里的“灵活”该如何理解呢？<br>尽管有很多人用这个词汇来描述代码的质量。但实际上，灵活性是一个挺抽象的评价标准，要给灵活性下个定义也是挺难的。不过，可以想一下，什么情况下才会说代码写得好灵活呢？我这里罗列了几个场景，希望能引发你自己对什么是灵活性的思考。<br>当添加一个新的功能代码的时候，原有的代码已经预留好了扩展点，不需要修改原有的代码，只要在扩展点上添加新的代码即可。这个时候，除了可以说代码易扩展，还可以说代码写得好灵活。<br>当要实现一个功能的时候，发现原有代码中，已经抽象出了很多底层可以复用的模块、类等代码，可以拿来直接使用。这个时候，除了可以说代码易复用之外，还可以说代码写得好灵活。<br>当使用某组接口的时候，如果这组接口可以应对各种使用场景，满足各种不同的需求，除了可以说接口易用之外，还可以说这个接口设计得好灵活或者代码写得好灵活。<br>从刚刚举的场景来看，如果一段代码易扩展、易复用或者易用，都可以称这段代码写得比较灵活。所以，灵活这个词的含义非常宽泛，很多场景下都可以使用。</p>
-<h2 id="简洁性（simplicity）"><a href="#简洁性（simplicity）" class="headerlink" title="简洁性（simplicity）"></a>简洁性（simplicity）</h2><p>有一条非常著名的设计原则，你一定听过，那就是 KISS 原则：“Keep It Simple，Stupid”。这个原则说的意思就是，尽量保持代码简单。代码简单、逻辑清晰，也就意味着易读、易维护。在编写代码的时候，往往也会把简单、清晰放到首位。<br>不过，很多编程经验不足的程序员会觉得，简单的代码没有技术含量，喜欢在项目中引入一些复杂的设计模式，觉得这样才能体现自己的技术水平。实际上，思从深而行从简，真正的高手能云淡风轻地用最简单的方法解决最复杂的问题。这也是一个编程老手跟编程新手的本质区别之一。<br>除此之外，虽然都能认识到，代码要尽量写得简洁，符合 KISS 原则，但怎么样的代码才算足够简洁？不是每个人都能很准确地判断出来这一点。所以，在后面的章节中，当讲到 KISS 原则的时候，我会通过具体的代码实例，详细给你解释，“为什么 KISS 原则看似非常简单、好理解，但实际上用好并不容易”。今天，就暂且不展开详细讲解了。</p>
-<h2 id="可复用性（reusability）"><a href="#可复用性（reusability）" class="headerlink" title="可复用性（reusability）"></a>可复用性（reusability）</h2><p>代码的可复用性可以简单地理解为，尽量减少重复代码的编写，复用已有的代码。在后面的很多章节中，都会经常提到“可复用性”这一代码评价标准。<br>比如，当讲到面向对象特性的时候，会讲到继承、多态存在的目的之一，就是为了提高代码的可复用性；当讲到设计原则的时候，会讲到单一职责原则也跟代码的可复用性相关；当讲到重构技巧的时候，会讲到解耦、高内聚、模块化等都能提高代码的可复用性。可见，可复用性也是一个非常重要的代码评价标准，是很多设计原则、思想、模式等所要达到的最终效果。<br>实际上，代码可复用性跟 DRY（Don’t Repeat Yourself）这条设计原则的关系挺紧密的，所以，在后面的章节中，当讲到 DRY 设计原则的时候，我还会讲更多代码复用相关的知识，比如，“有哪些编程方法可以提高代码的复用性”等。</p>
-<h2 id="可测试性（testability）"><a href="#可测试性（testability）" class="headerlink" title="可测试性（testability）"></a>可测试性（testability）</h2><p>相对于前面六个评价标准，代码的可测试性是一个相对较少被提及，但又非常重要的代码质量评价标准。代码可测试性的好坏，能从侧面上非常准确地反应代码质量的好坏。代码的可测试性差，比较难写单元测试，那基本上就能说明代码设计得有问题。</p>
-<p><strong>依赖问题</strong><br>如果被测代码依赖了外部系统或者不可控组件，比如，需要依赖数据库、网络通信、文件系统等，那就需要将被测代码与外部系统通过mock的方式解依赖，mock困难则可测性差，考虑使用依赖注入、控制反转的方式进行优化。</p>
-<p><strong>未决行为</strong><br>所谓的未决行为逻辑就是，代码的输出是随机或者说不确定的，比如，跟时间、随机数有关的代码，会导致测试困难，一般将未决行为逻辑重新封装。</p>
-<p><strong>全局变量</strong><br>全局变量是一种面向过程的编程风格，有种种弊端。实际上，滥用全局变量也让编写单元测试变得困难，测试要不断重置处理全局变量，且不利于并行测试。</p>
-<p><strong>静态方法</strong><br>静态方法跟全局变量一样，也是一种面向过程的编程思维。在代码中调用静态方法，有时候会导致代码不易测试。主要原因是静态方法也很难 mock。但是，这个要分情况来看。只有在这个静态方法执行耗时太长、依赖外部资源、逻辑复杂、行为未决等情况下，才需要在单元测试中 mock 这个静态方法。除此之外，如果只是类似 Math.abs() 这样的简单静态方法，并不会影响代码的可测试性，因为本身并不需要 mock。</p>
-<p><strong>复杂继承</strong><br>前面提到，相比组合关系，继承关系的代码结构更加耦合、不灵活，更加不易扩展、不易维护。实际上，继承关系也更加难测试。这也印证了代码的可测试性跟代码质量的相关性。如果父类需要 mock 某个依赖对象才能进行单元测试，那所有的子类、子类的子类……在编写单元测试的时候，都要 mock 这个依赖对象。对于层次很深（在继承关系类图中表现为纵向深度）、结构复杂（在继承关系类图中表现为横向广度）的继承关系，越底层的子类要 mock 的对象可能就会越多，这样就会导致，底层子类在写单元测试的时候，要一个一个 mock 很多依赖对象，而且还需要查看父类代码，去了解该如何 mock 这些依赖对象。如果利用组合而非继承来组织类之间的关系，类之间的结构层次比较扁平，在编写单元测试的时候，只需要 mock 类所组合依赖的对象即可。</p>
-<p><strong>高耦合代码</strong><br>如果一个类职责很重，需要依赖十几个外部对象才能完成工作，代码高度耦合，那在编写单元测试的时候，可能需要 mock 这十几个依赖的对象。不管是从代码设计的角度来说，还是从编写单元测试的角度来说，这都是不合理的。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>要写出满足这些评价标准的高质量代码，需要掌握一些更加细化、更加能落地的编程方法论，包括面向对象设计思想、设计原则、设计模式、编码规范、重构技巧等。而所有这些编程方法论的最终目的都是为了编写出高质量的代码。</p>
-<p>比如，面向对象中的继承、多态能让写出可复用的代码；编码规范能让写出可读性好的代码；设计原则中的单一职责、DRY、基于接口而非实现、里式替换原则等，可以让写出可复用、灵活、可读性好、易扩展、易维护的代码；设计模式可以让写出易扩展的代码；持续重构可以时刻保持代码的可维护性等等。</p>
 ]]></content>
       <categories>
         <category>设计模式之美</category>
@@ -530,6 +485,51 @@
 <li>重构作为保持代码质量不下降的有效手段，利用的就是面向对象、设计原则、设计模式、编程规范这些理论。</li>
 </ul>
 <p>实际上，面向对象、设计原则、设计模式、编程规范、代码重构，这五者都是保持或者提高代码质量的方法论，本质上都是服务于编写高质量代码这一件事的。当追本逐源，看清这个本质之后，很多事情怎么做就清楚了，很多选择怎么选也清楚了。比如，在某个场景下，该不该用这个设计模式，那就看能不能提高代码的可扩展性；要不要重构，那就看重代码是否存在可读、可维护问题等。</p>
+]]></content>
+      <categories>
+        <category>设计模式之美</category>
+      </categories>
+      <tags>
+        <tag>设计模式之美</tag>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【设计模式之美】如何评价代码的好坏</title>
+    <url>/blog/dp002/</url>
+    <content><![CDATA[<blockquote>
+<p>王争《设计模式之美》学习笔记</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>代码质量的评价有很强的主观性，描述代码质量的词汇也有很多，比如可读性、可维护性、灵活、优雅、简洁。这些词汇是从不同的维度去评价代码质量的。它们之间有互相作用，并不是独立的，比如，代码的可读性好、可扩展性好就意味着代码的可维护性好。代码质量高低是一个综合各种因素得到的结论。并不能通过单一维度去评价一段代码的好坏。</p>
+<p>最常用到几个评判代码质量的标准有：可维护性、可读性、可扩展性、灵活性、简洁性、可复用性、可测试性。其中，可维护性、可读性、可扩展性又是提到最多的、最重要的三个评价标准。</p>
+<a id="more"></a>
+
+<h2 id="可维护性（maintainability）"><a href="#可维护性（maintainability）" class="headerlink" title="可维护性（maintainability）"></a>可维护性（maintainability）</h2><p>首先来看，什么是代码的“可维护性”？所谓的“维护代码”到底包含哪些具体工作？</p>
+<p>落实到编码开发，所谓的“维护”无外乎就是修改 bug、修改老的代码、添加新的代码之类的工作。所谓“代码易维护”就是指，在不破坏原有代码设计、不引入新的 bug 的情况下，能够快速地修改或者添加代码。所谓“代码不易维护”就是指，修改或者添加代码需要冒着极大的引入新 bug 的风险，并且需要花费很长的时间才能完成。</p>
+<p>知道，对于一个项目来说，维护代码的时间远远大于编写代码的时间。工程师大部分的时间可能都是花在修修 bug、改改老的功能逻辑、添加一些新的功能逻辑之类的工作上。所以，代码的可维护性就显得格外重要。</p>
+<p>维护、易维护、不易维护这三个概念不难理解。不过，对于实际的软件开发来说，更重要的是搞清楚，如何来判断代码可维护性的好坏。</p>
+<p>实际上，可维护性也是一个很难量化、偏向对代码整体的评价标准，它有点类似之前提到的“好”“坏”“优雅”之类的笼统评价。代码的可维护性是由很多因素协同作用的结果。代码的可读性好、简洁、可扩展性好，就会使得代码易维护；相反，就会使得代码不易维护。更细化地讲，如果代码分层清晰、模块化好、高内聚低耦合、遵从基于接口而非实现编程的设计原则等等，那就可能意味着代码易维护。除此之外，代码的易维护性还跟项目代码量的多少、业务的复杂程度、利用到的技术的复杂程度、文档是否全面、团队成员的开发水平等诸多因素有关。</p>
+<p>所以，从正面去分析一个代码是否易维护稍微有点难度。不过，可以从侧面上给出一个比较主观但又比较准确的感受。如果 bug 容易修复，修改、添加功能能够轻松完成，那就可以主观地认为代码对来说易维护。相反，如果修改一个 bug，修改、添加一个功能，需要花费很长的时间，那就可以主观地认为代码对来说不易维护。<br>你可能会说，这样的评价方式也太主观了吧？没错，是否易维护本来就是针对维护的人来说的。不同水平的人对于同一份代码的维护能力并不是相同的。对于同样一个系统，熟悉它的资深工程师会觉得代码的可维护性还不错，而一些新人因为不熟悉代码，修改 bug、修改添加代码要花费很长的时间，就有可能会觉得代码的可维护性不那么好。这实际上也印证了之前的观点：代码质量的评价有很强的主观性。</p>
+<h2 id="可读性（readability）"><a href="#可读性（readability）" class="headerlink" title="可读性（readability）"></a>可读性（readability）</h2><p>软件设计大师 Martin Fowler 曾经说过：“Any fool can write code that a computer can understand. Good programmers write code that humans can understand.”翻译成中文就是：“任何傻瓜都会编写计算机能理解的代码。好的程序员能够编写人能够理解的代码。”Google 内部甚至专门有个认证就叫作 Readability。只有拿到这个认证的工程师，才有资格在 code review 的时候，批准别人提交代码。可见代码的可读性有多重要，毕竟，代码被阅读的次数远远超过被编写和执行的次数。</p>
+<p>我个人认为，代码的可读性应该是评价代码质量最重要的指标之一。在编写代码的时候，时刻要考虑到代码是否易读、易理解。除此之外，代码的可读性在非常大程度上会影响代码的可维护性。毕竟，不管是修改 bug，还是修改添加功能代码，首先要做的事情就是读懂代码。代码读不大懂，就很有可能因为考虑不周全，而引入新的 bug。</p>
+<p>既然可读性如此重要，那又该如何评价一段代码的可读性呢？</p>
+<p>需要看代码是否符合编码规范、命名是否达意、注释是否详尽、函数是否长短合适、模块划分是否清晰、是否符合高内聚低耦合等等。你应该也能感觉到，从正面上，很难给出一个覆盖所有评价指标的列表。这也是无法量化可读性的原因。</p>
+<p>实际上，code review 是一个很好的测验代码可读性的手段。如果你的同事可以轻松地读懂你写的代码，那说明你的代码可读性很好；如果同事在读你的代码时，有很多疑问，那就说明你的代码可读性有待提高了。</p>
+<h2 id="可扩展性（extensibility）"><a href="#可扩展性（extensibility）" class="headerlink" title="可扩展性（extensibility）"></a>可扩展性（extensibility）</h2><p>可扩展性也是一个评价代码质量非常重要的标准。它表示的代码应对未来需求变化的能力。跟可读性一样，代码是否易扩展也很大程度上决定代码是否易维护。那到底什么是代码的可扩展性呢？</p>
+<p>代码的可扩展性表示，在不修改或少量修改原有代码的情况下，通过扩展的方式添加新的功能代码。说直白点就是，代码预留了一些功能扩展点，你可以把新功能代码，直接插到扩展点上，而不需要因为要添加一个功能而大动干戈，改动大量的原始代码。</p>
+<p>关于代码的扩展性，在后面讲到“对修改关闭，对扩展开放”这条设计原则的时候，我会来详细讲解，今天只需要知道，代码的可扩展性是评价代码质量非常重要的标准就可以了。</p>
+<h2 id="灵活性（flexibility）"><a href="#灵活性（flexibility）" class="headerlink" title="灵活性（flexibility）"></a>灵活性（flexibility）</h2><p>灵活性也是描述代码质量的一个常用词汇。比如经常会听到这样的描述：“代码写得很灵活”。那这里的“灵活”该如何理解呢？<br>尽管有很多人用这个词汇来描述代码的质量。但实际上，灵活性是一个挺抽象的评价标准，要给灵活性下个定义也是挺难的。不过，可以想一下，什么情况下才会说代码写得好灵活呢？我这里罗列了几个场景，希望能引发你自己对什么是灵活性的思考。<br>当添加一个新的功能代码的时候，原有的代码已经预留好了扩展点，不需要修改原有的代码，只要在扩展点上添加新的代码即可。这个时候，除了可以说代码易扩展，还可以说代码写得好灵活。<br>当要实现一个功能的时候，发现原有代码中，已经抽象出了很多底层可以复用的模块、类等代码，可以拿来直接使用。这个时候，除了可以说代码易复用之外，还可以说代码写得好灵活。<br>当使用某组接口的时候，如果这组接口可以应对各种使用场景，满足各种不同的需求，除了可以说接口易用之外，还可以说这个接口设计得好灵活或者代码写得好灵活。<br>从刚刚举的场景来看，如果一段代码易扩展、易复用或者易用，都可以称这段代码写得比较灵活。所以，灵活这个词的含义非常宽泛，很多场景下都可以使用。</p>
+<h2 id="简洁性（simplicity）"><a href="#简洁性（simplicity）" class="headerlink" title="简洁性（simplicity）"></a>简洁性（simplicity）</h2><p>有一条非常著名的设计原则，你一定听过，那就是 KISS 原则：“Keep It Simple，Stupid”。这个原则说的意思就是，尽量保持代码简单。代码简单、逻辑清晰，也就意味着易读、易维护。在编写代码的时候，往往也会把简单、清晰放到首位。<br>不过，很多编程经验不足的程序员会觉得，简单的代码没有技术含量，喜欢在项目中引入一些复杂的设计模式，觉得这样才能体现自己的技术水平。实际上，思从深而行从简，真正的高手能云淡风轻地用最简单的方法解决最复杂的问题。这也是一个编程老手跟编程新手的本质区别之一。<br>除此之外，虽然都能认识到，代码要尽量写得简洁，符合 KISS 原则，但怎么样的代码才算足够简洁？不是每个人都能很准确地判断出来这一点。所以，在后面的章节中，当讲到 KISS 原则的时候，我会通过具体的代码实例，详细给你解释，“为什么 KISS 原则看似非常简单、好理解，但实际上用好并不容易”。今天，就暂且不展开详细讲解了。</p>
+<h2 id="可复用性（reusability）"><a href="#可复用性（reusability）" class="headerlink" title="可复用性（reusability）"></a>可复用性（reusability）</h2><p>代码的可复用性可以简单地理解为，尽量减少重复代码的编写，复用已有的代码。在后面的很多章节中，都会经常提到“可复用性”这一代码评价标准。<br>比如，当讲到面向对象特性的时候，会讲到继承、多态存在的目的之一，就是为了提高代码的可复用性；当讲到设计原则的时候，会讲到单一职责原则也跟代码的可复用性相关；当讲到重构技巧的时候，会讲到解耦、高内聚、模块化等都能提高代码的可复用性。可见，可复用性也是一个非常重要的代码评价标准，是很多设计原则、思想、模式等所要达到的最终效果。<br>实际上，代码可复用性跟 DRY（Don’t Repeat Yourself）这条设计原则的关系挺紧密的，所以，在后面的章节中，当讲到 DRY 设计原则的时候，我还会讲更多代码复用相关的知识，比如，“有哪些编程方法可以提高代码的复用性”等。</p>
+<h2 id="可测试性（testability）"><a href="#可测试性（testability）" class="headerlink" title="可测试性（testability）"></a>可测试性（testability）</h2><p>相对于前面六个评价标准，代码的可测试性是一个相对较少被提及，但又非常重要的代码质量评价标准。代码可测试性的好坏，能从侧面上非常准确地反应代码质量的好坏。代码的可测试性差，比较难写单元测试，那基本上就能说明代码设计得有问题。</p>
+<p><strong>依赖问题</strong><br>如果被测代码依赖了外部系统或者不可控组件，比如，需要依赖数据库、网络通信、文件系统等，那就需要将被测代码与外部系统通过mock的方式解依赖，mock困难则可测性差，考虑使用依赖注入、控制反转的方式进行优化。</p>
+<p><strong>未决行为</strong><br>所谓的未决行为逻辑就是，代码的输出是随机或者说不确定的，比如，跟时间、随机数有关的代码，会导致测试困难，一般将未决行为逻辑重新封装。</p>
+<p><strong>全局变量</strong><br>全局变量是一种面向过程的编程风格，有种种弊端。实际上，滥用全局变量也让编写单元测试变得困难，测试要不断重置处理全局变量，且不利于并行测试。</p>
+<p><strong>静态方法</strong><br>静态方法跟全局变量一样，也是一种面向过程的编程思维。在代码中调用静态方法，有时候会导致代码不易测试。主要原因是静态方法也很难 mock。但是，这个要分情况来看。只有在这个静态方法执行耗时太长、依赖外部资源、逻辑复杂、行为未决等情况下，才需要在单元测试中 mock 这个静态方法。除此之外，如果只是类似 Math.abs() 这样的简单静态方法，并不会影响代码的可测试性，因为本身并不需要 mock。</p>
+<p><strong>复杂继承</strong><br>前面提到，相比组合关系，继承关系的代码结构更加耦合、不灵活，更加不易扩展、不易维护。实际上，继承关系也更加难测试。这也印证了代码的可测试性跟代码质量的相关性。如果父类需要 mock 某个依赖对象才能进行单元测试，那所有的子类、子类的子类……在编写单元测试的时候，都要 mock 这个依赖对象。对于层次很深（在继承关系类图中表现为纵向深度）、结构复杂（在继承关系类图中表现为横向广度）的继承关系，越底层的子类要 mock 的对象可能就会越多，这样就会导致，底层子类在写单元测试的时候，要一个一个 mock 很多依赖对象，而且还需要查看父类代码，去了解该如何 mock 这些依赖对象。如果利用组合而非继承来组织类之间的关系，类之间的结构层次比较扁平，在编写单元测试的时候，只需要 mock 类所组合依赖的对象即可。</p>
+<p><strong>高耦合代码</strong><br>如果一个类职责很重，需要依赖十几个外部对象才能完成工作，代码高度耦合，那在编写单元测试的时候，可能需要 mock 这十几个依赖的对象。不管是从代码设计的角度来说，还是从编写单元测试的角度来说，这都是不合理的。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>要写出满足这些评价标准的高质量代码，需要掌握一些更加细化、更加能落地的编程方法论，包括面向对象设计思想、设计原则、设计模式、编码规范、重构技巧等。而所有这些编程方法论的最终目的都是为了编写出高质量的代码。</p>
+<p>比如，面向对象中的继承、多态能让写出可复用的代码；编码规范能让写出可读性好的代码；设计原则中的单一职责、DRY、基于接口而非实现、里式替换原则等，可以让写出可复用、灵活、可读性好、易扩展、易维护的代码；设计模式可以让写出易扩展的代码；持续重构可以时刻保持代码的可维护性等等。</p>
 ]]></content>
       <categories>
         <category>设计模式之美</category>
