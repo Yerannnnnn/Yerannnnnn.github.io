@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://yuanjiuzheng.com/blog/cc004/</loc>
+    <lastmod>2020-10-18</lastmod>
+  </url>
+  <url>
     <loc>https://yuanjiuzheng.com/blog/dp003/</loc>
     <lastmod>2020-06-19</lastmod>
   </url>
@@ -13,23 +17,19 @@
     <lastmod>2020-06-09</lastmod>
   </url>
   <url>
-    <loc>https://yuanjiuzheng.com/blog/cc03/</loc>
+    <loc>https://yuanjiuzheng.com/blog/cc003/</loc>
     <lastmod>2020-05-30</lastmod>
   </url>
   <url>
-    <loc>https://yuanjiuzheng.com/blog/cc04/</loc>
-    <lastmod>2020-05-30</lastmod>
-  </url>
-  <url>
-    <loc>https://yuanjiuzheng.com/blog/cc02/</loc>
+    <loc>https://yuanjiuzheng.com/blog/cc002/</loc>
     <lastmod>2020-05-28</lastmod>
   </url>
   <url>
-    <loc>https://yuanjiuzheng.com/blog/cc01/</loc>
+    <loc>https://yuanjiuzheng.com/blog/cc001/</loc>
     <lastmod>2020-05-24</lastmod>
   </url>
   <url>
-    <loc>https://yuanjiuzheng.com/blog/cc00/</loc>
+    <loc>https://yuanjiuzheng.com/blog/cc000/</loc>
     <lastmod>2020-04-11</lastmod>
   </url>
 </urlset> 

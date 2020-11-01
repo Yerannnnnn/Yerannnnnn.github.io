@@ -1,92 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>【建站测试】文章格式测试</title>
-    <url>/blog/cc00/</url>
-    <content><![CDATA[<h1 id="代码段测试"><a href="#代码段测试" class="headerlink" title="代码段测试"></a>代码段测试</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Tail&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(T head, Tail... tail)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  g(head);</span><br><span class="line">  f(tail...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// clang-format off</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(T x)</span></span>&#123;<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">&quot; &quot;</span>; &#125;</span><br><span class="line"><span class="comment">// clang-format on</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;testA:&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span> &lt;&lt; <span class="string">&quot;\t&quot;</span>;</span><br><span class="line">  f(<span class="number">1</span>, <span class="number">2.2</span>, <span class="string">&quot;hello&quot;</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;testB:&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span> &lt;&lt; <span class="string">&quot;\t&quot;</span>;</span><br><span class="line">  f(<span class="number">0.2</span>, <span class="number">666</span>, <span class="string">&quot;yuck!&quot;</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="图片测试"><a href="#图片测试" class="headerlink" title="图片测试"></a>图片测试</h1>
-
-<p><img data-src="/images/posts/test.jpg" alt="This is an test image"><br><code>\&#123;\%  </code> <code>asset_img /images/posts/test.jpg This is an test image \&#125;\%</code>  </p>
-<h1 id="表格测试"><a href="#表格测试" class="headerlink" title="表格测试"></a>表格测试</h1><table>
-<thead>
-<tr>
-<th>表头A</th>
-<th>表头B</th>
-<th>表头C</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>A</td>
-<td>B</td>
-<td>C</td>
-</tr>
-<tr>
-<td>A</td>
-<td>B</td>
-<td>C</td>
-</tr>
-<tr>
-<td>A</td>
-<td>B</td>
-<td>C</td>
-</tr>
-</tbody></table>
-<h1 id="标签插件"><a href="#标签插件" class="headerlink" title="标签插件"></a>标签插件</h1><h2 id="标签页"><a href="#标签页" class="headerlink" title="标签页"></a>标签页</h2><div class="tabs" id="fourth-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#fourth-unique-name-1">Solution 1 点我</a></li><li class="tab"><a href="#fourth-unique-name-2">Solution 2 点我</a></li><li class="tab"><a href="#fourth-unique-name-3">Solution 3 点我</a></li></ul><div class="tab-content"><div class="tab-pane active" id="fourth-unique-name-1"><p><strong>This is Tab 1.</strong></p></div><div class="tab-pane" id="fourth-unique-name-2"><p><strong>This is Tab 2.</strong></p></div><div class="tab-pane" id="fourth-unique-name-3"><p><strong>This is Tab 3.</strong></p></div></div></div>
-
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><hr>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
-<hr>
-<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
-</blockquote>
-
-<hr>
-<blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
-<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote>
-
-<hr>
-<blockquote><p>NEW: DevDocs now comes with syntax highlighting. <a href="http://devdocs.io/">http://devdocs.io</a></p>
-<footer><strong>@DevDocs</strong><cite><a href="https://twitter.com/devdocs/status/356095192085962752">twitter.com/devdocs/status/356095192085962752</a></cite></footer></blockquote>
-
-<hr>
-<blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
-<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html">Welcome to Island Marketing</a></cite></footer></blockquote>
-
-<hr>
-<h1 id="more"><a href="#more" class="headerlink" title="more"></a>more</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-<a id="more"></a>
-
-<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<h1 id="视频测试"><a href="#视频测试" class="headerlink" title="视频测试"></a>视频测试</h1><p><code>html bilibili</code></p>
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
-    <iframe src="//player.bilibili.com/player.html?aid=6692695&bvid=BV1as41147Tg&cid=10896147&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;"> </iframe>
-</div>
-
-<p><code>youtube video_id</code></p>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/qU6lIArty7E" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-
-<h1 id="引用文章"><a href="#引用文章" class="headerlink" title="引用文章"></a>引用文章</h1><p>获取永久链接<br>// hello-world</p>
-  
-
-<p>// test</p>
-  
-
-<hr>
-<p>超链接</p>
-<a href="#">Post not found: hello-world 链接文字</a>
-<hr>
-<p>markdown语法<br><code>[hello-world](./hello-world.md)</code><br>失败，不过外链可以用这个。</p>
-]]></content>
-      <categories>
-        <category>建站测试</category>
-      </categories>
-      <tags>
-        <tag>建站测试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【折腾笔记】个人网站</title>
-    <url>/blog/cc01/</url>
+    <url>/blog/cc001/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。</p>
 <p>从14年开始搞个人网站，那时候用虚拟主机，便宜耐用，但配置差，网速慢，备份不方便，自由度极低，而且那时候网站程序是用的 WordPress ，Emm 可能是因为当时太菜了，觉得不好用，网站搬家也很费力，备份也不太方便，虽然有一次趁着打折续了五年的，但后来也弃了虚拟主机。</p>
 <p>后来开始买国外或香港VPS，免备案，预装Ubuntu，一键xx面板，一键LNMP，面板后台操作一番，WordPress 网站就建起来了，体验还不错。不过感觉xx面板有点不安全，而且依赖性太强，既然是瞎折腾，隔着一层面板折腾来折腾去也的确没什么意思。</p>
@@ -182,55 +98,8 @@
       </tags>
   </entry>
   <entry>
-    <title>【折腾笔记】看板娘</title>
-    <url>/blog/cc02/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>又来更新了，前两天把网站折腾利索,前端加上了看板娘的js源码,把Live2D模型搬到了服务器上做了看板娘的API,美滋滋,但小水管服务器加载速度太慢了。看板娘可是网站灵魂,要优化！于是开始了新一轮的折腾！（折腾完这一波，我也算是接触过前端相关技术了 23333）</p>
-<p>目标：</p>
-<ol>
-<li>CDN加速（要快, ？？</li>
-<li>不依赖别人（纸片人老婆怎么能用别人的</li>
-<li>模型易增加（？？</li>
-<li>源码可更改（尽量搞到非压缩非混淆的源码）</li>
-</ol>
-<h1 id="相关源码"><a href="#相关源码" class="headerlink" title="相关源码"></a>相关源码</h1><p>翻了翻github,找到了这些相关的库</p>
-<ol>
-<li><a href="https://github.com/stevenjoezhang/live2d-widget">https://github.com/stevenjoezhang/live2d-widget</a></li>
-<li><a href="https://github.com/HCLonely/live2d.user.js">https://github.com/HCLonely/live2d.user.js</a></li>
-<li><a href="https://github.com/journey-ad/live2d_src">https://github.com/journey-ad/live2d_src</a></li>
-<li><a href="https://github.com/EYHN/hexo-helper-live2d">https://github.com/EYHN/hexo-helper-live2d</a></li>
-<li><a href="https://github.com/Eikanya/Live2d-model">https://github.com/Eikanya/Live2d-model</a></li>
-</ol>
-<p>emm,一开始是用的库1的代码,但有个问题,API和CDN方式冲突,API的话模型加载慢,CDN的话不能换衣服2333,所以打算改改看。看了看代码,根源在于live2d.min.js的接口就只接受一个json的path,以这个PATH的相对路径来查找模型资源。所以如果要改的话要么改到live2d.min.js里,要么把原来API返回的JSON都预备好,弃用API,直接给live2d接口CDN的JSON资源，通过换JSON来换衣服。但显然即麻烦又不够优雅，所以决定要改live2d.js。</p>
-<p>但库1的live2d.min.js是已经压缩过的,变量名看起来好像也混淆过,难以修改,不是很想用,所以继续找了其他的库。</p>
-<p>库2是一个浏览器插件的js源码，并不能直接移植到自己的网站上，但通过里面的一些做法可以得到启发：加载资源时用正则表达式把PATH替换成CDN的path，来即支持live2d-API 也支持CDN加速资源,</p>
-<p>库3是基于库4<a href="https://github.com/EYHN/hexo-helper-live2d">hexo-helper-live2d</a>改的,代码能读,功能看起来也OK最终决定基于库3来魔改。</p>
-<p>第一次接触js，改了半天吧，还踩了不少坑，{ import/export，ES6的语法，babel的兼容性，Hexo的默认渲染 } 等问题，好在最后搞定了，踩坑的东西就不写了，网上一大把解决方案。</p>
-<p>好像不写踩坑的东西，又没啥写的了？ 那写写吧</p>
-<h1 id="踩坑日志"><a href="#踩坑日志" class="headerlink" title="踩坑日志"></a>踩坑日志</h1><ol>
-<li>本地JS代码，和上传的代码不一样，很神奇，&lt;=会变成 &lt;= 1，一开始调试了好久，以为是js或者浏览器或者哪的bug，最后发现是忘了关HEXO的默认渲染，在HEXO的skip_render中添加路径即可。</li>
-<li>用本地html文件做测试的时候，加载相对路径的css/js时报错“不支持file://”，emm最后还是hexo s，启server来调试比较方便。</li>
-<li><code>type=&quot;module&quot;</code>才支持带有import/export的js代码，最后把js变成了单文件没这个问题了。</li>
-<li>gulp压缩的时候，不支持ES6语法，看了看gulp的文档，有个Stage-0的plugins，再外加<a href="https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js">runtime.js</a>，才算通过。</li>
-<li>CDN的缓存，更改js不会及时生效，要用版本号/更改文件名等方式来刷新，好像给Github库打tag也行。</li>
-</ol>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>日常写C/C++，突然接触js的语法，不检查类型，不检查参数，变量全局，各种不一样，感觉，emm好松！但也挺爽挺好用。</p>
-]]></content>
-      <categories>
-        <category>折腾笔记</category>
-      </categories>
-      <tags>
-        <tag>不务正业</tag>
-        <tag>折腾笔记</tag>
-        <tag>web</tag>
-        <tag>waifu</tag>
-        <tag>live2d</tag>
-        <tag>jsdelivr</tag>
-        <tag>CDN</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【折腾笔记】看板娘浏览器</title>
-    <url>/blog/cc03/</url>
+    <url>/blog/cc003/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><a href="/ny/waifuViewer/" style="text-decoration:none !important;">
     <button class="nybtn nybtn_link"  onclick="null" ><span onclick="null">waifuViewer</span></button>
 </a><br><br><br>
@@ -299,8 +168,139 @@
         <tag>waifu</tag>
         <tag>live2d</tag>
         <tag>jsdelivr</tag>
-        <tag>CDN</tag>
         <tag>playground</tag>
+        <tag>CDN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【建站测试】文章格式测试</title>
+    <url>/blog/cc000/</url>
+    <content><![CDATA[<h1 id="代码段测试"><a href="#代码段测试" class="headerlink" title="代码段测试"></a>代码段测试</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Tail&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(T head, Tail... tail)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  g(head);</span><br><span class="line">  f(tail...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// clang-format off</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(T x)</span></span>&#123;<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">&quot; &quot;</span>; &#125;</span><br><span class="line"><span class="comment">// clang-format on</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;testA:&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span> &lt;&lt; <span class="string">&quot;\t&quot;</span>;</span><br><span class="line">  f(<span class="number">1</span>, <span class="number">2.2</span>, <span class="string">&quot;hello&quot;</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;testB:&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span> &lt;&lt; <span class="string">&quot;\t&quot;</span>;</span><br><span class="line">  f(<span class="number">0.2</span>, <span class="number">666</span>, <span class="string">&quot;yuck!&quot;</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="图片测试"><a href="#图片测试" class="headerlink" title="图片测试"></a>图片测试</h1>
+
+<p><img data-src="/images/posts/test.jpg" alt="This is an test image"><br><code>\&#123;\%  </code> <code>asset_img /images/posts/test.jpg This is an test image \&#125;\%</code>  </p>
+<h1 id="表格测试"><a href="#表格测试" class="headerlink" title="表格测试"></a>表格测试</h1><table>
+<thead>
+<tr>
+<th>表头A</th>
+<th>表头B</th>
+<th>表头C</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+</tr>
+<tr>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+</tr>
+<tr>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+</tr>
+</tbody></table>
+<h1 id="标签插件"><a href="#标签插件" class="headerlink" title="标签插件"></a>标签插件</h1><h2 id="标签页"><a href="#标签页" class="headerlink" title="标签页"></a>标签页</h2><div class="tabs" id="fourth-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#fourth-unique-name-1">Solution 1 点我</a></li><li class="tab"><a href="#fourth-unique-name-2">Solution 2 点我</a></li><li class="tab"><a href="#fourth-unique-name-3">Solution 3 点我</a></li></ul><div class="tab-content"><div class="tab-pane active" id="fourth-unique-name-1"><p><strong>This is Tab 1.</strong></p></div><div class="tab-pane" id="fourth-unique-name-2"><p><strong>This is Tab 2.</strong></p></div><div class="tab-pane" id="fourth-unique-name-3"><p><strong>This is Tab 3.</strong></p></div></div></div>
+
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><hr>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
+<hr>
+<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
+</blockquote>
+
+<hr>
+<blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
+<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote>
+
+<hr>
+<blockquote><p>NEW: DevDocs now comes with syntax highlighting. <a href="http://devdocs.io/">http://devdocs.io</a></p>
+<footer><strong>@DevDocs</strong><cite><a href="https://twitter.com/devdocs/status/356095192085962752">twitter.com/devdocs/status/356095192085962752</a></cite></footer></blockquote>
+
+<hr>
+<blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
+<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html">Welcome to Island Marketing</a></cite></footer></blockquote>
+
+<hr>
+<h1 id="more"><a href="#more" class="headerlink" title="more"></a>more</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<a id="more"></a>
+
+<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h1 id="视频测试"><a href="#视频测试" class="headerlink" title="视频测试"></a>视频测试</h1><p><code>html bilibili</code></p>
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+    <iframe src="//player.bilibili.com/player.html?aid=6692695&bvid=BV1as41147Tg&cid=10896147&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;"> </iframe>
+</div>
+
+<p><code>youtube video_id</code></p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/qU6lIArty7E" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+<h1 id="引用文章"><a href="#引用文章" class="headerlink" title="引用文章"></a>引用文章</h1><p>获取永久链接<br>// hello-world</p>
+  
+
+<p>// test</p>
+  
+
+<hr>
+<p>超链接</p>
+<a href="#">Post not found: hello-world 链接文字</a>
+<hr>
+<p>markdown语法<br><code>[hello-world](./hello-world.md)</code><br>失败，不过外链可以用这个。</p>
+]]></content>
+      <categories>
+        <category>建站测试</category>
+      </categories>
+      <tags>
+        <tag>建站测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【折腾笔记】看板娘</title>
+    <url>/blog/cc002/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>又来更新了，前两天把网站折腾利索,前端加上了看板娘的js源码,把Live2D模型搬到了服务器上做了看板娘的API,美滋滋,但小水管服务器加载速度太慢了。看板娘可是网站灵魂,要优化！于是开始了新一轮的折腾！（折腾完这一波，我也算是接触过前端相关技术了 23333）</p>
+<p>目标：</p>
+<ol>
+<li>CDN加速（要快, ？？</li>
+<li>不依赖别人（纸片人老婆怎么能用别人的</li>
+<li>模型易增加（？？</li>
+<li>源码可更改（尽量搞到非压缩非混淆的源码）</li>
+</ol>
+<h1 id="相关源码"><a href="#相关源码" class="headerlink" title="相关源码"></a>相关源码</h1><p>翻了翻github,找到了这些相关的库</p>
+<ol>
+<li><a href="https://github.com/stevenjoezhang/live2d-widget">https://github.com/stevenjoezhang/live2d-widget</a></li>
+<li><a href="https://github.com/HCLonely/live2d.user.js">https://github.com/HCLonely/live2d.user.js</a></li>
+<li><a href="https://github.com/journey-ad/live2d_src">https://github.com/journey-ad/live2d_src</a></li>
+<li><a href="https://github.com/EYHN/hexo-helper-live2d">https://github.com/EYHN/hexo-helper-live2d</a></li>
+<li><a href="https://github.com/Eikanya/Live2d-model">https://github.com/Eikanya/Live2d-model</a></li>
+</ol>
+<p>emm,一开始是用的库1的代码,但有个问题,API和CDN方式冲突,API的话模型加载慢,CDN的话不能换衣服2333,所以打算改改看。看了看代码,根源在于live2d.min.js的接口就只接受一个json的path,以这个PATH的相对路径来查找模型资源。所以如果要改的话要么改到live2d.min.js里,要么把原来API返回的JSON都预备好,弃用API,直接给live2d接口CDN的JSON资源，通过换JSON来换衣服。但显然即麻烦又不够优雅，所以决定要改live2d.js。</p>
+<p>但库1的live2d.min.js是已经压缩过的,变量名看起来好像也混淆过,难以修改,不是很想用,所以继续找了其他的库。</p>
+<p>库2是一个浏览器插件的js源码，并不能直接移植到自己的网站上，但通过里面的一些做法可以得到启发：加载资源时用正则表达式把PATH替换成CDN的path，来即支持live2d-API 也支持CDN加速资源,</p>
+<p>库3是基于库4<a href="https://github.com/EYHN/hexo-helper-live2d">hexo-helper-live2d</a>改的,代码能读,功能看起来也OK最终决定基于库3来魔改。</p>
+<p>第一次接触js，改了半天吧，还踩了不少坑，{ import/export，ES6的语法，babel的兼容性，Hexo的默认渲染 } 等问题，好在最后搞定了，踩坑的东西就不写了，网上一大把解决方案。</p>
+<p>好像不写踩坑的东西，又没啥写的了？ 那写写吧</p>
+<h1 id="踩坑日志"><a href="#踩坑日志" class="headerlink" title="踩坑日志"></a>踩坑日志</h1><ol>
+<li>本地JS代码，和上传的代码不一样，很神奇，&lt;=会变成 &lt;= 1，一开始调试了好久，以为是js或者浏览器或者哪的bug，最后发现是忘了关HEXO的默认渲染，在HEXO的skip_render中添加路径即可。</li>
+<li>用本地html文件做测试的时候，加载相对路径的css/js时报错“不支持file://”，emm最后还是hexo s，启server来调试比较方便。</li>
+<li><code>type=&quot;module&quot;</code>才支持带有import/export的js代码，最后把js变成了单文件没这个问题了。</li>
+<li>gulp压缩的时候，不支持ES6语法，看了看gulp的文档，有个Stage-0的plugins，再外加<a href="https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js">runtime.js</a>，才算通过。</li>
+<li>CDN的缓存，更改js不会及时生效，要用版本号/更改文件名等方式来刷新，好像给Github库打tag也行。</li>
+</ol>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>日常写C/C++，突然接触js的语法，不检查类型，不检查参数，变量全局，各种不一样，感觉，emm好松！但也挺爽挺好用。</p>
+]]></content>
+      <categories>
+        <category>折腾笔记</category>
+      </categories>
+      <tags>
+        <tag>不务正业</tag>
+        <tag>折腾笔记</tag>
+        <tag>web</tag>
+        <tag>waifu</tag>
+        <tag>live2d</tag>
+        <tag>jsdelivr</tag>
+        <tag>CDN</tag>
       </tags>
   </entry>
   <entry>
@@ -541,9 +541,9 @@
   </entry>
   <entry>
     <title>【C++】宏编程艺术（一）初探</title>
-    <url>/blog/cc04/</url>
+    <url>/blog/cc004/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><p>“对于任何事物，代码中只应该出现一次，而且是唯一的一次。 如果你在repeat，要么是在偷懒，要么是在犯错”——鲁迅</p>
-<p>在写业务代码的时候，及时基础设施已经足够优秀，但仍然不可避免要写很多重复代码，于是研究了一下C++中消除重复的某些手段：如模板元编程、宏编程(预处理元编程)。</p>
+<p>在写业务代码的时候，即使基础设施已经足够优秀，但仍然不可避免要写很多重复代码，于是研究了一下C++中消除重复的某些手段：如模板元编程、宏编程(预处理元编程)。</p>
 <p>其中模板元编程这个屠龙之技有部分局限性：</p>
 <ol>
 <li>不能通过 模板展开 生成新的 标识符（例如 生成新的 函数名、类名、名字空间名 等）</li>
@@ -600,8 +600,10 @@
 <li>长度判空、长度计算、下标访问</li>
 <li>借助以上N点原理，获取解决痛点的利器：宏遍历</li>
 </ol>
+<a id="more"></a>
+
 <h1 id="需求场景"><a href="#需求场景" class="headerlink" title="需求场景"></a>需求场景</h1><p>当前每次版本迭代需要对接后台实现新feature，于是要写大量类似代码，这里虚构一些代码说明几个明显的痛点。</p>
-<h2 id="痛点代码示例"><a href="#痛点代码示例" class="headerlink" title="痛点代码示例"></a>痛点代码示例</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NemoAppRoom</span> :</span> <span class="keyword">public</span> NemoApiRoute</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 声明api  每个api单独方法处理</span></span><br><span class="line">    <span class="comment">// API多的时候 声明搞的很多 类看着很庞大 无形增加维护人员的心理压力</span></span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api0</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api1</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api2</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api3</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api4</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api5</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params, <span class="keyword">bool</span> bCallback)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api6</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params, <span class="keyword">bool</span> bCallback)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api7</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api8</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params, <span class="keyword">bool</span> bCallback, <span class="keyword">bool</span> bFromNotify, Poco::VariantMap param)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api9</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="comment">// 注册api</span></span><br><span class="line">    RegisterRouterFunctions()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//  API绑定方法 （bind到眼花,增删API时极易出错）</span></span><br><span class="line">        RegisterRouterFunction(NEMO_API_LIVE_API0, <span class="built_in">std</span>::bind(&amp;NemoAppLive::api0, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_LIVE_API1, <span class="built_in">std</span>::bind(&amp;NemoAppLive::api1, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_LIVE_API2, <span class="built_in">std</span>::bind(&amp;NemoAppLive::api2, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_LIVE_API3, <span class="built_in">std</span>::bind(&amp;NemoAppLive::api3, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        <span class="comment">//RegisterRouterFunction(NEMO_API_LIVE_API4, std::bind(&amp;NemoAppLive::api4, this, _1, _2));</span></span><br><span class="line">        RegisterRouterFunction(NEMO_API_LIVE_API5, <span class="built_in">std</span>::bind(&amp;NemoAppLive::api5, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_LIVE_API6, <span class="built_in">std</span>::bind(&amp;NemoAppLive::api6, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        <span class="comment">// 有的类型不一致 更改时更需要谨慎</span></span><br><span class="line">        RegisterRouterFunction(NEMO_API_LIVE_API7, <span class="built_in">std</span>::bind(&amp;NemoAppLive::api7, <span class="keyword">this</span>, _1, _2, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_LIVE_API8, <span class="built_in">std</span>::bind(&amp;NemoAppLive::api8, <span class="keyword">this</span>, _1, _2, <span class="literal">true</span>));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_LIVE_API9, <span class="built_in">std</span>::bind(&amp;NemoAppLive::api9, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_LIVE_API10, <span class="built_in">std</span>::bind(&amp;NemoAppLive::api10, <span class="keyword">this</span>, _1, _2, <span class="literal">true</span>, <span class="literal">false</span>, Poco::VariantMap()));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_LIVE_API11, <span class="built_in">std</span>::bind(&amp;NemoAppLive::api11, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_LIVE_API12, <span class="built_in">std</span>::bind(&amp;NemoAppLive::api12, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 增减接口时 需要改多处代码 </span></span><br><span class="line">    <span class="comment">// 改错容易造成逻辑错误、运行时崩溃、某些平台编译通过某些平台编译失败等奇怪问题</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// CACHE 结构的维护</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Cache</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> bala;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> bala;</span><br><span class="line">        <span class="keyword">uint64_t</span> bala;</span><br><span class="line">        <span class="keyword">int64_t</span> bala;</span><br><span class="line">        <span class="keyword">int32_t</span> balbalabla1;</span><br><span class="line">        <span class="keyword">int32_t</span> adlfajskjal3;</span><br><span class="line">        <span class="keyword">int32_t</span> lakjdfalksfjdalw3;</span><br><span class="line">        <span class="keyword">int32_t</span> a2fli3jlakf;</span><br><span class="line">        <span class="keyword">int32_t</span> aldfkja32ka;</span><br><span class="line">        <span class="keyword">int32_t</span> lksdjfal3wia;</span><br><span class="line">        <span class="keyword">int32_t</span> lajflwkj3;</span><br><span class="line">        <span class="keyword">int32_t</span> alalskdfksj3ijf;</span><br><span class="line">        <span class="keyword">int32_t</span> ajlskfdjaliwf;</span><br><span class="line">        <span class="keyword">int32_t</span> lawfj3wkjaja;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">ToMap</span><span class="params">(Poco::VariantMap&amp; mapParams)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="comment">// 本地cache构造回包</span></span><br><span class="line">            <span class="comment">// 稍有不慎 经常缺参数 参数错误 类型转换crash 各种奇怪问题</span></span><br><span class="line">            <span class="comment">// 开发过程难免需求变更、后台字段变更，变更后更易出错</span></span><br><span class="line">            mapParams[<span class="string">&quot;lawfj3wkjaja&quot;</span>]      = bala.c_str()?bala.c_str():<span class="string">&quot;&quot;</span>; </span><br><span class="line">            mapParams[<span class="string">&quot;balbalabla1&quot;</span>]       = balbalabla1;</span><br><span class="line">            mapParams[<span class="string">&quot;adlfajskjal3&quot;</span>]      = adlfajskjal3;</span><br><span class="line">            mapParams[<span class="string">&quot;lakjdfalksfjdalw3&quot;</span>] = lakjdfalksfjdalw3;</span><br><span class="line">            mapParams[<span class="string">&quot;a2fli3jlakf&quot;</span>]       = a2fli3jlakf;</span><br><span class="line">            mapParams[<span class="string">&quot;aldfkja32ka&quot;</span>]       = aldfkja32ka;</span><br><span class="line">            mapParams[<span class="string">&quot;lksdjfal3wia&quot;</span>]      = lksdjfal3wia;</span><br><span class="line">            mapParams[<span class="string">&quot;lajflwkj3&quot;</span>]         = lajflwkj3;</span><br><span class="line">            mapParams[<span class="string">&quot;alalskdfksj3ijf&quot;</span>]   = alalskdfksj3ijf;</span><br><span class="line">            mapParams[<span class="string">&quot;ajlskfdjaliwf&quot;</span>]     = ajlskfdjaliwf;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">FromJson</span><span class="params">(<span class="keyword">const</span> NemoJsonParser&amp; json)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="comment">// 解析json</span></span><br><span class="line">            <span class="comment">// 类型错误轻则业务逻辑出错 重则直接crash查到头秃</span></span><br><span class="line">            <span class="comment">// 1. 稍有不慎 搞错字段 逻辑错误</span></span><br><span class="line">            <span class="comment">// 2. 后台如果改字段 需要变更多处代码 稍有不慎 逻辑错误</span></span><br><span class="line">            <span class="comment">// 3. 类型转换失效 稍有不慎 运行时崩溃</span></span><br><span class="line">             <span class="keyword">if</span> (json.HasMember(<span class="string">&quot;data&quot;</span>)) &#123;</span><br><span class="line">                 <span class="keyword">auto</span> data = json[<span class="string">&quot;data&quot;</span>];</span><br><span class="line">                 <span class="keyword">if</span> (data.HasMember(<span class="string">&quot;info&quot;</span>)) &#123;</span><br><span class="line">                     <span class="keyword">auto</span>             Info = data[<span class="string">&quot;info&quot;</span>];</span><br><span class="line">                     Poco::VariantMap rspMap;</span><br><span class="line">                     <span class="keyword">int</span>              state      = Info[<span class="string">&quot;_state&quot;</span>];</span><br><span class="line">                     uint64           lkajfds    = Info[<span class="string">&quot;lkajfds&quot;</span>];</span><br><span class="line">                     uint64           durationss = Info[<span class="string">&quot;durationss&quot;</span>];</span><br><span class="line">                     <span class="keyword">int</span>              usercount  = Info[<span class="string">&quot;usercount&quot;</span>];</span><br><span class="line">                     uint64           alwkjef    = Info[<span class="string">&quot;alwkjef&quot;</span>];</span><br><span class="line">                     uint64           lkdfsj     = Info[<span class="string">&quot;lkdfsj&quot;</span>];</span><br><span class="line">                     <span class="built_in">std</span>::<span class="built_in">string</span>      slkfaj     = Info[<span class="string">&quot;slkfaj&quot;</span>];</span><br><span class="line"></span><br><span class="line">                     rspMap[<span class="string">&quot;alwkjef&quot;</span>]    = alwkjef;</span><br><span class="line">                     rspMap[<span class="string">&quot;lkdfsj&quot;</span>]     = lkdfsj;</span><br><span class="line">                     rspMap[<span class="string">&quot;slkfaj&quot;</span>]     = slkfaj;</span><br><span class="line">                     rspMap[<span class="string">&quot;lkajfds&quot;</span>]    = lkajfds;</span><br><span class="line">                     rspMap[<span class="string">&quot;durationss&quot;</span>] = durationss;</span><br><span class="line">                     rspMap[<span class="string">&quot;usercount&quot;</span>]  = usercount;</span><br><span class="line">                     rspMap[<span class="string">&quot;_info&quot;</span>]      = rspMap;</span><br><span class="line">                     rspMap[<span class="string">&quot;_state&quot;</span>]     = state;</span><br><span class="line">                 &#125;</span><br><span class="line">                 <span class="comment">// ...省略好多代码</span></span><br><span class="line">             &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="痛点代码示例"><a href="#痛点代码示例" class="headerlink" title="痛点代码示例"></a>痛点代码示例</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NemoAppDemo</span> :</span> <span class="keyword">public</span> NemoApiRoute</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 声明api  每个api单独方法处理</span></span><br><span class="line">    <span class="comment">// API多的时候 声明搞的很多 类看着很庞大 无形增加维护人员的心理压力</span></span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api0</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api1</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api2</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api3</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api4</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api5</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params, <span class="keyword">bool</span> bCallback)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api6</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params, <span class="keyword">bool</span> bCallback)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api7</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api8</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params, <span class="keyword">bool</span> bCallback, <span class="keyword">bool</span> bFromNotify, Poco::VariantMap param)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">api9</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; api, <span class="keyword">const</span> <span class="built_in">string</span>&amp; params)</span></span>;</span><br><span class="line">    <span class="comment">// 注册api</span></span><br><span class="line">    RegisterRouterFunctions()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//  API绑定方法 （bind到眼花,增删API时极易出错）</span></span><br><span class="line">        RegisterRouterFunction(NEMO_API_DEMO_API0, <span class="built_in">std</span>::bind(&amp;NemoAppDemo::api0, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_DEMO_API1, <span class="built_in">std</span>::bind(&amp;NemoAppDemo::api1, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_DEMO_API2, <span class="built_in">std</span>::bind(&amp;NemoAppDemo::api2, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_DEMO_API3, <span class="built_in">std</span>::bind(&amp;NemoAppDemo::api3, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        <span class="comment">//RegisterRouterFunction(NEMO_API_DEMO_API4, std::bind(&amp;NemoAppDemo::api4, this, _1, _2));</span></span><br><span class="line">        RegisterRouterFunction(NEMO_API_DEMO_API5, <span class="built_in">std</span>::bind(&amp;NemoAppDemo::api5, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_DEMO_API6, <span class="built_in">std</span>::bind(&amp;NemoAppDemo::api6, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        <span class="comment">// 有的类型不一致 更改时更需要谨慎</span></span><br><span class="line">        RegisterRouterFunction(NEMO_API_DEMO_API7, <span class="built_in">std</span>::bind(&amp;NemoAppDemo::api7, <span class="keyword">this</span>, _1, _2, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_DEMO_API8, <span class="built_in">std</span>::bind(&amp;NemoAppDemo::api8, <span class="keyword">this</span>, _1, _2, <span class="literal">true</span>));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_DEMO_API9, <span class="built_in">std</span>::bind(&amp;NemoAppDemo::api9, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_DEMO_API10, <span class="built_in">std</span>::bind(&amp;NemoAppDemo::api10, <span class="keyword">this</span>, _1, _2, <span class="literal">true</span>, <span class="literal">false</span>, Poco::VariantMap()));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_DEMO_API11, <span class="built_in">std</span>::bind(&amp;NemoAppDemo::api11, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">        RegisterRouterFunction(NEMO_API_DEMO_API12, <span class="built_in">std</span>::bind(&amp;NemoAppDemo::api12, <span class="keyword">this</span>, _1, _2));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 增减接口时 需要改多处代码 </span></span><br><span class="line">    <span class="comment">// 改错容易造成逻辑错误、运行时崩溃、某些平台编译通过某些平台编译失败等奇怪问题</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// CACHE 结构的维护</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Cache</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> bala;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> bala;</span><br><span class="line">        <span class="keyword">uint64_t</span> bala;</span><br><span class="line">        <span class="keyword">int64_t</span> bala;</span><br><span class="line">        <span class="keyword">int32_t</span> balbalabla1;</span><br><span class="line">        <span class="keyword">int32_t</span> adlfajskjal3;</span><br><span class="line">        <span class="keyword">int32_t</span> lakjdfalksfjdalw3;</span><br><span class="line">        <span class="keyword">int32_t</span> a2fli3jlakf;</span><br><span class="line">        <span class="keyword">int32_t</span> aldfkja32ka;</span><br><span class="line">        <span class="keyword">int32_t</span> lksdjfal3wia;</span><br><span class="line">        <span class="keyword">int32_t</span> lajflwkj3;</span><br><span class="line">        <span class="keyword">int32_t</span> alalskdfksj3ijf;</span><br><span class="line">        <span class="keyword">int32_t</span> ajlskfdjaliwf;</span><br><span class="line">        <span class="keyword">int32_t</span> lawfj3wkjaja;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">ToMap</span><span class="params">(Poco::VariantMap&amp; mapParams)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="comment">// 本地cache构造回包</span></span><br><span class="line">            <span class="comment">// 稍有不慎 经常缺参数 参数错误 类型转换crash 各种奇怪问题</span></span><br><span class="line">            <span class="comment">// 开发过程难免需求变更、后台字段变更，变更后更易出错</span></span><br><span class="line">            mapParams[<span class="string">&quot;lawfj3wkjaja&quot;</span>]      = bala.c_str()?bala.c_str():<span class="string">&quot;&quot;</span>; </span><br><span class="line">            mapParams[<span class="string">&quot;balbalabla1&quot;</span>]       = balbalabla1;</span><br><span class="line">            mapParams[<span class="string">&quot;adlfajskjal3&quot;</span>]      = adlfajskjal3;</span><br><span class="line">            mapParams[<span class="string">&quot;lakjdfalksfjdalw3&quot;</span>] = lakjdfalksfjdalw3;</span><br><span class="line">            mapParams[<span class="string">&quot;a2fli3jlakf&quot;</span>]       = a2fli3jlakf;</span><br><span class="line">            mapParams[<span class="string">&quot;aldfkja32ka&quot;</span>]       = aldfkja32ka;</span><br><span class="line">            mapParams[<span class="string">&quot;lksdjfal3wia&quot;</span>]      = lksdjfal3wia;</span><br><span class="line">            mapParams[<span class="string">&quot;lajflwkj3&quot;</span>]         = lajflwkj3;</span><br><span class="line">            mapParams[<span class="string">&quot;alalskdfksj3ijf&quot;</span>]   = alalskdfksj3ijf;</span><br><span class="line">            mapParams[<span class="string">&quot;ajlskfdjaliwf&quot;</span>]     = ajlskfdjaliwf;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">FromJson</span><span class="params">(<span class="keyword">const</span> NemoJsonParser&amp; json)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="comment">// 解析json</span></span><br><span class="line">            <span class="comment">// 类型错误轻则业务逻辑出错 重则直接crash查到头秃</span></span><br><span class="line">            <span class="comment">// 1. 稍有不慎 搞错字段 逻辑错误</span></span><br><span class="line">            <span class="comment">// 2. 后台如果改字段 需要变更多处代码 稍有不慎 逻辑错误</span></span><br><span class="line">            <span class="comment">// 3. 类型转换失效 稍有不慎 运行时崩溃</span></span><br><span class="line">             <span class="keyword">if</span> (json.HasMember(<span class="string">&quot;data&quot;</span>)) &#123;</span><br><span class="line">                 <span class="keyword">auto</span> data = json[<span class="string">&quot;data&quot;</span>];</span><br><span class="line">                 <span class="keyword">if</span> (data.HasMember(<span class="string">&quot;info&quot;</span>)) &#123;</span><br><span class="line">                     <span class="keyword">auto</span>             Info = data[<span class="string">&quot;info&quot;</span>];</span><br><span class="line">                     Poco::VariantMap rspMap;</span><br><span class="line">                     <span class="keyword">int</span>              state      = Info[<span class="string">&quot;_state&quot;</span>];</span><br><span class="line">                     uint64           lkajfds    = Info[<span class="string">&quot;lkajfds&quot;</span>];</span><br><span class="line">                     uint64           durationss = Info[<span class="string">&quot;durationss&quot;</span>];</span><br><span class="line">                     <span class="keyword">int</span>              usercount  = Info[<span class="string">&quot;usercount&quot;</span>];</span><br><span class="line">                     uint64           alwkjef    = Info[<span class="string">&quot;alwkjef&quot;</span>];</span><br><span class="line">                     uint64           lkdfsj     = Info[<span class="string">&quot;lkdfsj&quot;</span>];</span><br><span class="line">                     <span class="built_in">std</span>::<span class="built_in">string</span>      slkfaj     = Info[<span class="string">&quot;slkfaj&quot;</span>];</span><br><span class="line"></span><br><span class="line">                     rspMap[<span class="string">&quot;alwkjef&quot;</span>]    = alwkjef;</span><br><span class="line">                     rspMap[<span class="string">&quot;lkdfsj&quot;</span>]     = lkdfsj;</span><br><span class="line">                     rspMap[<span class="string">&quot;slkfaj&quot;</span>]     = slkfaj;</span><br><span class="line">                     rspMap[<span class="string">&quot;lkajfds&quot;</span>]    = lkajfds;</span><br><span class="line">                     rspMap[<span class="string">&quot;durationss&quot;</span>] = durationss;</span><br><span class="line">                     rspMap[<span class="string">&quot;usercount&quot;</span>]  = usercount;</span><br><span class="line">                     rspMap[<span class="string">&quot;_info&quot;</span>]      = rspMap;</span><br><span class="line">                     rspMap[<span class="string">&quot;_state&quot;</span>]     = state;</span><br><span class="line">                 &#125;</span><br><span class="line">                 <span class="comment">// ...省略好多代码</span></span><br><span class="line">             &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
 <p>这些其实都是”认真”二字可以cover的问题，但问题在于，开发阶段难免遇到各端需求变更、后台修改、接口意图变化、功能扩展等，以上痛点代码均有一个特点，如果涉及以上几点变更，都需要更改多处代码，有些是IDE无法提供帮助的，手动修改时极易出错，而且麻烦，懒才是第一生产力，于是要想办法解决这些问题。</p>
 <h2 id="优化后代码示例"><a href="#优化后代码示例" class="headerlink" title="优化后代码示例"></a>优化后代码示例</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NemoAppDemo</span> :</span> <span class="keyword">public</span> API</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 自动展开 完成声明与注册</span></span><br><span class="line">    <span class="comment">// clang-format off</span></span><br><span class="line">    NEMO_MACRO_ROUTE_API(NemoAppDemo, demo_api, api1,api2,api3,api4,api5,api6);</span><br><span class="line">    <span class="comment">// clang-format on</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// clang-format off</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">user</span> &#123;</span></span><br><span class="line">      <span class="keyword">int64_t</span>     uid;            </span><br><span class="line">      <span class="built_in">std</span>::<span class="built_in">string</span> name;      </span><br><span class="line">      <span class="keyword">int32_t</span>     role;           </span><br><span class="line">      <span class="keyword">int32_t</span>     status;         </span><br><span class="line">      <span class="keyword">int32_t</span>     param1;         </span><br><span class="line">      <span class="keyword">int32_t</span>     param2;         </span><br><span class="line">      <span class="keyword">int32_t</span>     param3;         </span><br><span class="line">      <span class="comment">//..</span></span><br><span class="line">      <span class="comment">// 自动展开 完成json与C++结构体互相转换、 构造回包等</span></span><br><span class="line">      NEMO_STRUCT_PARSER(uid ,name ,role ,status ,param1 ,param2 ,param3 );</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// clang-format on</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
