@@ -215,9 +215,9 @@
     
     <category term="jsdelivr" scheme="https://yuanjiuzheng.com/tags/jsdelivr/"/>
     
-    <category term="CDN" scheme="https://yuanjiuzheng.com/tags/CDN/"/>
-    
     <category term="playground" scheme="https://yuanjiuzheng.com/tags/playground/"/>
+    
+    <category term="CDN" scheme="https://yuanjiuzheng.com/tags/CDN/"/>
     
   </entry>
   
@@ -284,11 +284,11 @@
     
     <category term="web" scheme="https://yuanjiuzheng.com/tags/web/"/>
     
+    <category term="hexo" scheme="https://yuanjiuzheng.com/tags/hexo/"/>
+    
     <category term="waifu" scheme="https://yuanjiuzheng.com/tags/waifu/"/>
     
     <category term="live2d" scheme="https://yuanjiuzheng.com/tags/live2d/"/>
-    
-    <category term="hexo" scheme="https://yuanjiuzheng.com/tags/hexo/"/>
     
   </entry>
   

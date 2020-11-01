@@ -72,14 +72,14 @@
   </url>
   
   <url>
-    <loc>https://yuanjiuzheng.com/pages/tags/index.html</loc>
+    <loc>https://yuanjiuzheng.com/pages/about/index.html</loc>
     
     <lastmod>2020-04-11</lastmod>
     
   </url>
   
   <url>
-    <loc>https://yuanjiuzheng.com/pages/about/index.html</loc>
+    <loc>https://yuanjiuzheng.com/pages/tags/index.html</loc>
     
     <lastmod>2020-04-11</lastmod>
     
@@ -130,6 +130,13 @@
   </url>
   
   <url>
+    <loc>https://yuanjiuzheng.com/tags/hexo/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://yuanjiuzheng.com/tags/waifu/</loc>
     <lastmod>2020-11-01</lastmod>
     <changefreq>daily</changefreq>
@@ -151,14 +158,14 @@
   </url>
   
   <url>
-    <loc>https://yuanjiuzheng.com/tags/CDN/</loc>
+    <loc>https://yuanjiuzheng.com/tags/playground/</loc>
     <lastmod>2020-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://yuanjiuzheng.com/tags/hexo/</loc>
+    <loc>https://yuanjiuzheng.com/tags/CDN/</loc>
     <lastmod>2020-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -173,13 +180,6 @@
   
   <url>
     <loc>https://yuanjiuzheng.com/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2020-11-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yuanjiuzheng.com/tags/playground/</loc>
     <lastmod>2020-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
