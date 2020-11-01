@@ -2,94 +2,231 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://yuanjiuzheng.com/blog/cc04/</loc>
+    <loc>https://yuanjiuzheng.com/blog/dp003/</loc>
     
-    <lastmod>2020-10-27T07:29:51.882Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuanjiuzheng.com/blog/dp001/</loc>
-    
-    <lastmod>2020-07-13T03:53:10.565Z</lastmod>
+    <lastmod>2020-06-19</lastmod>
     
   </url>
   
   <url>
     <loc>https://yuanjiuzheng.com/blog/dp002/</loc>
     
-    <lastmod>2020-07-13T03:52:58.275Z</lastmod>
+    <lastmod>2020-06-15</lastmod>
     
   </url>
   
   <url>
-    <loc>https://yuanjiuzheng.com/blog/dp003/</loc>
+    <loc>https://yuanjiuzheng.com/blog/dp001/</loc>
     
-    <lastmod>2020-07-13T03:52:52.968Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuanjiuzheng.com/blog/cc00/</loc>
-    
-    <lastmod>2020-07-06T04:34:36.008Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuanjiuzheng.com/blog/cc03/</loc>
-    
-    <lastmod>2020-06-02T05:35:04.913Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuanjiuzheng.com/blog/cc02/</loc>
-    
-    <lastmod>2020-06-02T05:35:01.648Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuanjiuzheng.com/blog/cc01/</loc>
-    
-    <lastmod>2020-06-02T05:34:58.595Z</lastmod>
+    <lastmod>2020-06-09</lastmod>
     
   </url>
   
   <url>
     <loc>https://yuanjiuzheng.com/ny/waifuViewer/index.html</loc>
     
-    <lastmod>2020-06-01T11:22:35.369Z</lastmod>
+    <lastmod>2020-06-01</lastmod>
     
   </url>
   
   <url>
     <loc>https://yuanjiuzheng.com/pages/playground/index.html</loc>
     
-    <lastmod>2020-06-01T03:41:38.676Z</lastmod>
+    <lastmod>2020-05-30</lastmod>
     
   </url>
   
   <url>
-    <loc>https://yuanjiuzheng.com/pages/about/index.html</loc>
+    <loc>https://yuanjiuzheng.com/blog/cc03/</loc>
     
-    <lastmod>2020-05-30T09:45:29.430Z</lastmod>
+    <lastmod>2020-05-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/blog/cc04/</loc>
+    
+    <lastmod>2020-05-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/blog/cc02/</loc>
+    
+    <lastmod>2020-05-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/blog/cc01/</loc>
+    
+    <lastmod>2020-05-24</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/blog/cc00/</loc>
+    
+    <lastmod>2020-04-11</lastmod>
     
   </url>
   
   <url>
     <loc>https://yuanjiuzheng.com/pages/categories/index.html</loc>
     
-    <lastmod>2020-05-30T09:45:19.109Z</lastmod>
+    <lastmod>2020-04-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/pages/about/index.html</loc>
+    
+    <lastmod>2020-04-11</lastmod>
     
   </url>
   
   <url>
     <loc>https://yuanjiuzheng.com/pages/tags/index.html</loc>
     
-    <lastmod>2020-04-14T08:07:58.371Z</lastmod>
+    <lastmod>2020-04-11</lastmod>
     
+  </url>
+  
+
+  <url>
+    <loc>https://yuanjiuzheng.com/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/%E5%BB%BA%E7%AB%99%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/web/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/hexo/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/waifu/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/live2d/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/jsdelivr/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/CDN/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/playground/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/C/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/tags/%E5%AE%8F%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/categories/%E5%BB%BA%E7%AB%99%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/categories/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuanjiuzheng.com/categories/C/</loc>
+    <lastmod>2020-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
   </url>
   
 </urlset>
