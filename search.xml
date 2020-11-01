@@ -1,178 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>【折腾笔记】个人网站</title>
-    <url>/blog/cc001/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。</p>
-<p>从14年开始搞个人网站，那时候用虚拟主机，便宜耐用，但配置差，网速慢，备份不方便，自由度极低，而且那时候网站程序是用的 WordPress ，Emm 可能是因为当时太菜了，觉得不好用，网站搬家也很费力，备份也不太方便，虽然有一次趁着打折续了五年的，但后来也弃了虚拟主机。</p>
-<p>后来开始买国外或香港VPS，免备案，预装Ubuntu，一键xx面板，一键LNMP，面板后台操作一番，WordPress 网站就建起来了，体验还不错。不过感觉xx面板有点不安全，而且依赖性太强，既然是瞎折腾，隔着一层面板折腾来折腾去也的确没什么意思。</p>
-<p>再后来docker火热，用 docker 搭了一个 WordPress 的，这个感觉蛮好的，备份一下docker的脚本，备份下数据库文件就好了，搬家也方便。但那时候没管理网站的注册机制，被脚本机器人注册了大量垃圾用户，而且也没怎么维护网站，后来数据库撑炸了，2333，再后来国外服务器总被封，各种原因也没再继续维护个人网站了。</p>
-<p>中间还试过GitHub Page，那时候用的叫 JK什么（误）的静态框架，但没什么好看的主题，而且emm反正不是很喜欢，就没继续搞。</p>
-<p>这波是2019年了，趁阿里云搞活动买了波基础机型，然后一直没动。直到有一天看到一个人的网站里有看板娘，emmmm，毕竟死宅，i了i了，于是就：”我也要这个！”，开始了这波Hexo博客的搭建。后面是留给自己的折腾笔记。</p>
-<hr>
-<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>由于平时开发使用Windows+WSL，所以两个平台都试了下，都很香。</p>
-<p>不过现在WSL的文件管理还不是很稳定，用Sublime浏览的时候，时而加载不出来，不是很方便，所以最后全都转到Windows下了（WSL近期要更新了 windows可以直接访问wsl文件，那时候应该比较好用，期待一下，就不暂时折腾win10更新的东西了）</p>
-<p>依赖：</p>
-<ol>
-<li>git</li>
-<li>node.js</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">hexo new <span class="string">&quot;Hello Hexo&quot;</span></span><br><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>大概这样就运行起来了。</p>
-<h2 id="配置自动发布"><a href="#配置自动发布" class="headerlink" title="配置自动发布"></a>配置自动发布</h2><p>emm Hexo支持很多种方式自动发布部署，rsync sftp ftpsync git，反正试到最后git最好用。rsync跨系统会有点坑在里面，sftp速度太慢，ftpsync现在的包并不好用，还要打补丁，打完补丁第一天还ok，第二天不好使了 2333。</p>
-<p>反正最后折腾到只用git了，git到 GitHub 很简单，到阿里云服务器的话，我是搭了一个 Gitea 服务，然后传到自己的 Gitea 的库里面，然后在 Gitea 的 action 里配置自动发布，大概长这样。。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">git --work-tree=/var/www/html/xxxxx --git-dir=/home/git/gitea-repositories/xxx/xxx.git checkout -f</span><br></pre></td></tr></table></figure>
-
-<p>所以hexo这里的自动发布 就只用git就ok了，github网速慢的问题可以走代理</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy https://127.0.0.1:1080</span><br></pre></td></tr></table></figure>
-
-<p>而且Git可以配置公私钥来免登录，比较方便。</p>
-<h2 id="hexo-asset-image"><a href="#hexo-asset-image" class="headerlink" title="hexo-asset-image"></a>hexo-asset-image</h2><p>这个包好像有个问题，一开始图片一直显示不出来，调试发现生成图片链接的相关逻辑不太对，后来把index.js替换掉了就好使了。</p>
-<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
-
-<p>next主题还是很好用的，也比较喜欢，旧的next库很久不维护了，其中的主要贡献者另起炉灶开了新库（上面的链接）。</p>
-<p><strong>关于配置文件</strong>。有两个配置文件，一个是Hexo的，一个是主题的配置文件，有办法统一只使用一个配置文件：在hexo的配置文件最下方增加<code>theme_config:</code>，然后把主题的配置文件内容全部copy到Hexo的下面，并增加2缩进，如：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">theme_config:</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line">  <span class="comment"># Theme Core Configuration Settings</span></span><br><span class="line">  <span class="comment"># See: https://theme-next.org/docs/theme-settings/</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># If false, merge configs from `_data/next.yml` into default configuration (rewrite).</span></span><br><span class="line">  <span class="comment"># If true, will fully override default configuration by options from `_data/next.yml` (override). Only for NexT settings.</span></span><br><span class="line">  <span class="comment"># And if true, all config from default NexT `_config.yml` have to be copied into `next.yml`. Use if you know what you are doing.</span></span><br><span class="line">  <span class="comment"># Useful if you want to comment some options from NexT `_config.yml` by `next.yml` without editing default config.</span></span><br><span class="line">  <span class="attr">override:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
-
-<p>这样可以避免更新主题时由于配置不统一导致需要手动处理merge的问题。</p>
-<h2 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h2><p>参考</p>
-<blockquote>
-<ol>
-<li><a href="https://github.com/stevenjoezhang/live2d-widget">live2d-widget</a></li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="2">
-<li><a href="https://www.fghrsh.net/post/123.html">网页添加 Live2D 看板娘</a></li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="3">
-<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-01/">给博客添加能动的看板娘</a></li>
-</ol>
-</blockquote>
-<p>增加了部分修改：</p>
-<ol>
-<li><p>去掉了小飞机。<code>// &lt;span class=&quot;fa fa-lg fa-paper-plane&quot;&gt;&lt;/span&gt;</code></p>
-</li>
-<li><p>去掉了宽度过窄就不显示的逻辑。（让手机端默认显示）</p>
-</li>
-</ol>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">@media (max-width: 768px) &#123;</span></span><br><span class="line"><span class="comment">	#waifu &#123;</span></span><br><span class="line"><span class="comment">		display: none;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// if (screen.width &gt;= 768) &#123;</span></span><br><span class="line">4...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="自建API"><a href="#自建API" class="headerlink" title="自建API"></a>自建API</h2><p>一开始是用的别人的API，但别人API总炸，一炸看板娘就没了。</p>
-<p>于是打算自己建API自己用。我在网页方面真心是菜鸟了，工作不搞这方面的东西，知识暂时全靠瞎折腾获取，所以自建API也要写一节！毕竟自己通过查资料试验测试，搞通了之后还是比较有成就感的。</p>
-<p>服务端需要有几个东西。</p>
-<ol>
-<li>php-fpm php-cgi</li>
-<li>fastcgi </li>
-<li>nginx</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/fghrsh/live2d_api.git</span><br></pre></td></tr></table></figure>
-
-<p>把API直接clone到了Hexo的souce里，这样就能搭车同步了，这也是为什么需要同步的文件又多又大的原因，内置的方法里，只有 Git 能比较轻松的搞定了。</p>
-<p>服务端</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install php-fpm php-cgi</span><br></pre></td></tr></table></figure>
-
-<p>然后在nginx里面配置使用<code>FastCGI server</code> </p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># pass PHP scripts to FastCGI server</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">    <span class="attribute">include</span> snippets/fastcgi-php.conf;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># With php-fpm (or other unix sockets):</span></span><br><span class="line">    <span class="attribute">fastcgi_pass</span> unix:/var/run/php/php7.2-fpm.sock;</span><br><span class="line">    <span class="comment"># With php-cgi (or other tcp sockets):</span></span><br><span class="line">    <span class="comment"># fastcgi_pass 127.0.0.1:9000;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="增加模型"><a href="#增加模型" class="headerlink" title="增加模型"></a>增加模型</h2><p>读了读大佬的API的代码，逻辑也不是很复杂，而且提供了增加模型的支持，在<a href="https://mx.paul.ren/page/1/">梦象</a>获取模型后，放到<code>/model/*/</code>里，把<code>model.json</code>重命名为<code>index.json</code>即可，然后修改<code>model_list.json</code>，测试了一下没有对<code>live2d</code>模型动作的依赖。如果有模型大小不合适的，在<code>index.json</code>中修改<code>layout</code>项。</p>
-<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>服务器本地加载Live2d有些慢，毕竟小水管服务器，还是CDN加速比较稳定而且负载小一些，有时间可以搞一下。</p>
-<p>Live2d的模型在<a href="https://github.com/Eikanya/Live2d-model">Live2d-model</a>找到了有大佬在收集。</p>
-<p>emm，后来也发现了好多大佬的博客做的非常漂亮，暂时不再深入下去，（前端深坑，好可怕……</p>
-]]></content>
-      <categories>
-        <category>折腾笔记</category>
-      </categories>
-      <tags>
-        <tag>不务正业</tag>
-        <tag>折腾笔记</tag>
-        <tag>web</tag>
-        <tag>hexo</tag>
-        <tag>waifu</tag>
-        <tag>live2d</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【折腾笔记】看板娘浏览器</title>
-    <url>/blog/cc003/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><a href="/ny/waifuViewer/" style="text-decoration:none !important;">
-    <button class="nybtn nybtn_link"  onclick="null" ><span onclick="null">waifuViewer</span></button>
-</a><br><br><br>
-
-<p>从<a href="https://github.com/Eikanya/Live2d-model">Live2d-model</a>弄了好多模型下来，但是没法看，于是就折腾了个waifuViewer~</p>
-<hr>
-<p>这几天沉迷个人主页，搞了四五天，emm，虽然自己这几篇文章都打了“不务正业”的标签，但这波也算是开拓视野了。以前从未接触js/css/html开发相关的东西，这算是在自己不熟悉的领域去实现自己的需求，虽然<strong>东西很简单</strong>，但坑处处都是，总的来说挺考验自己的，也从侧面证实了一直以来坚信的一个观点:</p>
-<blockquote>
-<p>重要的不是知识，而是对知识的应用和理解，以及快速查找知识的能力</p>
-<p>重要的不是题解，而是解题的思路和方法，甚至风格、态度、执拗</p>
-</blockquote>
-<p>当然，<strong>认知</strong>（或者说经验+知识）也很重要。计算机世界的发展除了不断迸发的idea和design，也经历了无数的参考与借鉴，所以很多东西自然而然有<strong>相通</strong>的地方，在遇到新问题的时候，认知面会为解决问题提供支撑。</p>
-<p>这段时间虽然”不务正业”，但对博导（前公司老板）的教诲有了新的认识，<strong>WHY-WHAT-HOW</strong>里面，虽然小规模的问题都体现在HOW上，但其实最不重要的就是HOW。计算机中也存在<strong>道法术</strong>。道，是规则、自然法则，上乘；法，是方法、法理，中乘；术，是行为、方式，下乘。以道御术，悟道比修炼法术更高一筹。但要做到这一点，还需要<strong>不断的努力</strong>，道法术三者兼备才能做出最好的策略。</p>
-<p>个人主页先放放，要玩玩别的了！</p>
-<hr>
-<h1 id="踩坑小计"><a href="#踩坑小计" class="headerlink" title="踩坑小计"></a>踩坑小计</h1><table>
-<thead>
-<tr>
-<th>ISSUE</th>
-<th>FIXED</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>✔ 布局异常</td>
-<td>BOX+CSS解决</td>
-</tr>
-<tr>
-<td>✔ 手机显示异常</td>
-<td>CSS多设备适配</td>
-</tr>
-<tr>
-<td>✔ 和左下角看板娘冲突</td>
-<td>进入页面主动隐藏左下角看板娘</td>
-</tr>
-<tr>
-<td>✔ 跳转会刷新整个页面</td>
-<td>使用pjax</td>
-</tr>
-<tr>
-<td>✔ pjax跳转但不加载js</td>
-<td>对需要加载的js做pjax-data标记</td>
-</tr>
-<tr>
-<td>✔ 按钮超链接有下划线</td>
-<td>css增加nybtn_link 追加处理</td>
-</tr>
-<tr>
-<td>✔ pjax重复加载js报错</td>
-<td>优化js</td>
-</tr>
-</tbody></table>
-<p>后面还有todo的话 大概有以下几个方面</p>
-<ol>
-<li>支持多个live2d同时显示（纸片人老婆+1+1+1 ???</li>
-<li>按钮列表换种方式布局，以便随意添加按钮</li>
-<li>子页面用scrollbar控制来显示按钮</li>
-</ol>
-]]></content>
-      <categories>
-        <category>折腾笔记</category>
-      </categories>
-      <tags>
-        <tag>不务正业</tag>
-        <tag>折腾笔记</tag>
-        <tag>web</tag>
-        <tag>waifu</tag>
-        <tag>live2d</tag>
-        <tag>jsdelivr</tag>
-        <tag>playground</tag>
-        <tag>CDN</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【建站测试】文章格式测试</title>
     <url>/blog/cc000/</url>
     <content><![CDATA[<h1 id="代码段测试"><a href="#代码段测试" class="headerlink" title="代码段测试"></a>代码段测试</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Tail&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(T head, Tail... tail)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  g(head);</span><br><span class="line">  f(tail...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// clang-format off</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(T x)</span></span>&#123;<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">&quot; &quot;</span>; &#125;</span><br><span class="line"><span class="comment">// clang-format on</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;testA:&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span> &lt;&lt; <span class="string">&quot;\t&quot;</span>;</span><br><span class="line">  f(<span class="number">1</span>, <span class="number">2.2</span>, <span class="string">&quot;hello&quot;</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;testB:&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span> &lt;&lt; <span class="string">&quot;\t&quot;</span>;</span><br><span class="line">  f(<span class="number">0.2</span>, <span class="number">666</span>, <span class="string">&quot;yuck!&quot;</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -304,6 +132,103 @@
       </tags>
   </entry>
   <entry>
+    <title>【折腾笔记】个人网站</title>
+    <url>/blog/cc001/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终于暂且算是把博客性质的个人网站折腾利索了，也算是日常不务正业吧，记录下折腾过程吧，以免哪天服务器挂了要重新折腾（希望不需要。</p>
+<p>从14年开始搞个人网站，那时候用虚拟主机，便宜耐用，但配置差，网速慢，备份不方便，自由度极低，而且那时候网站程序是用的 WordPress ，Emm 可能是因为当时太菜了，觉得不好用，网站搬家也很费力，备份也不太方便，虽然有一次趁着打折续了五年的，但后来也弃了虚拟主机。</p>
+<p>后来开始买国外或香港VPS，免备案，预装Ubuntu，一键xx面板，一键LNMP，面板后台操作一番，WordPress 网站就建起来了，体验还不错。不过感觉xx面板有点不安全，而且依赖性太强，既然是瞎折腾，隔着一层面板折腾来折腾去也的确没什么意思。</p>
+<p>再后来docker火热，用 docker 搭了一个 WordPress 的，这个感觉蛮好的，备份一下docker的脚本，备份下数据库文件就好了，搬家也方便。但那时候没管理网站的注册机制，被脚本机器人注册了大量垃圾用户，而且也没怎么维护网站，后来数据库撑炸了，2333，再后来国外服务器总被封，各种原因也没再继续维护个人网站了。</p>
+<p>中间还试过GitHub Page，那时候用的叫 JK什么（误）的静态框架，但没什么好看的主题，而且emm反正不是很喜欢，就没继续搞。</p>
+<p>这波是2019年了，趁阿里云搞活动买了波基础机型，然后一直没动。直到有一天看到一个人的网站里有看板娘，emmmm，毕竟死宅，i了i了，于是就：”我也要这个！”，开始了这波Hexo博客的搭建。后面是留给自己的折腾笔记。</p>
+<hr>
+<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>由于平时开发使用Windows+WSL，所以两个平台都试了下，都很香。</p>
+<p>不过现在WSL的文件管理还不是很稳定，用Sublime浏览的时候，时而加载不出来，不是很方便，所以最后全都转到Windows下了（WSL近期要更新了 windows可以直接访问wsl文件，那时候应该比较好用，期待一下，就不暂时折腾win10更新的东西了）</p>
+<p>依赖：</p>
+<ol>
+<li>git</li>
+<li>node.js</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">hexo new <span class="string">&quot;Hello Hexo&quot;</span></span><br><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>大概这样就运行起来了。</p>
+<h2 id="配置自动发布"><a href="#配置自动发布" class="headerlink" title="配置自动发布"></a>配置自动发布</h2><p>emm Hexo支持很多种方式自动发布部署，rsync sftp ftpsync git，反正试到最后git最好用。rsync跨系统会有点坑在里面，sftp速度太慢，ftpsync现在的包并不好用，还要打补丁，打完补丁第一天还ok，第二天不好使了 2333。</p>
+<p>反正最后折腾到只用git了，git到 GitHub 很简单，到阿里云服务器的话，我是搭了一个 Gitea 服务，然后传到自己的 Gitea 的库里面，然后在 Gitea 的 action 里配置自动发布，大概长这样。。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">git --work-tree=/var/www/html/xxxxx --git-dir=/home/git/gitea-repositories/xxx/xxx.git checkout -f</span><br></pre></td></tr></table></figure>
+
+<p>所以hexo这里的自动发布 就只用git就ok了，github网速慢的问题可以走代理</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy https://127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+
+<p>而且Git可以配置公私钥来免登录，比较方便。</p>
+<h2 id="hexo-asset-image"><a href="#hexo-asset-image" class="headerlink" title="hexo-asset-image"></a>hexo-asset-image</h2><p>这个包好像有个问题，一开始图片一直显示不出来，调试发现生成图片链接的相关逻辑不太对，后来把index.js替换掉了就好使了。</p>
+<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
+
+<p>next主题还是很好用的，也比较喜欢，旧的next库很久不维护了，其中的主要贡献者另起炉灶开了新库（上面的链接）。</p>
+<p><strong>关于配置文件</strong>。有两个配置文件，一个是Hexo的，一个是主题的配置文件，有办法统一只使用一个配置文件：在hexo的配置文件最下方增加<code>theme_config:</code>，然后把主题的配置文件内容全部copy到Hexo的下面，并增加2缩进，如：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">theme_config:</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line">  <span class="comment"># Theme Core Configuration Settings</span></span><br><span class="line">  <span class="comment"># See: https://theme-next.org/docs/theme-settings/</span></span><br><span class="line">  <span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># If false, merge configs from `_data/next.yml` into default configuration (rewrite).</span></span><br><span class="line">  <span class="comment"># If true, will fully override default configuration by options from `_data/next.yml` (override). Only for NexT settings.</span></span><br><span class="line">  <span class="comment"># And if true, all config from default NexT `_config.yml` have to be copied into `next.yml`. Use if you know what you are doing.</span></span><br><span class="line">  <span class="comment"># Useful if you want to comment some options from NexT `_config.yml` by `next.yml` without editing default config.</span></span><br><span class="line">  <span class="attr">override:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+
+<p>这样可以避免更新主题时由于配置不统一导致需要手动处理merge的问题。</p>
+<h2 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h2><p>参考</p>
+<blockquote>
+<ol>
+<li><a href="https://github.com/stevenjoezhang/live2d-widget">live2d-widget</a></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><a href="https://www.fghrsh.net/post/123.html">网页添加 Live2D 看板娘</a></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-01/">给博客添加能动的看板娘</a></li>
+</ol>
+</blockquote>
+<p>增加了部分修改：</p>
+<ol>
+<li><p>去掉了小飞机。<code>// &lt;span class=&quot;fa fa-lg fa-paper-plane&quot;&gt;&lt;/span&gt;</code></p>
+</li>
+<li><p>去掉了宽度过窄就不显示的逻辑。（让手机端默认显示）</p>
+</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">@media (max-width: 768px) &#123;</span></span><br><span class="line"><span class="comment">	#waifu &#123;</span></span><br><span class="line"><span class="comment">		display: none;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// if (screen.width &gt;= 768) &#123;</span></span><br><span class="line">4...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="自建API"><a href="#自建API" class="headerlink" title="自建API"></a>自建API</h2><p>一开始是用的别人的API，但别人API总炸，一炸看板娘就没了。</p>
+<p>于是打算自己建API自己用。我在网页方面真心是菜鸟了，工作不搞这方面的东西，知识暂时全靠瞎折腾获取，所以自建API也要写一节！毕竟自己通过查资料试验测试，搞通了之后还是比较有成就感的。</p>
+<p>服务端需要有几个东西。</p>
+<ol>
+<li>php-fpm php-cgi</li>
+<li>fastcgi </li>
+<li>nginx</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/fghrsh/live2d_api.git</span><br></pre></td></tr></table></figure>
+
+<p>把API直接clone到了Hexo的souce里，这样就能搭车同步了，这也是为什么需要同步的文件又多又大的原因，内置的方法里，只有 Git 能比较轻松的搞定了。</p>
+<p>服务端</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install php-fpm php-cgi</span><br></pre></td></tr></table></figure>
+
+<p>然后在nginx里面配置使用<code>FastCGI server</code> </p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># pass PHP scripts to FastCGI server</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">    <span class="attribute">include</span> snippets/fastcgi-php.conf;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># With php-fpm (or other unix sockets):</span></span><br><span class="line">    <span class="attribute">fastcgi_pass</span> unix:/var/run/php/php7.2-fpm.sock;</span><br><span class="line">    <span class="comment"># With php-cgi (or other tcp sockets):</span></span><br><span class="line">    <span class="comment"># fastcgi_pass 127.0.0.1:9000;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="增加模型"><a href="#增加模型" class="headerlink" title="增加模型"></a>增加模型</h2><p>读了读大佬的API的代码，逻辑也不是很复杂，而且提供了增加模型的支持，在<a href="https://mx.paul.ren/page/1/">梦象</a>获取模型后，放到<code>/model/*/</code>里，把<code>model.json</code>重命名为<code>index.json</code>即可，然后修改<code>model_list.json</code>，测试了一下没有对<code>live2d</code>模型动作的依赖。如果有模型大小不合适的，在<code>index.json</code>中修改<code>layout</code>项。</p>
+<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>服务器本地加载Live2d有些慢，毕竟小水管服务器，还是CDN加速比较稳定而且负载小一些，有时间可以搞一下。</p>
+<p>Live2d的模型在<a href="https://github.com/Eikanya/Live2d-model">Live2d-model</a>找到了有大佬在收集。</p>
+<p>emm，后来也发现了好多大佬的博客做的非常漂亮，暂时不再深入下去，（前端深坑，好可怕……</p>
+]]></content>
+      <categories>
+        <category>折腾笔记</category>
+      </categories>
+      <tags>
+        <tag>不务正业</tag>
+        <tag>折腾笔记</tag>
+        <tag>web</tag>
+        <tag>waifu</tag>
+        <tag>live2d</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【设计模式之美】开篇</title>
     <url>/blog/dp001/</url>
     <content><![CDATA[<blockquote>
@@ -335,6 +260,81 @@
       <tags>
         <tag>设计模式之美</tag>
         <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【折腾笔记】看板娘浏览器</title>
+    <url>/blog/cc003/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><a href="/ny/waifuViewer/" style="text-decoration:none !important;">
+    <button class="nybtn nybtn_link"  onclick="null" ><span onclick="null">waifuViewer</span></button>
+</a><br><br><br>
+
+<p>从<a href="https://github.com/Eikanya/Live2d-model">Live2d-model</a>弄了好多模型下来，但是没法看，于是就折腾了个waifuViewer~</p>
+<hr>
+<p>这几天沉迷个人主页，搞了四五天，emm，虽然自己这几篇文章都打了“不务正业”的标签，但这波也算是开拓视野了。以前从未接触js/css/html开发相关的东西，这算是在自己不熟悉的领域去实现自己的需求，虽然<strong>东西很简单</strong>，但坑处处都是，总的来说挺考验自己的，也从侧面证实了一直以来坚信的一个观点:</p>
+<blockquote>
+<p>重要的不是知识，而是对知识的应用和理解，以及快速查找知识的能力</p>
+<p>重要的不是题解，而是解题的思路和方法，甚至风格、态度、执拗</p>
+</blockquote>
+<p>当然，<strong>认知</strong>（或者说经验+知识）也很重要。计算机世界的发展除了不断迸发的idea和design，也经历了无数的参考与借鉴，所以很多东西自然而然有<strong>相通</strong>的地方，在遇到新问题的时候，认知面会为解决问题提供支撑。</p>
+<p>这段时间虽然”不务正业”，但对博导（前公司老板）的教诲有了新的认识，<strong>WHY-WHAT-HOW</strong>里面，虽然小规模的问题都体现在HOW上，但其实最不重要的就是HOW。计算机中也存在<strong>道法术</strong>。道，是规则、自然法则，上乘；法，是方法、法理，中乘；术，是行为、方式，下乘。以道御术，悟道比修炼法术更高一筹。但要做到这一点，还需要<strong>不断的努力</strong>，道法术三者兼备才能做出最好的策略。</p>
+<p>个人主页先放放，要玩玩别的了！</p>
+<hr>
+<h1 id="踩坑小计"><a href="#踩坑小计" class="headerlink" title="踩坑小计"></a>踩坑小计</h1><table>
+<thead>
+<tr>
+<th>ISSUE</th>
+<th>FIXED</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✔ 布局异常</td>
+<td>BOX+CSS解决</td>
+</tr>
+<tr>
+<td>✔ 手机显示异常</td>
+<td>CSS多设备适配</td>
+</tr>
+<tr>
+<td>✔ 和左下角看板娘冲突</td>
+<td>进入页面主动隐藏左下角看板娘</td>
+</tr>
+<tr>
+<td>✔ 跳转会刷新整个页面</td>
+<td>使用pjax</td>
+</tr>
+<tr>
+<td>✔ pjax跳转但不加载js</td>
+<td>对需要加载的js做pjax-data标记</td>
+</tr>
+<tr>
+<td>✔ 按钮超链接有下划线</td>
+<td>css增加nybtn_link 追加处理</td>
+</tr>
+<tr>
+<td>✔ pjax重复加载js报错</td>
+<td>优化js</td>
+</tr>
+</tbody></table>
+<p>后面还有todo的话 大概有以下几个方面</p>
+<ol>
+<li>支持多个live2d同时显示（纸片人老婆+1+1+1 ???</li>
+<li>按钮列表换种方式布局，以便随意添加按钮</li>
+<li>子页面用scrollbar控制来显示按钮</li>
+</ol>
+]]></content>
+      <categories>
+        <category>折腾笔记</category>
+      </categories>
+      <tags>
+        <tag>不务正业</tag>
+        <tag>折腾笔记</tag>
+        <tag>web</tag>
+        <tag>waifu</tag>
+        <tag>live2d</tag>
+        <tag>jsdelivr</tag>
+        <tag>CDN</tag>
+        <tag>playground</tag>
       </tags>
   </entry>
   <entry>
@@ -551,7 +551,7 @@
 <li>不能通过 模板参数 获取名称的字面量，使用者只能通过传递字符串参数绕开限制 (宏编程中可以使用#获取字面量)</li>
 <li>受C++标准及编译器版本限制</li>
 </ol>
-<p>在探究宏编程邪教时，发现宏编程十分适用于我锁遇到的痛点问题，而且这次引发需求的场景更需要批量生成标识符，选择了使用宏编程技术解决该痛点。</p>
+<p>在探究宏编程邪教时，发现宏编程十分适用于我所遇到的痛点问题，而且这次引发需求的场景更需要批量生成标识符，于是选择了使用宏编程技术解决该痛点。</p>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在启动这次研究之前，对于宏编程的认识还停留在”简单的文本替换而已”,对于预处理只经常接触以下几种基本简单应用：</p>
 <ol>
 <li>头文件保护</li>
