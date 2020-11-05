@@ -17,7 +17,7 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>【C++】宏编程艺术（一）初探</title>
+    <title>【C++】宏编程艺术初探</title>
     <link href="https://yuanjiuzheng.com/blog/cc004/"/>
     <id>https://yuanjiuzheng.com/blog/cc004/</id>
     <published>2020-10-18T09:57:06.000Z</published>
@@ -284,11 +284,11 @@
     
     <category term="web" scheme="https://yuanjiuzheng.com/tags/web/"/>
     
-    <category term="hexo" scheme="https://yuanjiuzheng.com/tags/hexo/"/>
-    
     <category term="waifu" scheme="https://yuanjiuzheng.com/tags/waifu/"/>
     
     <category term="live2d" scheme="https://yuanjiuzheng.com/tags/live2d/"/>
+    
+    <category term="hexo" scheme="https://yuanjiuzheng.com/tags/hexo/"/>
     
   </entry>
   
